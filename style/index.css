@@ -68,6 +68,130 @@
 }
 
 
+/* Navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: 250ms;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.nav-links {
+    position: absolute;
+    right: 0;
+    top: 6vh;
+    width: 60%;
+    height: 70vh;
+    background-color: #000;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: menu_animation 500ms ease-in-out;
+}
+
+.show-menu {
+    display: flex;
+}
+
+@keyframes menu_animation {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    } to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.logo {
+    margin-left: 3.5rem;
+    transition: 250ms;
+}
+@media (max-width:770px) {
+    .logo {
+        margin-left: 1rem;
+    }
+}
+
+header ul li {
+    list-style: none;
+    margin: 20px 0;
+}
+
+header ul li a {
+    text-decoration: none;
+    padding: 10px 30px;
+    font-size: 1rem;
+    color: #E54E1B;
+    transition: 250ms;
+}
+
+header ul li a:hover {
+    color: #fff;
+}
+
+.sticky {
+    background: rgba(0, 0, 0);
+    z-index: 100;
+}
+
+.hamburger-on{
+    background: url("../images/assets/menu.svg");
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+}
+
+.hamburger-off {
+    padding: 9px;
+    background: url("../images/assets/close.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    transition: 250ms ease-in-out;
+}
+
+@media screen and (min-width: 700px) {
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        position: unset;
+        width: auto;
+        height: auto;
+        background: none;
+    }
+
+    header ul {
+        display: flex;
+    }
+
+    header ul li {
+        margin: 0;
+    }
+
+    header ul li a {
+        padding: 0;
+        margin: 1rem;
+    }
+
+    .hamburger-on{
+        display: none;
+    }
+}
+
 /* Hero */
 .hero {
     width: 100%;
@@ -85,7 +209,7 @@ button {
     padding: 10px 25px;
     background: transparent;
     border: 1px solid #E54E1B;
-    border-radius: 20px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
@@ -206,11 +330,11 @@ img {
     max-width: 100%;
 }
 
-a {
+.social a {
     color: #E54E1B;
 }
 
-a:hover {
+.social a:hover {
     color: #E54E1B;
 }
 
