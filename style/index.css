@@ -5,6 +5,69 @@
     box-sizing: border-box;
 }
 
+/*===== All Section Title Style =====*/
+.section_title .title {
+    font-size: 44px;
+    font-weight: 700;
+}
+
+.row {
+    margin: 4rem 0;
+}
+
+@media (max-width: 767px) {
+    .section_title .title {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .section_title .title {
+        font-size: 34px;
+    }
+}
+
+.section_title .line {
+    height: 2px;
+    width: 150px;
+    background-color: #E54E1B;
+    border-radius: 50px;
+    margin: 30px auto 0;
+    position: relative;
+}
+
+.section_title .line .box {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    background-color: #E54E1B;
+    -webkit-transform: translateX(-35%) rotate(45deg);
+    -moz-transform: translateX(-35%) rotate(45deg);
+    -ms-transform: translateX(-35%) rotate(45deg);
+    -o-transform: translateX(-35%) rotate(45deg);
+    transform: translateX(-35%) rotate(45deg);
+}
+
+.section_title .line .box::before,
+.section_title .line .box::after {
+    position: absolute;
+    content: '';
+    top: 7px;
+    left: -8px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(229, 78, 27, 0.33);
+}
+
+.section_title .line .box::after {
+    left: auto;
+    right: -7px;
+    top: -8px;
+}
+
+
 /* Hero */
 .hero {
     width: 100%;
@@ -44,7 +107,7 @@ button:hover {
 }
 
 h1 {
-    font-size: 60px;
+    font-size: 50px;
     margin: 10px 0 30px;
     line-height: 80px;
 }
@@ -134,4 +197,166 @@ p {
 
 .bubbles img:nth-child(7) {
     animation-delay: 8s;
+}
+
+/*===========================
+    01.COMMON css 
+===========================*/
+img {
+    max-width: 100%;
+}
+
+a {
+    color: #E54E1B;
+}
+
+a:hover {
+    color: #E54E1B;
+}
+
+i,
+span,
+a {
+    display: inline-block;
+}
+
+.about_area h4 {
+    font-family: "Philosopher", sans-serif;
+    font-weight: 700;
+    color: #2A2A2A;
+    margin: 0px;
+    font-size: 22px;
+}
+
+.about_area ul {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.about_area p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: #7A7A7A;
+    margin: 0px;
+}
+
+
+/*===========================
+        04.ABOUT css 
+===========================*/
+.about_image img {
+    border-radius: 5px;
+    width: 100%;
+}
+
+.about_content .about_title {
+    font-size: 40px;
+    font-weight: 700;
+}
+
+@media (max-width: 767px) {
+    .about_content .about_title {
+        font-size: 24px;
+    }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+    .about_content .about_title {
+        font-size: 30px;
+    }
+}
+
+.about_content p {
+    margin-top: 25px;
+}
+
+.about_content .social {
+    padding-top: 30px;
+}
+
+.about_content .social li {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.about_content .social li+li {
+    margin-left: 15px;
+}
+
+.about_content .social li a {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    background-color: #7A7A7A;
+    color: #fff;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+}
+
+.about_content .social li a:hover {
+    color: #fff;
+    background-color: #E54E1B;
+}
+
+
+
+
+/* cards */
+
+.cards {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.card {
+    margin: 5rem;
+    position: relative;
+    max-width: 250px;
+    max-height: 350px;
+    box-shadow: 0 7px 10px -6px black;
+}
+
+.card-title {
+    display: block;
+    text-align: center;
+    color: #000;
+    background-color: #E54E1B;
+    padding: 2%;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+.card img {
+    width: 100%;
+    height: 98%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+}
+
+.card-desc {
+    display: block;
+    font-size: 1.2rem;
+    position: absolute;
+    height: 0;
+    top: 0;
+    opacity: 0;
+    padding: 18px 8%;
+    background-color: white;
+    overflow-y: scroll;
+    transition: 0.8s ease;
+}
+
+.card:hover .card-desc {
+    opacity: 1;
+    height: 100%;
 }
