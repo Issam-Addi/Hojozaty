@@ -79,12 +79,13 @@ header {
     top: 0;
     transition: 250ms;
     background-color: rgba(0, 0, 0, 0.5);
+    height: 4rem;
 }
 
 .nav-links {
     position: absolute;
     right: 0;
-    top: 6vh;
+    top: 7vh;
     width: 60%;
     height: 70vh;
     background-color: #000;
@@ -93,6 +94,7 @@ header {
     justify-content: center;
     align-items: center;
     animation: menu_animation 500ms ease-in-out;
+    margin-top: auto;
 }
 
 .show-menu {
@@ -138,6 +140,8 @@ header ul li a:hover {
 
 .sticky {
     background: rgba(0, 0, 0);
+    box-shadow:  6px 6px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: 20px;
     z-index: 100;
 }
 
