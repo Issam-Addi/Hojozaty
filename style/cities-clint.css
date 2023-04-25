@@ -212,7 +212,7 @@ header ul li a:hover {
 }
 
 input {
-    height: 6.7vh;
+    height: 6vh;
     text-align: center;
     border-radius: 10px;
     border: none;
@@ -271,4 +271,11 @@ p {
         margin: 10px 0 30px;
         line-height: 50px;
     }
+}
+
+
+/* cards */
+.cstm-height-card .card-img-top {
+    height: 100px;
+    object-fit: cover;
 }
