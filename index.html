@@ -14,27 +14,114 @@
 </head>
 
 <body>
-
-    <section class=" hero">
-        <!-- Navbar -->
-        <header>
-            <a href="#" class="logo"><img src="images/Hojozaty-logo.png" alt="" height="40"></a>
+    <!-- Navbar -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><img src="images/Hojozaty-logo.png" alt="" height="40"></a>
             <div class="hamburger-on"></div>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Cities</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#Title">About</a></li>
+                <li><a href="#Cities">Cities</a></li>
                 <li><a href="#">History</a></li>
-                <li><a href="#">Log in</a></li>
             </ul>
-        </header>
+        </nav>
+    </header>
+    <section class=" hero">
         <!-- Hero text & button -->
+        <section class="body-header">
+            <div class="warpper">
+                <span class="icon-close">
+                    <ion-icon name="close"></ion-icon>
+                </span>
+                <div class="form-box login">
+                    <h2>Login</h2>
+                    <form action="#">
+                        <div class="inbut-box">
+                            <span class="icon">
+                                <ion-icon name="mail"></ion-icon>
+                            </span>
+                            <input type="email" id="Email" required>
+                            <label for="Email">Email</label>
+                        </div>
+                        <div class="inbut-box">
+                            <span class="icon">
+                                <ion-icon name="lock-closed"></ion-icon>
+                            </span>
+                            <input type="password" id="Password" required>
+                            <label for="Password">Password</label>
+                        </div>
+                        <div class="remeber-forgot">
+                            <label for="remeber-Forgot">
+                                <input type="checkbox" id="remeber-Forgot">
+                                Remeber me
+                            </label>
+                                <a href="#">Forgot Password?</a>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            Login
+                        </button>
+                        <div class="login-register">
+                            <p>
+                                Don't have an account?
+                                <a href="#" class="register-link">
+                                    Register
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+                <div class="form-box register">
+                    <h2>Register</h2>
+                    <form action="#">
+                        <div class="inbut-box">
+                            <span class="icon">
+                                <ion-icon name="person"></ion-icon>
+                            </span>
+                            <input type="text" id="userName" required>
+                            <label for="userName">user name</label>
+                        </div>
+                        <div class="inbut-box">
+                            <span class="icon">
+                                <ion-icon name="mail"></ion-icon>
+                            </span>
+                            <input type="email" id="Email" required>
+                            <label for="Email">Email</label>
+                        </div>
+                        <div class="inbut-box">
+                            <span class="icon">
+                                <ion-icon name="lock-closed"></ion-icon>
+                            </span>
+                            <input type="password" id="Password" required>
+                            <label for="Password">Password</label>
+                        </div>
+                        <div class="remeber-forgot">
+                            <label for="remeber-Forgot">
+                                <input type="checkbox" id="remeber-Forgot">
+                                I agree to the terms & conditions
+                            </label>
+                        </div>
+                        <button type="submit" class="submit-button">
+                            Register
+                        </button>
+                        <div class="login-register">
+                            <p>
+                                Already have an account?
+                                <a href="#" class="login-link">
+                                    Login
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
         <div class="heroContent">
             <h1>Hojozaty is your best choice </h1>
             <p>The city of Az-zarqa contains many wonderful and delicious
                 restaurants discover them now.
             </p>
-            <a href="#"><button>Learn more</button></a>
+            <a href="#"><button class="button-popup">Log in</button></a>
         </div>
         <!-- Hero animation -->
         <div class="bubbles">
@@ -53,7 +140,7 @@
             <div class="row justify-content-center">
                 <div class="col-lg-6">
                     <div class="section_title text-center pb-10">
-                        <h4 class="title">Our Story</h4>
+                        <h4 class="title" id="Title">Our Story</h4>
                         <span class="line">
                             <span class="box"></span>
                         </span>
@@ -68,18 +155,18 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about_content mt-45 wow fadeInLeftBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
-                        <h4 class="about_title">About Coffee Shop</h4>
-                        <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam aliquyam erat, sed diam
-                            voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd
-                            gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-                            amet, consetetur sadipscing elitr. <br> <br> Sed diam nonumy eirmod tempor invidunt ut
-                            labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
-                            dolores et ea rebum.</p>
+                        <h4 class="about_title">About Hojozaty</h4>
+                        <p>We came up with the idea of Hojozaty because most people go to restaurants and can't find a
+                            place to sit because
+                            of crowding or because the restaurant doesn't have enough tables. <br> <br>
+                            Where the site displays restaurants near you after choosing your location, and shows you the
+                            menu of the chosen restaurant, and some information about it.</p>
                         <ul class="social">
-                            <li><a href="#"><i class="lni lni-facebook-fill"></i></a></li>
-                            <li><a href="#"><i class="lni lni-twitter-original"></i></a></li>
-                            <li><a href="#"><i class="lni lni-instagram-original"></i></a></li>
-                            <li><a href="#"><i class="lni lni-linkedin-original"></i></a></li>
+                            <li><a href="tel:+9627836992500"><i class="lni lni-phone"></i></a></li>
+                            <li><a href="mailto:essam.h.addi@gmail.com"><i class="lni lni-envelope"></i></a></li>
+                            <li><a href="https://github.com/Issam-Addi"><i class="lni lni-github-original"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/issam-addi-09148a267/"><i
+                                        class="lni lni-linkedin-original"></i></a></li>
                         </ul>
                     </div> <!-- row -->
                 </div>
@@ -89,37 +176,33 @@
     <!-- cards -->
     <section>
         <div class="section_title text-center pb-10">
-            <h4 class="title">Cities</h4>
+            <h4 class="title" id="Cities">Cities</h4>
             <span class="line">
                 <span class="box"></span>
             </span>
         </div> <!-- section title -->
         <div class="cards">
-            <div class="card">
-                <h2 class="card-title">Az-zarqa</h2>
-                <img src="images/cities-image/zarqa.jpg" alt="">
-                <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
-            </div>
-            <div class="card">
-                <h2 class="card-title">Amman</h2>
-                <img src="images/cities-image/Ma'an.jpg" alt="">
-                <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
-            </div>
-            <div class="card">
-                <h2 class="card-title">Irbid</h2>
-                <img src="images/cities-image/Irbid.jpg" alt="">
-                <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
-            </div>
-            <div class="card">
-                <h2 class="card-title">Irbid</h2>
-                <img src="images/cities-image/Irbid.jpg" alt="">
-                <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
-            </div>
-            <div class="card">
-                <h2 class="card-title">Irbid</h2>
-                <img src="images/cities-image/Irbid.jpg" alt="">
-                <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
-            </div>
+            <a href="#">
+                <div class="card">
+                    <h2 class="card-title">Az-zarqa</h2>
+                    <img src="images/cities-image/zarqa.jpg" alt="">
+                    <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
+                </div>
+            </a>
+            <a href="#">
+                <div class="card">
+                    <h2 class="card-title">Ma'an</h2>
+                    <img src="images/cities-image/Ma'an.jpg" alt="">
+                    <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
+                </div>
+            </a>
+            <a href="">
+                <div class="card">
+                    <h2 class="card-title">Irbid</h2>
+                    <img src="images/cities-image/Irbid.jpg" alt="">
+                    <p class="card-desc">Hi everyone Hi everyone Hi everyone </p>
+                </div>
+            </a>
         </div>
     </section>
     <script src="js/main.js"></script>

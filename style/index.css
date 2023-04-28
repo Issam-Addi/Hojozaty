@@ -5,6 +5,16 @@
     box-sizing: border-box;
 }
 
+a {
+    text-decoration: none;
+}
+
+:root {
+    --mainColor: #E54E1B;
+    --mainTransition: 0.5s;
+    --textColor: #ffffff;
+}
+
 /*===== All Section Title Style =====*/
 .section_title .title {
     font-size: 44px;
@@ -30,7 +40,7 @@
 .section_title .line {
     height: 2px;
     width: 150px;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     border-radius: 50px;
     margin: 30px auto 0;
     position: relative;
@@ -42,7 +52,7 @@
     left: 50%;
     width: 15px;
     height: 15px;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     -webkit-transform: translateX(-35%) rotate(45deg);
     -moz-transform: translateX(-35%) rotate(45deg);
     -ms-transform: translateX(-35%) rotate(45deg);
@@ -69,7 +79,7 @@
 
 
 /* Navbar */
-header {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,15 +87,16 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    transition: 250ms;
+    transition: var(--mainTransition);
     background-color: rgba(0, 0, 0, 0.5);
-    height: 3.5rem;
+    height: 4rem;
+    z-index: 100;
 }
 
 .nav-links {
     position: absolute;
     right: 0;
-    top: 7vh;
+    top: 8.5vh;
     width: 60%;
     height: 70vh;
     background-color: #000;
@@ -93,7 +104,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: menu_animation 500ms ease-in-out;
+    animation: menu_animation var(--mainTransition) ease-in-out;
     margin-top: auto;
 }
 
@@ -113,7 +124,6 @@ header {
 
 .logo {
     margin-left: 3.5rem;
-    transition: 250ms;
 }
 @media (max-width:770px) {
     .logo {
@@ -121,21 +131,20 @@ header {
     }
 }
 
-header ul li {
+nav ul li {
     list-style: none;
-    margin: 20px 0;
+    margin: 1.5rem 0;
 }
 
-header ul li a {
-    text-decoration: none;
-    padding: 10px 30px;
+nav ul li a {
+    padding: 0.7rem 5rem;
     font-size: 1rem;
-    color: #E54E1B;
-    transition: 250ms;
+    color: var(--mainColor);
+    transition: var(--mainTransition);
 }
 
-header ul li a:hover {
-    color: #fff;
+nav ul li a:hover {
+    color: var(--textColor);
 }
 
 .sticky {
@@ -153,7 +162,7 @@ header ul li a:hover {
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    transition: 250ms ease-in-out;
+    transition: var(--mainTransition) ease-in-out;
 }
 
 .hamburger-off {
@@ -165,7 +174,7 @@ header ul li a:hover {
     height: 25px;
     width: 25px;
     cursor: pointer;
-    transition: 250ms ease-in-out;
+    transition: var(--mainTransition) ease-in-out;
 }
 
 @media screen and (min-width: 700px) {
@@ -178,15 +187,15 @@ header ul li a:hover {
         background: none;
     }
 
-    header ul {
+    nav ul {
         display: flex;
     }
 
-    header ul li {
+    nav ul li {
         margin: 0;
     }
 
-    header ul li a {
+    nav ul li a {
         padding: 0;
         margin: 1rem;
     }
@@ -208,23 +217,22 @@ header ul li a:hover {
 }
 
 button {
-    color: #fff;
+    color: var(--textColor);
     padding: 10px 25px;
-    background: transparent;
-    border: 1px solid #E54E1B;
+    background: var(--mainColor);
+    border: 1px solid var(--mainColor);
     border-radius: 10px;
     cursor: pointer;
 }
 
 button:hover {
-    color: black;
-    background: #E54E1B;
-    transition: all 0.5s;
+    background: rgb(229, 78, 27, 0.5);
+    transition: all var(--mainTransition);
     outline: pointer;
 }
 
 .heroContent {
-    color: #fbfcfd;
+    color: var(--textColor);
     max-width: 60%;
     position: absolute;
     top: 50%;
@@ -325,6 +333,198 @@ p {
     animation-delay: 8s;
 }
 
+
+
+/* login */
+
+.body-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url("background.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+.warpper {
+    position: relative;
+    width: 25rem;
+    height: 25rem;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    transform: scale(0);
+    transition: all 0.2s ease;
+}
+.warpper.active-popup {
+    transform: scale(1);
+}
+
+.warpper.active {
+    height: 520px;
+}
+
+.warpper .form-box {
+    width: 100%;
+    padding: 2.5rem;
+}
+
+.warpper .form-box.login {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+.warpper.active .form-box.login {
+    transition: none;
+    transform: translateX(-26rem);
+}
+
+.warpper .form-box.register{
+    position: absolute;
+    transition: none;
+    transform: translateX(26rem);
+}
+
+.warpper.active .form-box.register {
+    transition: transform 0.18s ease;
+    transform: translateX(0);
+}
+
+.warpper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 2.5rem;
+    height: 2.8rem;
+    background: #162938;
+    font-size: 2em;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.form-box h2 {
+    font-size: 2em;
+    color: #162938;
+    text-align: center;
+}
+
+.inbut-box {
+    position: relative;
+    width: 100%;
+    height: 3rem;
+    border-bottom: 2px solid #162938;
+    margin: 2rem 0;
+}
+
+.inbut-box label {
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: #162938;
+    font-weight: 500;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+.inbut-box input:focus~label,
+.inbut-box input:valid~label {
+    top: -5px;
+}
+
+.inbut-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color: #162938;
+    font-weight: 600;
+}
+
+.inbut-box .icon {
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color: #162938;
+    line-height: 3.5rem;
+    
+}
+
+.remeber-forgot {
+    font-size: 0.9em;
+    color: #162938;
+    font-weight: 500;
+    margin: -15px 0 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remeber-forgot label {
+    cursor: pointer;
+}
+
+.remeber-forgot label input {
+    accent-color: #162938;
+    margin-right: 3px;
+    cursor: pointer;
+} 
+
+.remeber-forgot a {
+    color: #162938;
+    text-decoration: none;
+}
+.remeber-forgot a:hover {
+    text-decoration: underline;
+}
+
+.submit-button {
+    width: 100%;
+    height: 2.5rem;
+    background: #162938;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer; 
+    font-size: 1em;
+    color: #fff;
+    font-weight: 500;
+}
+
+.login-register {
+    font-size: .9em;
+    color: #162938;
+    text-align: center;
+    font-weight: 500;
+    margin: 25px 0 10px;
+}
+
+.login-register p a {
+    color: #162938;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-register p a:hover {
+    text-decoration: underline;
+}
+
+
 /*===========================
     01.COMMON css 
 ===========================*/
@@ -332,18 +532,20 @@ img {
     max-width: 100%;
 }
 
-.social a {
-    color: #E54E1B;
-}
-
 .social a:hover {
-    color: #E54E1B;
+    color: var(--mainColor);
 }
 
 i,
 span,
 a {
     display: inline-block;
+}
+
+@media (max-width:992px) {
+    .container .about_title {
+        margin-top: 2rem;
+    }
 }
 
 .about_area h4 {
@@ -417,18 +619,14 @@ a {
     line-height: 35px;
     text-align: center;
     background-color: #7A7A7A;
-    color: #fff;
+    color: var(--textColor);
     border-radius: 5px;
-    -webkit-transition: all 0.3s ease-out 0s;
-    -moz-transition: all 0.3s ease-out 0s;
-    -ms-transition: all 0.3s ease-out 0s;
-    -o-transition: all 0.3s ease-out 0s;
-    transition: all 0.3s ease-out 0s;
+    transition: all var(--mainTransition) ease-out 0s;
 }
 
 .about_content .social li a:hover {
-    color: #fff;
-    background-color: #E54E1B;
+    color: var(--textColor);
+    background-color: var(--mainColor);
 }
 
 
@@ -449,13 +647,14 @@ a {
     max-width: 250px;
     max-height: 350px;
     box-shadow: 0 7px 10px -6px black;
+    cursor: pointer;
 }
 
 .card-title {
     display: block;
     text-align: center;
     color: #000;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     padding: 2%;
     border-top-right-radius: 4px;
     border-top-left-radius: 4px;
@@ -470,6 +669,7 @@ a {
 }
 
 .card-desc {
+    color: var(--mainColor);
     display: block;
     font-size: 1.2rem;
     position: absolute;
@@ -477,9 +677,9 @@ a {
     top: 0;
     opacity: 0;
     padding: 18px 8%;
-    background-color: white;
+    background-color: var(--textColor);
     overflow-y: scroll;
-    transition: 0.8s ease;
+    transition: var(--mainTransition) ease;
 }
 
 .card:hover .card-desc {
