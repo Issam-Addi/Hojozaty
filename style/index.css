@@ -13,9 +13,12 @@ a {
     --mainColor: #E54E1B;
     --mainTransition: 0.5s;
     --textColor: #ffffff;
+    --blackText: #000;
 }
 
-/*===== All Section Title Style =====*/
+/*===========================
+    All Section Title Style
+===========================*/
 .section_title .title {
     font-size: 44px;
     font-weight: 700;
@@ -78,7 +81,9 @@ a {
 }
 
 
-/* Navbar */
+/*===========================
+    Navbar
+===========================*/
 nav {
     display: flex;
     justify-content: space-between;
@@ -99,7 +104,7 @@ nav {
     top: 8.5vh;
     width: 60%;
     height: 70vh;
-    background-color: #000;
+    background-color: var(--blackText);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -148,7 +153,7 @@ nav ul li a:hover {
 }
 
 .sticky {
-    background: rgba(0, 0, 0);
+    background: var(--blackText);
     box-shadow:  6px 6px 20px rgba(0, 0, 0, 0.5);
     backdrop-filter: 20px;
     z-index: 100;
@@ -205,7 +210,9 @@ nav ul li a:hover {
     }
 }
 
-/* Hero */
+/*===========================
+    Hero
+===========================*/
 .hero {
     width: 100%;
     height: 100vh;
@@ -335,17 +342,16 @@ p {
 
 
 
-/* login */
-
+/*===========================
+    Login & register
+===========================*/
 .body-header {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: url("background.jpg") no-repeat;
     background-size: cover;
     background-position: center;
-
 }
 
 .warpper {
@@ -415,7 +421,7 @@ p {
     z-index: 1;
 }
 
-.form-box h2 {
+.warpper .form-box h2 {
     font-size: 2em;
     color: #162938;
     text-align: center;
@@ -487,7 +493,6 @@ p {
 
 .remeber-forgot a {
     color: #162938;
-    text-decoration: none;
 }
 .remeber-forgot a:hover {
     text-decoration: underline;
@@ -506,7 +511,7 @@ p {
     font-weight: 500;
 }
 
-.login-register {
+.login-register p {
     font-size: .9em;
     color: #162938;
     text-align: center;
@@ -516,7 +521,6 @@ p {
 
 .login-register p a {
     color: #162938;
-    text-decoration: none;
     font-weight: 600;
 }
 
@@ -526,7 +530,7 @@ p {
 
 
 /*===========================
-    01.COMMON css 
+    About
 ===========================*/
 img {
     max-width: 100%;
@@ -551,7 +555,7 @@ a {
 .about_area h4 {
     font-family: "Philosopher", sans-serif;
     font-weight: 700;
-    color: #2A2A2A;
+    color: var(--blackText);
     margin: 0px;
     font-size: 22px;
 }
@@ -566,14 +570,10 @@ a {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: #7A7A7A;
+    color: var(--blackText);
     margin: 0px;
 }
 
-
-/*===========================
-        04.ABOUT css 
-===========================*/
 .about_image img {
     border-radius: 5px;
     width: 100%;
@@ -598,6 +598,7 @@ a {
 
 .about_content p {
     margin-top: 25px;
+    color: var(--blackText);
 }
 
 .about_content .social {
@@ -631,9 +632,9 @@ a {
 
 
 
-
-/* cards */
-
+/*===========================
+    Cards
+===========================*/
 .cards {
     width: 100%;
     display: flex;
@@ -646,14 +647,14 @@ a {
     position: relative;
     max-width: 250px;
     max-height: 350px;
-    box-shadow: 0 7px 10px -6px black;
+    box-shadow: 0 7px 10px -6px var(--blackText);
     cursor: pointer;
 }
 
 .card-title {
     display: block;
     text-align: center;
-    color: #000;
+    color: var(--blackText);
     background-color: var(--mainColor);
     padding: 2%;
     border-top-right-radius: 4px;

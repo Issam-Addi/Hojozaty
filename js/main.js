@@ -18,10 +18,14 @@ hamburger.addEventListener("click", function(){
 })
 
 
+
+
+
 const wrapper = document.querySelector(".warpper");
 const loginLink = document.querySelector(".login-link");
 const registerLink = document.querySelector(".register-link");
 const buttonPopup = document.querySelector(".button-popup");
+const historyPopup = document.querySelector(".history-popup");
 const iconClose = document.querySelector(".icon-close");
 
 registerLink.addEventListener ("click", () =>{
@@ -33,6 +37,10 @@ loginLink.addEventListener ("click", () =>{
 });
 
 buttonPopup.addEventListener ("click", () =>{
+    wrapper.classList.add("active-popup");
+});
+
+historyPopup.addEventListener ("click", () =>{
     wrapper.classList.add("active-popup");
 });
 
