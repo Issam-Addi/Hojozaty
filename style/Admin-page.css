@@ -67,6 +67,12 @@
     top: -8px;
 }
 
+span
+{
+    display: inline-block;
+}
+
+
 
 /* Navbar */
 header {

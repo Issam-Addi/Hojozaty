@@ -25,7 +25,6 @@ const wrapper = document.querySelector(".warpper");
 const loginLink = document.querySelector(".login-link");
 const registerLink = document.querySelector(".register-link");
 const buttonPopup = document.querySelector(".button-popup");
-const historyPopup = document.querySelector(".history-popup");
 const iconClose = document.querySelector(".icon-close");
 
 registerLink.addEventListener ("click", () =>{

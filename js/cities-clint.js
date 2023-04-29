@@ -1,9 +1,9 @@
-const header = document.querySelector("header");
+const nav = document.querySelector("nav");
 const hamburger = document.querySelector(".hamburger-on");
 const menu = document.querySelector(".nav-links");
 let hamburgerOpen = false;
 window.addEventListener("scroll", function(){
-    header.classList.toggle("sticky", window.scrollY > 0)
+    nav.classList.toggle("sticky", window.scrollY > 0)
 })
 
 hamburger.addEventListener("click", function(){

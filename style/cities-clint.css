@@ -5,6 +5,13 @@
     box-sizing: border-box;
 }
 
+:root {
+    --mainColor: #E54E1B;
+    --mainTransition: 0.5s;
+    --textColor: #ffffff;
+    --blackText: #000;
+}
+
 /*===== All Section Title Style =====*/
 .section_title .title {
     font-size: 44px;
@@ -30,7 +37,7 @@
 .section_title .line {
     height: 2px;
     width: 150px;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     border-radius: 50px;
     margin: 30px auto 0;
     position: relative;
@@ -42,7 +49,7 @@
     left: 50%;
     width: 15px;
     height: 15px;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     -webkit-transform: translateX(-35%) rotate(45deg);
     -moz-transform: translateX(-35%) rotate(45deg);
     -ms-transform: translateX(-35%) rotate(45deg);
@@ -67,9 +74,13 @@
     top: -8px;
 }
 
+span
+{
+    display: inline-block;
+}
 
 /* Navbar */
-header {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -77,7 +88,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    transition: 250ms;
+    transition: var(--mainTransition);
     background-color: rgba(0, 0, 0, 0.5);
     height: 4rem;
 }
@@ -88,7 +99,7 @@ header {
     top: 7vh;
     width: 60%;
     height: 70vh;
-    background-color: #000;
+    background-color: var(--blackText);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -115,7 +126,7 @@ header {
 
 .logo {
     margin-left: 3.5rem;
-    transition: 250ms;
+    transition: var(--mainTransition);
 }
 
 @media (max-width:770px) {
@@ -124,25 +135,25 @@ header {
     }
 }
 
-header ul li {
+nav ul li {
     list-style: none;
     margin: 20px 0;
 }
 
-header ul li a {
+nav ul li a {
     text-decoration: none;
     padding: 10px 30px;
     font-size: 1rem;
-    color: #E54E1B;
-    transition: 250ms;
+    color :var(--mainColor);
+    transition: var(--mainTransition);
 }
 
-header ul li a:hover {
-    color: #fff;
+nav ul li a:hover {
+    color: var(--textColor);
 }
 
 .sticky {
-    background: rgba(0, 0, 0);
+    background: var(--blackText);
     box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
     backdrop-filter: 20px;
     z-index: 100;
@@ -156,7 +167,7 @@ header ul li a:hover {
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    transition: 250ms ease-in-out;
+    transition: var(--mainTransition) ease-in-out;
 }
 
 .hamburger-off {
@@ -181,15 +192,15 @@ header ul li a:hover {
         background: none;
     }
 
-    header ul {
+    nav ul {
         display: flex;
     }
 
-    header ul li {
+    nav ul li {
         margin: 0;
     }
 
-    header ul li a {
+    nav ul li a {
         padding: 0;
         margin: 1rem;
     }
@@ -218,24 +229,23 @@ input {
     border: none;
 }
 
-form button {
-    color: #fff;
+form button, .container a {
+    color: var(--textColor);
     padding: 10px 25px;
-    background: transparent;
-    border: 1px solid #E54E1B;
+    background: var(--mainColor);
+    border: 1px solid var(--mainColor);
     border-radius: 10px;
     cursor: pointer;
 }
 
-button:hover {
-    color: black;
-    background: #E54E1B;
-    transition: all 0.5s;
+button:hover, .container a:hover {
+    background: rgb(229, 78, 27, 0.5);
+    transition: all var(--mainTransition);
     outline: pointer;
 }
 
 .heroContent {
-    color: #fbfcfd;
+    color: var(--textColor);
     max-width: 60%;
     position: absolute;
     top: 50%;
@@ -278,4 +288,8 @@ p {
 .cstm-height-card .card-img-top {
     height: 100px;
     object-fit: cover;
+}
+
+.container a {
+    margin: 0.5rem;
 }
