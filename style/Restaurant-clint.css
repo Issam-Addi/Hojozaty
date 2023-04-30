@@ -283,7 +283,7 @@ p {
 # Menu Section
 --------------------------------------------------------------*/
 .menu{
-background-color: var(--Menucolor);
+background-color: var(--blackText);
 }
 
 .menu #menu-flters {
@@ -301,7 +301,7 @@ background-color: var(--Menucolor);
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
-    color: var(--blackText);
+    color: var(--textColor);
     margin-top: 3rem;
     transition: all var(--mainTransition) ease-in-out;
     border-radius: 50px;
@@ -341,7 +341,7 @@ background-color: var(--Menucolor);
 
 .menu .menu-content h5 {
     padding-right: 10px;
-    background: var(--Menucolor);
+    background: var(--blackText);
     position: relative;
     z-index: 3;
     font-size: 1em;
@@ -354,7 +354,7 @@ background-color: var(--Menucolor);
 }
 
 .menu .menu-content span {
-    background: var(--Menucolor);
+    background: var(--blackText);
     position: relative;
     z-index: 3;
     padding: 0 10px;
@@ -366,5 +366,5 @@ background-color: var(--Menucolor);
     margin-left: 85px;
     font-style: italic;
     font-size: 14px;
-    color: var(--blackText);
+    color: var(--textColor);
 }

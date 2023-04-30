@@ -1,5 +1,9 @@
 /* Background white */
 :root {
+    --mainColor: #E54E1B;
+    --mainTransition: 0.5s;
+    --textColor: #ffffff;
+    --blackText: #000;
     --bg1: #e8eaec;
     --text-color: #979797;
     --color: #000;
@@ -18,11 +22,17 @@
     --sbShadow: 5px 5px 7px rgb(0 0 0 /25%),
         inset 2px 2px 5px rgb(255 255 255 / 25%),
         inset -3px -3px 5px rgb(0 0 0 / 12%);
+}
 
-        --mainColor: #E54E1B;
-        --mainTransition: 0.5s;
-        --textColor: #ffffff;
-        --blackText: #000;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: serif;
+}
+
+a {
+    text-decoration: none;
 }
 
 
@@ -66,7 +76,9 @@ nav {
     from {
         opacity: 0;
         transform: translateX(100%);
-    } to {
+    }
+
+    to {
         opacity: 1;
         transform: translateX(0%);
     }
@@ -75,6 +87,7 @@ nav {
 .logo {
     margin-left: 3.5rem;
 }
+
 @media (max-width:770px) {
     .logo {
         margin-left: 1rem;
@@ -99,12 +112,12 @@ nav ul li a:hover {
 
 .sticky {
     background: var(--blackText);
-    box-shadow:  6px 6px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
     backdrop-filter: 20px;
     z-index: 100;
 }
 
-.hamburger-on{
+.hamburger-on {
     background: url("../images/assets/menu.svg");
     width: 25px;
     height: 25px;
@@ -150,11 +163,10 @@ nav ul li a:hover {
         margin: 1rem;
     }
 
-    .hamburger-on{
+    .hamburger-on {
         display: none;
     }
 }
-
 
 /* Background dark */
 body.dark {
@@ -176,16 +188,6 @@ body.dark {
     --sbShadow: 5px 5px 7px rgb(0 0 0 /25%),
         inset 2px 2px 5px rgb(255 255 255 / 25%),
         inset -3px -3px 5px rgb(0 0 0 / 12%);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: serif;
-}
-a {
-    text-decoration: none;
 }
 
 .body {
@@ -236,7 +238,7 @@ input:focus {
 }
 
 ::placeholder {
-    color: var(--tcolor);
+    color: var(--mainColor);
 }
 
 .field:nth-child(2) {
@@ -251,34 +253,30 @@ input:focus {
     position: absolute;
     width: 50px;
     line-height: 50px;
-    color: var(--tcolor);
+    color: var(--mainColor);
     font-size: 22px;
 }
 
-button {
-    margin: 25px 0;
-    width: 80px;
-    height: 40px;
-    color: var(--color);
-    font-size: 18px;
-    font-weight: 600;
-    background: var(--bg1);
-    border: none;
-    outline: none;
+.content button {
+    margin: 0.5rem 0;
+    color: var(--textColor);
+    padding: 10px 25px;
+    background: var(--mainColor);
+    border: 1px solid var(--mainColor);
+    border-radius: 10px;
     cursor: pointer;
-    box-shadow: var(--boxShadow);
-    border-radius: 25px;
 }
 
-button:focus {
-    color: #ff6100;
-    box-shadow: var(--boxShadow2);
+button:hover {
+    background: rgb(229, 78, 27, 0.5);
+    transition: all var(--mainTransition);
+    outline: pointer;
 }
 
 h4 {
     font-size: 14px;
     color: rgb(119 119 119);
-    margin: 0 0 16px 0;
+    margin: 2rem 0;
 }
 
 .social_icons {
@@ -312,20 +310,16 @@ h4 {
 }
 
 .social_icons i:nth-child(1) {
-    /* background-image: linear-gradient(315deg,#0078ff -7.64,#00c6ff 104.5%); */
     background-image: linear-gradient(315deg, #0078ff, #00c6ff);
 }
 
 .social_icons i:nth-child(1):hover {
     color: #0078ff;
-    background-image: linear-gradient(to bottom,
-            #e8eaec,
-            rgba(189, 200, 213, 0.795));
+    background-image: linear-gradient(to bottom,#e8eaec,rgba(189, 200, 213, 0.795));
     text-shadow: 2px 2px 3px #b8b9be, -2px -2px -2px #fff;
 }
 
 .social_icons i:nth-child(2) {
-    /* background-image: linear-gradient(315deg,#4949e7 -6.1,#5eb2fc 101.5%); */
     background-image: linear-gradient(315deg, #4949e7, #5eb2fc);
 }
 
@@ -338,7 +332,6 @@ h4 {
 }
 
 .social_icons i:nth-child(3) {
-    /* background-image: linear-gradient(315deg,#02b7ff -7.64,#92cdfa 104.5%); */
     background-image: linear-gradient(315deg, #02b7ff, #92cdfa);
 }
 
@@ -351,7 +344,6 @@ h4 {
 }
 
 .social_icons i:nth-child(4) {
-    /* background-image: linear-gradient(315deg,#02b7ff -7.64,#92cdfa 104.5%); */
     background-image: linear-gradient(315deg, #b9215c, #de4882);
 }
 
@@ -369,7 +361,7 @@ h4 {
     position: absolute;
     justify-content: center;
     align-items: center;
-    top: 50px;
+    top: 100px;
     width: 60px;
     height: 60px;
     box-shadow: var(--boxShadow);
