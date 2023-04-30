@@ -18,7 +18,143 @@
     --sbShadow: 5px 5px 7px rgb(0 0 0 /25%),
         inset 2px 2px 5px rgb(255 255 255 / 25%),
         inset -3px -3px 5px rgb(0 0 0 / 12%);
+
+        --mainColor: #E54E1B;
+        --mainTransition: 0.5s;
+        --textColor: #ffffff;
+        --blackText: #000;
 }
+
+
+/*===========================
+    Navbar
+===========================*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    transition: var(--mainTransition);
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 4rem;
+    z-index: 100;
+}
+
+.nav-links {
+    position: absolute;
+    right: 0;
+    top: 8.5vh;
+    width: 60%;
+    height: 70vh;
+    background-color: var(--blackText);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: menu_animation var(--mainTransition) ease-in-out;
+    margin-top: auto;
+}
+
+.show-menu {
+    display: flex;
+}
+
+@keyframes menu_animation {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    } to {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+}
+
+.logo {
+    margin-left: 3.5rem;
+}
+@media (max-width:770px) {
+    .logo {
+        margin-left: 1rem;
+    }
+}
+
+nav ul li {
+    list-style: none;
+    margin: 1.5rem 0;
+}
+
+nav ul li a {
+    padding: 0.7rem 5rem;
+    font-size: 1rem;
+    color: var(--mainColor);
+    transition: var(--mainTransition);
+}
+
+nav ul li a:hover {
+    color: var(--textColor);
+}
+
+.sticky {
+    background: var(--blackText);
+    box-shadow:  6px 6px 20px rgba(0, 0, 0, 0.5);
+    backdrop-filter: 20px;
+    z-index: 100;
+}
+
+.hamburger-on{
+    background: url("../images/assets/menu.svg");
+    width: 25px;
+    height: 25px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+    transition: var(--mainTransition) ease-in-out;
+}
+
+.hamburger-off {
+    padding: 9px;
+    background: url("../images/assets/close.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    transition: var(--mainTransition) ease-in-out;
+}
+
+@media screen and (min-width: 700px) {
+    .nav-links {
+        display: flex;
+        flex-direction: row;
+        position: unset;
+        width: auto;
+        height: auto;
+        background: none;
+    }
+
+    nav ul {
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    nav ul li a {
+        padding: 0;
+        margin: 1rem;
+    }
+
+    .hamburger-on{
+        display: none;
+    }
+}
+
 
 /* Background dark */
 body.dark {
@@ -48,17 +184,16 @@ body.dark {
     box-sizing: border-box;
     font-family: serif;
 }
-
-html,
-body {
-    height: 100%;
+a {
+    text-decoration: none;
 }
 
-body {
+.body {
     display: grid;
     place-items: center;
     text-align: center;
     background: var(--bg1);
+    height: 100vh;
 }
 
 .content {
