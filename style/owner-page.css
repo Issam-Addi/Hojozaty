@@ -5,15 +5,22 @@
     box-sizing: border-box;
 }
 
+:root {
+    --mainColor: #E54E1B;
+    --mainTransition: 0.5s;
+    --textColor: #ffffff;
+    --blackText: #000;
+    --Menucolor: #e1e1e1;
+}
 
 /*===== All Section Title Style =====*/
+.section_title {
+    margin: 4rem 0;
+}
+
 .section_title .title {
     font-size: 44px;
     font-weight: 700;
-}
-
-.row {
-    margin: 4rem 0;
 }
 
 @media (max-width: 767px) {
@@ -31,7 +38,7 @@
 .section_title .line {
     height: 2px;
     width: 150px;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     border-radius: 50px;
     margin: 30px auto 0;
     position: relative;
@@ -43,7 +50,7 @@
     left: 50%;
     width: 15px;
     height: 15px;
-    background-color: #E54E1B;
+    background-color: var(--mainColor);
     -webkit-transform: translateX(-35%) rotate(45deg);
     -moz-transform: translateX(-35%) rotate(45deg);
     -ms-transform: translateX(-35%) rotate(45deg);
@@ -75,7 +82,7 @@ span
 
 
 /* Navbar */
-header {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -83,18 +90,19 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    transition: 250ms;
+    transition: var(--mainTransition);
     background-color: rgba(0, 0, 0, 0.5);
     height: 4rem;
+    z-index: 10;
 }
 
 .nav-links {
     position: absolute;
     right: 0;
-    top: 7vh;
+    top: 8.5vh;
     width: 60%;
     height: 70vh;
-    background-color: #000;
+    background-color: var(--blackText);
     display: none;
     flex-direction: column;
     justify-content: center;
@@ -121,7 +129,7 @@ header {
 
 .logo {
     margin-left: 3.5rem;
-    transition: 250ms;
+    transition: var(--mainTransition);
 }
 
 @media (max-width:770px) {
@@ -130,25 +138,25 @@ header {
     }
 }
 
-header ul li {
+nav ul li {
     list-style: none;
     margin: 20px 0;
 }
 
-header ul li a {
+nav ul li a {
     text-decoration: none;
     padding: 10px 30px;
     font-size: 1rem;
-    color: #E54E1B;
-    transition: 250ms;
+    color: var(--mainColor);
+    transition: var(--mainTransition);
 }
 
-header ul li a:hover {
-    color: #fff;
+nav ul li a:hover {
+    color: var(--textColor);
 }
 
 .sticky {
-    background: rgba(0, 0, 0);
+    background: var(--blackText);
     box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.5);
     backdrop-filter: 20px;
     z-index: 100;
@@ -162,7 +170,7 @@ header ul li a:hover {
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
-    transition: 250ms ease-in-out;
+    transition: var(--mainTransition) ease-in-out;
 }
 
 .hamburger-off {
@@ -174,7 +182,7 @@ header ul li a:hover {
     height: 25px;
     width: 25px;
     cursor: pointer;
-    transition: 250ms ease-in-out;
+    transition: var(--mainTransition) ease-in-out;
 }
 
 @media screen and (min-width: 700px) {
@@ -187,15 +195,15 @@ header ul li a:hover {
         background: none;
     }
 
-    header ul {
+    nav ul {
         display: flex;
     }
 
-    header ul li {
+    nav ul li {
         margin: 0;
     }
 
-    header ul li a {
+    nav ul li a {
         padding: 0;
         margin: 1rem;
     }
@@ -218,29 +226,27 @@ header ul li a:hover {
 }
 
 form button {
-    color: #fff;
+    color: var(--textColor);
     padding: 10px 25px;
-    background: transparent;
-    border: 1px solid #E54E1B;
+    background: var(--mainColor);
+    border: 1px solid var(--mainColor);
     border-radius: 10px;
     cursor: pointer;
 }
 
 button:hover {
-    color: black;
-    background: #E54E1B;
-    transition: all 0.5s;
+    background: rgb(229, 78, 27, 0.5);
+    transition: all var(--mainTransition);
     outline: pointer;
 }
 
 .heroContent {
-    color: #fbfcfd;
+    color: var(--textColor);
     max-width: 60%;
     position: absolute;
     top: 50%;
     left: 8%;
     transform: translateY(-50%);
-    z-index: 2;
 }
 
 h1 {
@@ -277,12 +283,12 @@ p {
 # Menu Section
 --------------------------------------------------------------*/
 .menu{
-    background-color: #000;
+background-color: var(--Menucolor);
 }
 
 .menu #menu-flters {
     padding: 0;
-    margin: 0 auto 0 auto;
+    margin: 0 auto;
     list-style: none;
     text-align: center;
     border-radius: 50px;
@@ -291,39 +297,31 @@ p {
 .menu #menu-flters li {
     cursor: pointer;
     display: inline-block;
-    padding: 8px 12px 10px 12px;
+    padding: 8px 12px 10px;
     font-size: 16px;
     font-weight: 500;
     line-height: 1;
-    color: #fff;
-    margin-bottom: 10px;
-    transition: all ease-in-out 0.3s;
+    color: var(--blackText);
+    margin-top: 3rem;
+    transition: all var(--mainTransition) ease-in-out;
     border-radius: 50px;
-    font-family: "Playfair Display", serif;
 }
 
 .menu #menu-flters li:hover,
 .menu #menu-flters li.filter-active {
-    color: #cda45e;
-}
-
-.menu #menu-flters li:last-child {
-    margin-right: 0;
+    color: var(--mainColor);
 }
 
 .menu .menu-item {
-    margin-top: 50px;
+    margin-top: 3rem;
 }
 
 .menu .menu-img {
-    width: 70px;
-    border-radius: 50%;
+    height: 60px;
     float: left;
-    border: 5px solid rgba(255, 255, 255, 0.2);
 }
 
 .menu .menu-content {
-    margin-left: 85px;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
@@ -331,43 +329,42 @@ p {
 }
 
 .menu .menu-content::after {
-    content: "...................................................................." "....................................................................";
+    content: "..........................................................." "....................................................................";
     position: absolute;
     left: 20px;
     right: 0;
     top: -4px;
     z-index: 1;
-    color: #bab3a6;
+    color: var(--mainColor);
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
-.menu .menu-content a {
+.menu .menu-content h5 {
     padding-right: 10px;
-    background: #1a1814;
+    background: var(--Menucolor);
     position: relative;
     z-index: 3;
-    font-weight: 700;
-    color: white;
-    transition: 0.3s;
+    font-size: 1em;
+    color:var(--mainColor);
+    transition: var(--mainTransition);
 }
 
-.menu .menu-content a:hover {
-    color: #cda45e;
+.menu .menu-content h5:hover {
+    color:rgb(229, 78, 27, 0.5);
 }
 
 .menu .menu-content span {
-    background: #1a1814;
+    background: var(--Menucolor);
     position: relative;
     z-index: 3;
     padding: 0 10px;
     font-weight: 600;
-    color: #cda45e;
+    color: var(--mainColor);
 }
 
 .menu .menu-ingredients {
     margin-left: 85px;
     font-style: italic;
     font-size: 14px;
-    font-family: "Poppins", sans-serif;
-    color: rgba(255, 255, 255, 0.5);
+    color: var(--blackText);
 }

@@ -5,6 +5,15 @@
     box-sizing: border-box;
 }
 
+:root {
+    --mainColor: #E54E1B;
+    --mainTransition: 0.5s;
+    --textColor: #ffffff;
+    --blackText: #000;
+    --Menucolor: #e1e1e1;
+}
+
+
 /*===== All Section Title Style =====*/
 .section_title .title {
     font-size: 44px;
@@ -99,7 +108,7 @@ header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    animation: menu_animation 500ms ease-in-out;
+    animation: menu_animation var(--mainTransition) ease-in-out;
     margin-top: auto;
 }
 
@@ -339,7 +348,7 @@ img {
 }
 
 .social a {
-    color: #E54E1B;
+    color: var(--mainColor);
 }
 
 .social a:hover {
