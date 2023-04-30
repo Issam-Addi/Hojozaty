@@ -20,6 +20,7 @@
 
 .row {
     margin: 4rem 0;
+    width: 99%;
 }
 
 @media (max-width: 767px) {
@@ -91,12 +92,13 @@ nav {
     transition: var(--mainTransition);
     background-color: rgba(0, 0, 0, 0.5);
     height: 4rem;
+    z-index: 10;
 }
 
 .nav-links {
     position: absolute;
     right: 0;
-    top: 7vh;
+    top: 8.5vh;
     width: 60%;
     height: 70vh;
     background-color: var(--blackText);
@@ -229,7 +231,7 @@ input {
     border: none;
 }
 
-form button, .container a {
+form button, .container button {
     color: var(--textColor);
     padding: 10px 25px;
     background: var(--mainColor);
@@ -238,7 +240,13 @@ form button, .container a {
     cursor: pointer;
 }
 
-button:hover, .container a:hover {
+@media screen and (max-width: 514px) {
+    form button {
+        margin-top: 0.5rem;
+    }
+}
+
+button:hover, .container button:hover {
     background: rgb(229, 78, 27, 0.5);
     transition: all var(--mainTransition);
     outline: pointer;
@@ -251,7 +259,6 @@ button:hover, .container a:hover {
     top: 50%;
     left: 8%;
     transform: translateY(-50%);
-    z-index: 2;
 }
 
 h1 {
@@ -283,13 +290,16 @@ p {
     }
 }
 
-
 /* cards */
 .cstm-height-card .card-img-top {
     height: 100px;
     object-fit: cover;
 }
 
-.container a {
-    margin: 0.5rem;
+.container button{
+    margin: 0.2rem;
+}
+
+.container p {
+    font-size: 1em;
 }
