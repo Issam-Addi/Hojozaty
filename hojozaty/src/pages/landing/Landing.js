@@ -25,6 +25,7 @@ const Landing = () => {
             alt: "Irbid image", description: "O for awesome, this chocka full cuzzie is as rip-off as a cracker Meanwhile, in behind the bicycle shed, Hercules Morse."
         },
     ]
+
     return (
         <>
             <div className="relative w-full h-full flex justify-end bg-gradient-to-t from-black via-transparent to-black overflow-hidden">
@@ -91,7 +92,7 @@ const Landing = () => {
                                         {item.title} city
                                     </h5>
                                     <p className="text-gray-700 ml-2">
-                                        Description about the city: {item.description}
+                                        About the city: {item.description}
                                     </p>
                                     <Link to="signin">
                                         <button

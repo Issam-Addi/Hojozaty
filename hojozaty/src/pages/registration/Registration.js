@@ -1,16 +1,137 @@
-import { Link } from "react-router-dom";
-import Hojozaty_logo from '../../image/Hojozaty_logo.png'
+import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import Hojozaty_logo from '../../image/Hojozaty_logo.png';
+
 const Registration = () => {
+
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState({
+        name: '',
+        email: '',
+        password: '',
+    })
+
+    const [users, setUsers] = useState(JSON.parse(localStorage.Users));
+
+    const [checkInput, setCheckInput] = useState({
+        name: false,
+        email: false,
+        password: false,
+    });
+
+    const themeValue = {
+        success: "indigo",
+        error: "red",
+        warning: "red",
+        normal: "indigo"
+    };
+
+    const [inputTheme, setInputTheme] = useState({
+        name: themeValue.normal,
+        email: themeValue.normal,
+        password: themeValue.normal,
+    });
+
+    const [massageWarning, setMassageWarning] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
+
+    function checkEmail(email) {
+        for (let i = 0; i < users.length; i++) {
+            if (email === users[i].email) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function handleName(event) {
+        const name = event.target.value;
+        setCheckInput({ ...checkInput, name: false });
+        if (name === '') {
+            setCheckInput({ ...checkInput, name: false });
+            setMassageWarning({ ...massageWarning, name: 'Required!' });
+        }
+        else {
+            setInputTheme({ ...inputTheme, name: themeValue.success })
+            setMassageWarning({ ...massageWarning, name: '' });
+            setUser({ ...user, name: name });
+            setCheckInput({ ...checkInput, name: true });
+        }
+    }
+    function handleEmail(event) {
+        const patternEmail = /^[A-z0-9]+@[A-z0-9]+\.[A-z]{3,5}$/;
+        setCheckInput({...checkInput, email:false });
+        const email = event.target.value;
+
+        if (email === '') {
+            setInputTheme({ ...inputTheme, email: themeValue.normal });
+            setMassageWarning({ ...massageWarning, email: 'Required!' });
+        }
+        else if (!patternEmail.test(email)) {
+            setInputTheme({ ...inputTheme, email: themeValue.error });
+            setMassageWarning({ ...massageWarning, email: 'Invalid email' });
+        }
+        else if (checkEmail(email)) {
+            setMassageWarning({ ...massageWarning, email: 'Email is already exist' });
+            setInputTheme({ ...inputTheme, email: themeValue.error });
+            setUser({ ...user, email: email });
+        }
+        else {
+            setMassageWarning({ ...massageWarning, email: '' });
+            setInputTheme({ ...inputTheme, email: themeValue.success });
+            setUser({ ...user, email: email });
+            setCheckInput({ ...checkInput, email: true });
+        }
+    }
+
+    function handlePassword(event) {
+        const patternPassword = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,.?]).{8,}$/;
+        setCheckInput({ ...checkInput, password: false });
+        const password = event.target.value;
+
+        if (password === '') {
+            setInputTheme({ ...inputTheme, password: themeValue.normal });
+            setMassageWarning({ ...massageWarning, password: 'Required!' });
+        }
+        else if (!patternPassword.test(password)) {
+            setInputTheme({ ...inputTheme, password: themeValue.error });
+            setMassageWarning({ ...massageWarning, password: 'Invalid password, Password must consist of 8 characters, with at least 1 number, uppercase, and special characters' })
+        }
+        else {
+            setMassageWarning({ ...massageWarning, password: '' });
+            setInputTheme({ ...inputTheme, password: themeValue.success });
+            setUser({ ...user, password: password });
+            setCheckInput({ ...checkInput, password: true });
+        }
+    }
+    console.log(checkInput.name + " " + checkInput.email + " " + checkInput.password)
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        if (checkInput.name && checkInput.email && checkInput.password) {
+            setUsers([...users, user]);
+            localStorage.setItem('Users', JSON.stringify([...users, user]));
+            sessionStorage.setItem('User', JSON.stringify(user));
+            event.target.reset();
+            navigate('/');
+        }
+    }
+
     return (
         <>
             <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
                 <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
                     <div className="text-center">
-                        <img src={Hojozaty_logo} width={80} className="mx-auto" />
+                        <img src={Hojozaty_logo} width={80} className="mx-auto" alt="Logo" />
                         <div className="mt-5 space-y-2">
                             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Create an account</h3>
                             <p className="">Already have an account?
-                                <Link to ="/signin" className="font-medium text-indigo-600 hover:text-indigo-500">
+                                <Link to="/signin" className="font-medium text-indigo-600 hover:text-indigo-500">
                                     sign in
                                 </Link>
                             </p>
@@ -18,43 +139,41 @@ const Registration = () => {
                     </div>
                     <div className="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
                         <form
-                            onSubmit={(e) => e.preventDefault()}
-                            className="space-y-5"
-
-                        >
+                            onSubmit={(event) => handleSubmit(event)}
+                            className="space-y-5">
                             <div>
-                                <label className="font-medium">
-                                    Name
-                                </label>
-                                <input
-                                    type="text"
-                                    required
-                                    className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                                />
+                                <label for="name" className={`block mb-2 text-sm font-medium text-${inputTheme.name}-700 dark:text-${inputTheme.name}-500 `}>Full name</label>
+                                <input onChange={(event) => handleName(event)} type="text" id="name" className={`border-${inputTheme.name}-600 text-${inputTheme.name}-600 focus:ring-${inputTheme.name}-600 focus:border-${inputTheme.name}-600 
+                            w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg`}
+                                    placeholder="Enter your name" />
+                                <p className={`mt-2 text-sm text-${themeValue.warning}-600 dark:text-${themeValue.warning}-500`}>{massageWarning.name}</p>
                             </div>
                             <div>
-                                <label className="font-medium">
+                                <label className={`font-medium text-${inputTheme.email}-600`}>
                                     Email
-                                </label>
+                                </label >
                                 <input
+                                    onChange={(event) => handleEmail(event)}
                                     type="email"
                                     required
-                                    className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                                />
+                                    className={`w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg
+                                    border-${inputTheme.email}-600 text-${inputTheme.email}-600 focus:ring-${inputTheme.email}-600 focus:border-${inputTheme.email}-600`} />
+                                <p className={`mt-2 text-sm text-${themeValue.warning}-600`}>{massageWarning.email}</p>
                             </div>
                             <div>
                                 <label className="font-medium">
                                     Password
                                 </label>
                                 <input
+                                    onChange={(event) => handlePassword(event)}
                                     type="password"
                                     required
-                                    className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                                />
+                                    className={`w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg
+                                    border-${inputTheme.password}-600 text-${inputTheme.password}-600 focus:ring-${inputTheme.password}-600 focus:border-${inputTheme.password}-600`} />
+                                <p className={`mt-2 text-sm text-${themeValue.warning}-600`}>{massageWarning.password}</p>
                             </div>
                             <button
-                                className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150"
-                            >
+                                className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-300 active:bg-indigo-600 rounded-lg duration-150">
                                 Create account
                             </button>
                         </form>

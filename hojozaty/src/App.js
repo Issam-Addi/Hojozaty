@@ -22,7 +22,6 @@ function App() {
         <Route path='signin' element={<Signin />}/> 
         <Route path="/signup" element={<Registration />} />
         <Route path='contact' element={<Contact />}/>
-        {/* <Registration/> */}
         {/* <Owner/> */}
         {/* <Ownereditor/> */}
         {/* <Admin/> */}

@@ -1,6 +1,100 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Hojozaty_logo from '../../image/Hojozaty_logo.png'
+import React, { useState } from 'react'
+
+if (localStorage.Users === undefined) {
+    localStorage.setItem('Users', JSON.stringify([]))
+}
+
 const Signin = () => {
+
+    const navigate = useNavigate();
+
+    const [users, setUsers] = useState(JSON.parse(localStorage.Users));
+    const [user, setUser] = useState({});
+
+
+    const themeValue = {
+        success: "indigo",
+        error: "red",
+        warning: "red",
+        normal: "indigo"
+    }
+
+    const [inputTheme, setInputTheme] = useState({
+        email: themeValue.normal,
+        password: themeValue.normal
+    });
+
+    const [massageWarning, setMassageWarning] = useState({
+        email: '',
+        password: ''
+    })
+
+    function checkSignIn(email, password) {
+
+        for (let index = 0; index < users.length; index++) {
+            if (email === users[index].email && password === users[index].password) {
+                return users[index];
+            }
+        }
+        return false;
+    }
+
+    function handleEmail(event) {
+        const patternEmail = /^[A-z0-9\.]+@[A-z0-9]+\.[A-z]{3,5}$/;
+        const email = event.target.value;
+
+        if (email === '') {
+            setInputTheme({ ...inputTheme, email: themeValue.normal });
+            setMassageWarning({ ...massageWarning, email: '' });
+        }
+        else if (!patternEmail.test(email)) {
+            setInputTheme({ ...inputTheme, email: themeValue.error });
+            setMassageWarning({ ...massageWarning, email: 'Invalid email' });
+        }
+        else {
+            setMassageWarning({ ...massageWarning, email: '' });
+            setInputTheme({ ...inputTheme, email: themeValue.success });
+            setUser({ ...user, email: email });
+        }
+    }
+
+    function handlePassword(event) {
+        const patternPassword = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,.?]).{8,}$/;
+        const password = event.target.value;
+
+        if (password === '') {
+            setInputTheme({ ...inputTheme, password: themeValue.normal });
+            setMassageWarning({ ...massageWarning, password: '' });
+        }
+        else if (!patternPassword.test(password)) {
+            setInputTheme({ ...inputTheme, password: themeValue.error });
+            setMassageWarning({ ...massageWarning, password: 'Invalid password' })
+        }
+        else {
+            setMassageWarning({ ...massageWarning, password: '' });
+            setInputTheme({ ...inputTheme, password: themeValue.success });
+            setUser({ ...user, password: password });
+        }
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+
+        let isUser = checkSignIn(user.email, user.password);
+        if (isUser) {
+            sessionStorage.setItem('User', JSON.stringify(isUser));
+            event.target.reset();
+            navigate('/');
+        }
+        else {
+            setMassageWarning({ ...massageWarning, submit: 'Password or email is incorrect.' });
+            setInputTheme({ ...inputTheme, email: themeValue.error, password: themeValue.error });
+        }
+    }
+
+
     return (
         <>
             <main className="w-full h-screen flex flex-col items-center justify-center px-4">
@@ -12,36 +106,39 @@ const Signin = () => {
                         </div>
                     </div>
                     <form
-                        onSubmit={(e) => e.preventDefault()}
-                        className="space-y-5"
-                    >
+                        onSubmit={(event) => handleSubmit(event)}
+                        className="space-y-5">
                         <div>
-                            <label className="font-medium">
+                            <label className={`font-medium text-${inputTheme.email}-600`}>
                                 Email
                             </label>
                             <input
+                                onChange={(event) => handleEmail(event)}
                                 type="email"
                                 required
-                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                            />
+                                placeholder="your email"
+                                className={`w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border
+                                border-${inputTheme.email}-600 text-${inputTheme.email}-600 focus:ring-${inputTheme.email}-600 focus:border-${inputTheme.email}-600 shadow-sm rounded-lg`}/>
+                                <p className={`mt-2 text-sm text-${themeValue.warning}-600`}>{massageWarning.email}</p>
                         </div>
                         <div>
-                            <label className="font-medium">
+                            <label className={`text-${inputTheme.password}-700 font-medium>`}>
                                 Password
                             </label>
                             <input
+                                onChange={(event) => handlePassword(event)}
                                 type="password"
                                 required
-                                className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                            />
+                                className={`w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border shadow-sm rounded-lg
+                                border-${inputTheme.password}-600 text-${inputTheme.password}-600 focus:ring-${inputTheme.password}-600 focus:border-${inputTheme.password}-600`} />
+                                <p className={`mt-2 text-sm text-${themeValue.warning}-600`}>{massageWarning.password}</p>
                         </div>
                         <div className="flex items-center justify-between text-sm">
                             <div className="flex items-center gap-x-3">
                                 <input type="checkbox" id="remember-me-checkbox" className="checkbox-item peer hidden" />
                                 <label
                                     htmlFor="remember-me-checkbox"
-                                    className="relative flex w-5 h-5 bg-white peer-checked:bg-indigo-600 rounded-md border ring-offset-2 ring-indigo-600 duration-150 peer-active:ring cursor-pointer after:absolute after:inset-x-0 after:top-[3px] after:m-auto after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-white after:rotate-45"
-                                >
+                                    className="relative flex w-5 h-5 bg-white peer-checked:bg-indigo-600 rounded-md border ring-offset-2 ring-indigo-600 duration-150 peer-active:ring cursor-pointer after:absolute after:inset-x-0 after:top-[3px] after:m-auto after:w-1.5 after:h-2.5 after:border-r-2 after:border-b-2 after:border-white after:rotate-45">
                                 </label>
                                 <span>Remember me</span>
                             </div>
@@ -51,6 +148,7 @@ const Signin = () => {
                             className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
                             Sign in
                         </button>
+                        <p className={`mt-2 text-sm text-${themeValue.warning}-600 dark:text-${themeValue.warning}-500`}>{massageWarning.submit}</p>
                     </form>
                     <button className="w-full flex items-center justify-center gap-x-3 py-2.5 border rounded-lg text-sm font-medium hover:bg-gray-50 duration-150 active:bg-gray-100">
                         <svg className="w-5 h-5" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -68,10 +166,10 @@ const Signin = () => {
                         </svg>
                         Continue with Google
                     </button>
-                    <p className="text-center">Don't have an account? 
-                    <Link to ="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-                        Sign up
-                    </Link>
+                    <p className="text-center">Don't have an account?
+                        <Link to="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                            Sign up
+                        </Link>
                     </p>
                 </div>
             </main>
