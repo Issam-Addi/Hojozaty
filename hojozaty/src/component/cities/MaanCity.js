@@ -1,10 +1,13 @@
 import React from 'react'
-// import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { TbArrowRightTail } from "react-icons/tb";
 import BG from '../../image/BG.png';
 import restaurant from '../../restaurant_json/Restaurant.json'
+
 const Maan = () => {
-    const maanRestaurant =restaurant.filter((item) => item.location.includes('Maan'))
+
+    const maanRestaurant =restaurant.filter((item) => item.city ==='Maan')
+    
     return (
         <>
             <div className="relative w-full h-full flex justify-end bg-gradient-to-t from-black via-transparent to-black overflow-hidden">
@@ -45,19 +48,17 @@ const Maan = () => {
                                         <span className=' text-sm'>Working hours: {item.from} - {item.to}</span><br/>
                                         <span className=' text-sm'>{item.family? ("Has a family lounge"):("Does not have a family lounge")}</span><br/>
                                     </p>
-                                    {/* <Link to="signin"> */}
+                                    <Link to={`/${item.city}/${item.name}`}>
                                         <button
                                             className="group my-8 relative w-44 mx-auto flex items-center justify-center overflow-hidden rounded bg-indigo-600 px-8 py-3 text-white focus:outline-none focus:ring active:bg-indigo-500">
                                             <span className="absolute -end-full transition-all group-hover:end-4">
                                                 <TbArrowRightTail />
                                             </span>
-                                            {/* <Link to="restaurant"> */}
                                                 <span className="text-sm font-medium transition-all group-hover:me-4">
                                                     Resrvation
                                                 </span>
-                                            {/* </Link> */}
                                         </button>
-                                    {/* </Link> */}
+                                    </Link>
                                 </div>
                             )
                         })

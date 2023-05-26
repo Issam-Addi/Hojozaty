@@ -1,5 +1,3 @@
-import { AiFillLinkedin, AiFillInstagram } from 'react-icons/ai';
-import { BsFillTelephoneFill, BsDiscord } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import Hojozaty_logo from '../../image/Hojozaty_logo.png'
 const Footer = () => {
@@ -19,9 +17,9 @@ const Footer = () => {
                     </Link>
                 </li>
                 <li className="text-gray-700 hover:text-gray-900">
-                    <a href="#" className="block">
+                    <Link to="about" className="block">
                         About
-                    </a>
+                    </Link>
                 </li>
                 <li className="text-gray-700 hover:text-gray-900">
                     <Link to="contact" className="block">

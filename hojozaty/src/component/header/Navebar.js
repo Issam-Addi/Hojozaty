@@ -22,7 +22,7 @@ const Navigation = () => {
                             src={Hojozaty_logo}
                             width={70}
                             height={40}
-                            alt="Float UI logo"/>
+                            alt="Float UI logo" />
                     </a>
                     <div className="md:hidden">
                         <button className="menu-btn text-gray-500 hover:text-gray-800"
@@ -44,18 +44,23 @@ const Navigation = () => {
                 <div className={`flex-1 items-center mt-8 md:mt-0 md:flex ${state ? 'block' : 'hidden'} `}>
                     <ul className="justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
                         <li className="text-gray-700 hover:text-gray-900">
-                            <Link to = "/" className="block">
+                            <Link to="/" className="block">
                                 Home
                             </Link>
                         </li>
                         <li className="text-gray-700 hover:text-gray-900">
-                            <a href="#" className="block">
+                            <Link to="about" className="block">
                                 About
-                            </a>
+                            </Link>
                         </li>
                         <li className="text-gray-700 hover:text-gray-900">
                             <Link to="contact" className="block">
                                 contact
+                            </Link>
+                        </li>
+                        <li className="text-gray-700 hover:text-gray-900">
+                            <Link to="history" className="block">
+                                History
                             </Link>
                         </li>
                     </ul>

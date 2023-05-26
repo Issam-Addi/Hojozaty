@@ -1,0 +1,38 @@
+[
+    {
+        "dishImage": "https://kitchen.sayidaty.net/uploads/small/f4/f4a132d2cf2badf6e766f2ea9d213790_w750_h750.jpg",
+        "dishName": "shawarma",
+        "dishPrice": "2.49",
+        "dishDescription": "shrak bread, chicken meat, Mayonnaise, pickles, some ketchup"
+    },
+    {
+        "dishImage": "https://modo3.com/thumbs/fit630x300/28352/1589950167/%D8%B7%D8%B1%D9%8A%D9%82%D8%A9_%D8%A8%D8%B1%D9%88%D8%B3%D8%AA%D8%AF_%D8%A7%D9%84%D8%AF%D8%AC%D8%A7%D8%AC.jpg",
+        "dishName": "Broasted",
+        "dishPrice": "4.99",
+        "dishDescription": "It is a meal that contains pieces of chicken with some spices added to it. It is cooked and fried in a special way that makes it crispy."
+    },
+    {
+        "dishImage": "https://kitchen.sayidaty.net/uploads/small/3a/3a2da5bc9be8b2ecb2d7c19fcf8cd9bb_w750_h750.jpg",
+        "dishName": "kebab",
+        "dishPrice": "1.99",
+        "dishDescription": "Bread, grilled veal, lettuce, pomegranate molasses, spicy sauce, grilled onions and tomatoes."
+    },
+    {
+        "dishImage": "https://cdn.alaan.tv/akhbar/e5a/d0e/9c2/e5ad0e9c2e60a78b0a5554e629946b3a1140ac87/1/original.webp?ext=jpg&size=960x960",
+        "dishName": "Zinger",
+        "dishPrice": "1.49",
+        "dishDescription": "French bread, fried boneless chicken, lettuce, special sauce, mayonnaise"
+    },
+    {
+        "dishImage": "https://yummy.awicdn.com/site-images/sites/default/files/prod/recipe/6/f/398154/f07a9bd8de70a6f81290994baf296b7bc23bf19a-260321222549.jpg?preset=v3.0_1200xDYN&save-png=1&rnd=1519151RND220215",
+        "dishName": "fajita",
+        "dishPrice": "1.49",
+        "dishDescription": "French bread, small chicken pieces mixed with colored sweet peppers, lettuce, special sauce, mayonnaise"
+    },
+    {
+        "dishImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_s8wzdHY79FqBRAAjMdXmR4sBcA3mvQhAcQ&usqp=CAU",
+        "dishName": "Burger",
+        "dishPrice": "1.15",
+        "dishDescription": "Burger bread, beef, mustard, mayonnaise, ketchup, lettuce, onion, tomato."
+    }
+]

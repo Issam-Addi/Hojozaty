@@ -32,7 +32,7 @@ const Contact = () => {
     ]
 
     return (
-        <main className="py-14">
+        <main className="py-14 main">
             <div className="max-w-screen-xl mx-auto text-white px-4 md:px-8">
                 <div className="max-w-lg mx-auto gap-12 justify-between lg:flex lg:max-w-none">
                     <div className='max-w-lg space-y-3 p-4 backround rounded-xl'>
