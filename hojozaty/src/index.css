@@ -1,8 +1,0 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-.backround {
-    background-image: url("../src/image/connect.jpg");
-    background-repeat: no-repeat;
-}
