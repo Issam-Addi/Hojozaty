@@ -1,8 +1,9 @@
 .btn {
   font-size: 17px;
   background: transparent;
-  border: none;
-  padding: 0.8em 1.3em;
+  border: 1px lightgrey solid;
+  border-radius: 5px;
+  padding: 0.8em 1.2em;
   color: black;
   text-transform: uppercase;
   position: relative;

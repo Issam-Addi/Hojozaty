@@ -2,17 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #f8f8f8;
-}
-
 .swal-cancel-button {
     background-color: red;
     color: white;
-}
 
-.editProfileBackGroundImage {
-    background: url("https://img-qn.51miz.com/preview/element/00/01/15/52/E-1155267-24B91659.jpg!/quality/90/unsharp/true/compress/true/format/jpg/fw/720");
-    background-repeat: no-repeat;
-    background-size: cover;
 }

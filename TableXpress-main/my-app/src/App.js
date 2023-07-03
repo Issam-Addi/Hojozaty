@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 //-----------------------------user-------------------------------//
-import NavListMenu from "./components/user/NavListMenu"
+import NavListMenuUser from "./components/user/NavListMenuUser"
 import Footer from "./components/user/Footer"
 import SignIn from './components/user/SignIn';
 import SignUp from './components/user/SignUp';
@@ -13,17 +13,11 @@ import ServicePage from './pages/user/ServicePage';
 import ServicePageAll from './pages/user/ServicePageAll';
 import Details from './pages/user/Details';
 import EditProfile from './pages/user/EditProfile';
-//----------------------------------------------------------------//
 
 //------------------------ Restaurants----------------------------//
 import RestaurantProfile from './pages/restaurants/RestaurantProfile';
 import RestaurantHome from './pages/restaurants/RestaurantHome';
-import NavListMenu1 from "./components/user/NavListMenu1"
-
-
-
-//---------------------------------------------------------------//
-
+import NavListMenuRestaurants from "./components/user/NavListMenuRestaurants"
 
 //----------------------------admin------------------------------//
 import Sidebar from './pages/admin/dashboard/Sidebar';
@@ -37,15 +31,12 @@ import AcceptTables from './pages/admin/AcceptTables';
 //---------------------------------------------------------------//
 
 import React, { useEffect, useState, useContext } from 'react'
-import axios from 'axios'
 import { UserContext } from './UserContext';
+import Profiles from './Profiles';
 
 function App() {
 
-  const [role000, setRole000] = useState()
-
   const { routs, updateRouts } = useContext(UserContext)
-  const { SignStatus, updateSignStatus } = useContext(UserContext)
 
   const [hideRouterUser, setHideRouterUser] = useState(false);
   const [hideRouterAdmin, setHideRouterAdmin] = useState(true);
@@ -64,18 +55,6 @@ function App() {
       updateRouts(roles)
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
   }, []);
 
 
@@ -88,10 +67,11 @@ function App() {
     return (
 
       <Router>
-        <NavListMenu />
+        <NavListMenuUser />
         <Routes>
           <Route index element={<Home />} />
           <Route path="About" element={<About />} />
+          <Route path="profiles" element={<Profiles />} />
           <Route path='ContactUs' element={<ContactUs />} />
           <Route path="SignIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUp />} />
@@ -135,11 +115,10 @@ function App() {
     return (
 
       <Router>
-        <NavListMenu1 />
+        <NavListMenuRestaurants />
         <Routes>
           <Route index element={<RestaurantHome />} />
           <Route path="profile/:id" element={<RestaurantProfile />} />
-
         </Routes>
       </Router>
 
@@ -154,6 +133,7 @@ function App() {
           <AppRouterUser />
         </>
       )}
+
       {hideRouterAdmin ? null : (
         <>
           <div className='flex'>

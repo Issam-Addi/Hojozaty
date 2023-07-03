@@ -5,14 +5,9 @@ app.use(cors());
 app.use(express.json({ limit: "50mb" }));
 const pool = require("./db");
 const bcrypt = require("bcrypt");
-const nodemailer = require('nodemailer');
-// library for working with JSON Web Tokens (JWTs).
 const jwt = require("jsonwebtoken");
-
 const secretKey = "ZhQrZ951";
-
 let generatedUserId
-
 
 // Get All Records
 app.post("/records", async function (req, res) {
@@ -142,10 +137,10 @@ app.get("/recordpId", async function (req, res) {
     const password = userpassword;
     const currentRecord = await pool.query(
       "SELECT * FROM users WHERE email = '" +
-        email +
-        "' AND password = '" +
-        password +
-        "'"
+      email +
+      "' AND password = '" +
+      password +
+      "'"
     );
     let person0 = currentRecord.rows;
     res.json(person0);
@@ -162,7 +157,7 @@ app.get("/recordrId/:id", async function (req, res) {
     );
     let res0 = currentRecord.rows;
     res.json(res0);
-  } catch (err) {}
+  } catch (err) { }
 });
 
 ///////////// *******************************************
@@ -220,7 +215,7 @@ app.post("/restaurants", async function (req, res) {
 
     // res.json(all_records.rows);
 
-    const restaurant_name = email;
+    const restaurant_name = "";
     const contact_number = "";
     const user_id = generatedId;
     const all_records0 = await pool.query(
@@ -297,7 +292,6 @@ app.post("/orders", async function (req, res) {
     const order_date = req.body.date;
     const userid = req.body.userid;
     const restaurant_id = req.body.restaurant_id;
-    // console.log(userid);
     const all_records = await pool.query(
       "INSERT INTO orders (table_number,order_time, order_date ,user_id ,restaurant_id ,status ,guest_number ) VALUES($1, $2, $3 , $4,$5,$6,$7 ) RETURNING *",
       [
@@ -318,7 +312,6 @@ app.post("/orders", async function (req, res) {
 
 app.post("/contacts", async function (req, res) {
   try {
-    console.log(req.body);
     const name = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
@@ -351,27 +344,8 @@ app.get("/restaurants/:type_food", (req, res) => {
     }
   );
 });
-// -------------razan contacts ----------------//
-// app.post("/contacts", async function (req, res) {
-//   console.log(req.body);
-//   try {
-//       const name = req.body.name;
-//       const email = req.body.email;
-//       const phone = req.body.phone;
-//       const message = req.body.message;
 
-//       const newRecord = await pool.query(
-//           "INSERT INTO contacts (name, phone, email, message) VALUES ($1, $2, $3, $4) RETURNING *",
-//           [name, phone, email, message]
-//       );
 
-//       res.json(newRecord.rows);
-//   } catch (err) {
-//       console.log(err.message);
-//   }
-// });
-
-// -------------razan about ----------------//
 // in the about page will get the content from the database
 app.get("/aboutus", async (req, res) => {
   try {
@@ -477,7 +451,6 @@ app.put("/restaurant/:id", async function (req, res) {
       "UPDATE users SET password = $1 WHERE email = $2",
       [password, useremail]
     );
-    console.log(updatePassword.rows);
 
     res.json(updated_restaurant.rows);
   } catch (err) {
@@ -502,7 +475,6 @@ app.post("/table", async function (req, res) {
       "SELECT * FROM res_table WHERE table_number = $1",
       [table_number]
     );
-    console.log(check_table_number.rows.length);
     if (check_table_number.rows.length === 0) {
       const newRecord = await pool.query(
         "INSERT INTO res_table (table_number, available_time_start, guest_number, available_time_end, img, table_status, restaurant_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
@@ -532,7 +504,7 @@ app.get("/orders/:id", async (req, res) => {
 
     const order = await pool.query(
       "SELECT * FROM orders WHERE restaurant_id = $1",
-      [id] 
+      [id]
     );
     res.json(order.rows);
   } catch (err) {
@@ -593,7 +565,6 @@ app.put("/orders/:id", async (req, res) => {
 // ---------------- issa --------------------//
 // Add a new payment
 app.post("/payment", async function (req, res) {
-  console.log(req.body);
   try {
     const username = req.body.username;
     const cardnumber = req.body.cardnumber;
@@ -646,9 +617,10 @@ app.get("/restaurantTables", async (req, res) => {
     const pendingTablesData = await pool.query(
       "SELECT * FROM res_table WHERE flags = 0 "
     );
- const restaurantTables =restaurantTablesData.rows
- const pendingTables =pendingTablesData.rows
-    res.json({restaurantTables,
+    const restaurantTables = restaurantTablesData.rows
+    const pendingTables = pendingTablesData.rows
+    res.json({
+      restaurantTables,
       pendingTables
     });
   } catch (err) {
@@ -697,7 +669,6 @@ app.get("/userOrders/:id", async (req, res) => {
       "SELECT * FROM orders WHERE user_id = $1",
       [id]
     );
-    console.log(order.rows[0].email);
     res.json(order.rows);
   } catch (err) {
     console.log(err.message);
@@ -744,10 +715,10 @@ app.get("/getId", async function (req, res) {
     const password = userpassword;
     const currentRecord = await pool.query(
       "SELECT * FROM users WHERE email = '" +
-        email +
-        "' AND password = '" +
-        password +
-        "'"
+      email +
+      "' AND password = '" +
+      password +
+      "'"
     );
     let person0 = currentRecord.rows;
     res.json(person0);
@@ -800,7 +771,6 @@ app.get("/restaurantsAll", (req, res) => {
       console.log(error.message);
       res.status(500).json({ error: "Internal server error" });
     } else {
-      console.log(results);
       res.json(results.rows);
     }
   });

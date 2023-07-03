@@ -199,7 +199,7 @@ function Details1(currentTable) {
                       <h5 className="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
                         TABLE #{e?.table_number}
                       </h5>
-                      <button className="bg-amber-600 border-none text-sm text-white rounded-lg px-2 py-2 mr-4">
+                      <button className="bg-amber-600 border-none text-sm text-white rounded-lg px-2 py-2 text-black mr-4">
                         <HashLink smooth={true} to="#book" onClick={() => {
                           setTableNumber(e?.table_number);
                           setEmail(person[0]?.email);

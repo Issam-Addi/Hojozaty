@@ -2,9 +2,9 @@ import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import Swal from "sweetalert2";
-import { Navbar, Menu, Collapse, Typography, Button, IconButton, List, ListItem, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react";
-import {LifebuoyIcon, PowerIcon, ChevronDownIcon, UserCircleIcon, CubeTransparentIcon, Bars3Icon, XMarkIcon, FlagIcon, ChatBubbleOvalLeftIcon, RocketLaunchIcon, FaceSmileIcon, PuzzlePieceIcon, HomeIcon,} from "@heroicons/react/24/outline";
-import Logo from '../../images/Hojozaty_logo.png';
+import { Navbar , Collapse , Typography , Button , IconButton , List , ListItem , Menu , MenuHandler , MenuList , MenuItem } from "@material-tailwind/react";
+import { LifebuoyIcon , PowerIcon , ChevronDownIcon , UserCircleIcon , CubeTransparentIcon , Bars3Icon , XMarkIcon , FlagIcon , ChatBubbleOvalLeftIcon , RocketLaunchIcon , FaceSmileIcon , PuzzlePieceIcon , HomeIcon } from "@heroicons/react/24/outline";
+import logo from "../../images/logo.png";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 
 const colors = {
@@ -58,7 +58,7 @@ const navListMenuItems = [
 ];
 
 function NavListMenu() {
-  const [isMobileMenuOpen] = React.useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const renderItems = navListMenuItems.map(
     ({ icon, title, description, color, path }, key) => (
@@ -154,6 +154,7 @@ function NavList() {
     </List>
   );
 }
+
 
 export default function Example() {
   const [openNav, setOpenNav] = React.useState(false);
@@ -258,7 +259,6 @@ export default function Example() {
               }`}/>
           </Button>
         </MenuHandler>
-
         <MenuList className="p-1">
           {profileMenuItems.map(({ label, icon }, key) => {
             const isLastItem = key === profileMenuItems.length - 1;
@@ -302,7 +302,7 @@ export default function Example() {
           variant="h6"
           className="mr-4 cursor-pointer py-1.5 lg:ml-2">
           <Link to="/">
-            <img src={Logo} alt="logo" width={70} />
+            <img src={logo} alt="logo" width={150} />
           </Link>
         </Typography>
         <div className="hidden lg:block">
