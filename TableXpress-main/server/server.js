@@ -477,7 +477,7 @@ app.post("/table", async function (req, res) {
     );
     if (check_table_number.rows.length === 0) {
       const newRecord = await pool.query(
-        "INSERT INTO res_table (table_number, available_time_start, guest_number, available_time_end, img, table_status, restaurant_id) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
+        "INSERT INTO res_table (table_number, available_time_start, guest_number, available_time_end, img, table_status, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6,'0', $7) RETURNING *",
         [
           table_number,
           available_time_start,
@@ -731,13 +731,13 @@ app.get("/pendingTables", async function (req, res) {
   try {
     // const id = req.params.id;
     const currentRecord = await pool.query(
-      "SELECT * FROM res_table  WHERE flags = 0"
+      "SELECT * FROM res_table  WHERE flags = '0'"
     );
     const currentRecord0 = await pool.query(
-      "SELECT restaurant_name  FROM restaurant JOIN res_table ON res_table.restaurant_id = restaurant.restaurant_id WHERE res_table.flags = 0 ;"
+      "SELECT restaurant_name  FROM restaurant JOIN res_table ON res_table.restaurant_id = restaurant.restaurant_id WHERE res_table.flags = '0' ;"
     );
     const currentRecord1 = await pool.query(
-      "SELECT users.email FROM users JOIN restaurant ON users.userid = restaurant.user_id JOIN res_table ON restaurant.restaurant_id = res_table.restaurant_id WHERE res_table.flags = 0"
+      "SELECT users.email FROM users JOIN restaurant ON users.userid = restaurant.user_id JOIN res_table ON restaurant.restaurant_id = res_table.restaurant_id WHERE res_table.flags = '0'"
     );
     res.json({
       tables: currentRecord.rows,

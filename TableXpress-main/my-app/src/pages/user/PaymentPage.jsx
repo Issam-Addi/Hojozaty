@@ -5,19 +5,6 @@ import Swal from "sweetalert2";
 import axios from "axios";
 
 function PaymentPage() {
-  // app.post('/recordpId', async function(req, res){
-
-  //   try{
-  //        const email = useremail;
-  //        const password = userpassword;
-  //        const currentRecord = await pool.query("SELECT * FROM users WHERE email = '" + email + "' AND password = '" + password + "'");
-  //        let person0 = currentRecord.rows
-  //        res.json(person0);
-  //   }
-  //   catch(err){
-  //       console.log(err.message);
-  //   }
-  // });
 
   const [person, setPerson] = useState([]);
 

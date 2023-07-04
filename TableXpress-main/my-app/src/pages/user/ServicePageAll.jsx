@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./ServicePage.css";
 import axios from "axios";
 import Pagination from "@mui/material/Pagination";
 import { FaUtensils, FaMapMarkerAlt } from "react-icons/fa";
@@ -172,17 +171,12 @@ const ServicePageAll = ({ setCurrentTable }) => {
         </div>
       </div>
 
-
-
-
       <div className="bg-gray-200 shadow-lg py-10 mb-5">
-
         <div className="text-center mb-16">
           <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-600">
             Restaurants
           </h3>
         </div>
-
         <div className="flex flex-wrap gap-10 justify-start px-10 mb-5">
           {slicedArrayUsers?.map((restaurant) => {
             return (

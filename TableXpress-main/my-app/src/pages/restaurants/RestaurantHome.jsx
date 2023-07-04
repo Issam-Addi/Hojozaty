@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import axios from  'axios';
+import axios from 'axios';
 import Swal from 'sweetalert2'
 
 const RestaurantHome = () => {
 
 
   const [restaurant, setRestaurant] = useState([]);
-  const [ res, setRes] = useState([])
+  const [res, setRes] = useState([])
 
   useEffect(() => {
 
-      axios.get('http://localhost:5000/generatedRes')
+    axios.get('http://localhost:5000/generatedRes')
       .then((response) => {
         setRestaurant(response.data);
-                let x =response.data[0].restaurant_id;
+        let x = response.data[0].restaurant_id;
 
-             
-              axios.get(`http://localhost:5000/restaurant/${x}`)
-              .then((response) => {
-                setRes(response.data);
-                console.log(response.data)
-              })
-              .catch((error) => console.log(error.message));
-          
+
+        axios.get(`http://localhost:5000/restaurant/${x}`)
+          .then((response) => {
+            setRes(response.data);
+            console.log(response.data)
+          })
+          .catch((error) => console.log(error.message));
+
 
       })
       .catch((error) => console.log(error.message));
@@ -35,27 +35,27 @@ const RestaurantHome = () => {
 
 
   }, []);
- // //////////////////////////////////////////
- const [img, setImg] = useState("");
- const onChange = e => {
-   const files = e.target.files;
-   const file = files[0];
-   getBase64(file);
-   console.log(img);
- };
- const onLoad = fileString => {
+  // //////////////////////////////////////////
+  const [img, setImg] = useState("");
+  const onChange = e => {
+    const files = e.target.files;
+    const file = files[0];
+    getBase64(file);
+    console.log(img);
+  };
+  const onLoad = fileString => {
 
-   setImg(fileString);
- };
- const getBase64 = file => {
-   let reader = new FileReader();
-   reader.readAsDataURL(file);
-   reader.onload = () => {
-     onLoad(reader.result);
-   };
- };
+    setImg(fileString);
+  };
+  const getBase64 = file => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad(reader.result);
+    };
+  };
 
-// //////////////////////////////////////////////
+  // //////////////////////////////////////////////
 
   const [table_number, setTable_number] = useState("");
   const [available_time_start, setAvailable_time_start] = useState("");
@@ -63,59 +63,56 @@ const RestaurantHome = () => {
   const [available_time_end, setAvailable_time_end] = useState("");
 
   const [error, setError] = useState("");
-  const restaurant_id  = restaurant[0]?.restaurant_id;
+  const restaurant_id = restaurant[0]?.restaurant_id;
 
   const handleSubmit = (event) => {
     event.preventDefault();
     let done = true;
-    const table = {table_number, available_time_start, guest_number, available_time_end, img, table_status: "available", restaurant_id};
+    const table = { table_number, available_time_start, guest_number, available_time_end, img, table_status: "available", restaurant_id };
 
-    if(table_number === "")
-    {
+    if (table_number === "") {
       setError("**Please add the number of table.");
       done = false;
     }
-   else if(available_time_start === "")
-    {
+    else if (available_time_start === "") {
       setError("**Please add Opening time.");
       done = false;
     }
-   else if(available_time_end === "")
-    {
+    else if (available_time_end === "") {
       setError("**Please add Closing time.");
       done = false;
     }
-   else if(guest_number === "")
-    {
+    else if (guest_number === "") {
       setError("**Please add Guests number.");
       done = false;
     }
-    else if (img === "")
-    {
+    else if (img === "") {
       setError("**Please add Table Image.");
       done = false;
     }
-          
-      if(done){    
-        
-        axios.post('http://localhost:5000/table', table)
-              .then(function (response) {
-                if(response.data === "Table number is Already taken!")
-                setError(response.data);
 
-                else {Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title:
-                    "Your Table has been Added successfully",
-                });}
-                // window.location.reload(false);
-              
-              })
-              .catch(function (error) {
-                console.log(error);
-              });
+    if (done) {
+
+      axios.post('http://localhost:5000/table', table)
+        .then(function (response) {
+          if (response.data === "Table number is Already taken!")
+            setError(response.data);
+
+          else {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title:
+                "Your Table has been Added successfully",
+            });
           }
+          // window.location.reload(false);
+
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
   return (
     <>
@@ -230,190 +227,200 @@ const RestaurantHome = () => {
         </div>
       </div>
 
- { (res[0]?.restaurant_name != "") && <>
-  <section className="mt-20 relative overflow-hidden via-transparent to-transparent pb-12 pt-20 sm:pb-16 sm:pt-32 lg:pb-24 xl:pb-32 xl:pt-40">
-        <div className="relative z-10">
-          <div className="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,{#ea4d24},transparent)]">
-            <svg
-              className="h-[60rem] w-[100rem] flex-none stroke-amber-600 opacity-20"
-              aria-hidden="true"
-            >
-              <defs>
-                <pattern
-                  id="e9033f3e-f665-41a6-84ef-756f6778e6fe"
-                  width={200}
-                  height={200}
-                  x="50%"
-                  y="50%"
-                  patternUnits="userSpaceOnUse"
-                  patternTransform="translate(-100 0)"
-                >
-                  <path d="M.5 200V.5H200" fill="none" />
-                </pattern>
-              </defs>
-              <svg x="50%" y="50%" className="overflow-visible fill-amber-500">
-                <path
-                  d="M-300 0h201v201h-201Z M300 200h201v201h-201Z"
-                  strokeWidth={0}
-                />
-              </svg>
-              <rect
-                width="100%"
-                height="100%"
-                strokeWidth={0}
-                fill="url(#e9033f3e-f665-41a6-84ef-756f6778e6fe)"
-              ></rect>
-            </svg>
-          </div>
-        </div>
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="mx-auto max-w-2xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
-              Increase Your Customers:
-              <span className="text-amber-600"> Add Tables</span>
-            </h1>
-            <h2 className="mt-6 text-lg leading-8 text-black">
-              Add your services and make people come to you.
-            </h2>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <HashLink
-                smooth="true"
-                to="#service"
-                className="isomorphic-link isomorphic-link--internal inline-flex items-center justify-center gap-2 rounded-xl bg-amber-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-amber-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+      {(res[0]?.restaurant_name != "") && <>
+        <section className="mt-20 relative overflow-hidden via-transparent to-transparent pb-12 pt-20 sm:pb-16 sm:pt-32 lg:pb-24 xl:pb-32 xl:pt-40">
+          <div className="relative z-10">
+            <div className="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,{#ea4d24},transparent)]">
+              <svg
+                className="h-[60rem] w-[100rem] flex-none stroke-amber-600 opacity-20"
+                aria-hidden="true"
               >
-                Add Service
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="bi bi-arrow-down"
-                  viewBox="0 0 16 16"
-                >
+                <defs>
+                  <pattern
+                    id="e9033f3e-f665-41a6-84ef-756f6778e6fe"
+                    width={200}
+                    height={200}
+                    x="50%"
+                    y="50%"
+                    patternUnits="userSpaceOnUse"
+                    patternTransform="translate(-100 0)"
+                  >
+                    <path d="M.5 200V.5H200" fill="none" />
+                  </pattern>
+                </defs>
+                <svg x="50%" y="50%" className="overflow-visible fill-amber-500">
                   <path
-                    fillRule="evenodd"
-                    d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                    d="M-300 0h201v201h-201Z M300 200h201v201h-201Z"
+                    strokeWidth={0}
                   />
                 </svg>
-              </HashLink>
+                <rect
+                  width="100%"
+                  height="100%"
+                  strokeWidth={0}
+                  fill="url(#e9033f3e-f665-41a6-84ef-756f6778e6fe)"
+                ></rect>
+              </svg>
             </div>
           </div>
-          
-          <div className="relative mx-auto mt-10 max-w-lg">
-            <img
-              className="w-full rounded-2xl border border-amber-800 shadow"
-              src="https://www.mashed.com/img/gallery/reddit-cant-believe-this-ridiculous-restaurant-reservation-story/intro-1632925093.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-      </section>
-
-      <span id="service"></span>
-      <div className="min-h-screen bg-gray-950 py-6 flex flex-col justify-center sm:py-12 mt-20">
-        <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-800 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
-          <div className="text-white relative px-4 py-10 bg-amber-900 shadow-lg sm:rounded-3xl sm:p-20">
-            <div className="text-center pb-6">
-              <h1 className="text-3xl uppercase font-bold">ADD service!</h1>
-              <p className="text-black font-bold">Fill up the form</p>
+          <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
+                Increase Your Customers:
+                <span className="text-amber-600"> Add Tables</span>
+              </h1>
+              <h2 className="mt-6 text-lg leading-8 text-black">
+                Add your services and make people come to you.
+              </h2>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <HashLink
+                  smooth="true"
+                  to="#service"
+                  className="isomorphic-link isomorphic-link--internal inline-flex items-center justify-center gap-2 rounded-xl bg-amber-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition-all duration-150 hover:bg-amber-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+                >
+                  Add Service
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    className="bi bi-arrow-down"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+                    />
+                  </svg>
+                </HashLink>
+              </div>
             </div>
-            <form onSubmit={handleSubmit}>
-              <label className="text-black font-bold mb-2" htmlFor="table_num">
-                Table Number
-              </label>
-              <input
-                className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="number"
-                placeholder="Table Number"
-                name="table_num"
-                value={table_number}
-                onChange={(e) => {setTable_number(e.target.value)
-                setError("")}}
-              />
 
-              <label className="text-black font-bold mb-2" htmlFor="time_start">
-                Open
-              </label>
-              <input
-                className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="time"
-                placeholder=""
-                name="time_start"
-                value={available_time_start}
-                onChange={(e) => {setAvailable_time_start(e.target.value)
-                  setError("")}}
+            <div className="relative mx-auto mt-10 max-w-lg">
+              <img
+                className="w-full rounded-2xl border border-amber-800 shadow"
+                src="https://www.mashed.com/img/gallery/reddit-cant-believe-this-ridiculous-restaurant-reservation-story/intro-1632925093.jpg"
+                alt=""
               />
-              <label className="text-black font-bold mb-2" htmlFor="time_end">
-                Close
-              </label>
-              <input
-                className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="time"
-                placeholder=""
-                name="time_end"
-                value={available_time_end}
-                onChange={(e) => {setAvailable_time_end(e.target.value)
-                  setError("")}}
-              />
-              <label className="text-black font-bold mb-2" htmlFor="guest_num">
-                Guests Number
-              </label>
-              <input
-                className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="number"
-                placeholder="Guest Number"
-                name="guest_num"
-                value={guest_number}
-                onChange={(e) => {setGuest_number(e.target.value)
-                  setError("")}}
-              />
-              <label className="text-black font-bold mb-2" htmlFor="guest_num">
-                Table Image
-              </label>
-              <input
-                className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-                type="file"
-                placeholder="Table Image"
-                name="guest_num"
-                onChange={(e) => {onChange(e)
-                  setError("")}}
-                  accept="image/*"
+            </div>
+          </div>
+        </section>
 
-              />
-              
-              
-                {error && <p className='text-amber-100'>{error}</p>}
-              <div className="flex justify-between">
+        <span id="service"></span>
+        <div className="min-h-screen bg-gray-950 py-6 flex flex-col justify-center sm:py-12 mt-20">
+          <div className="relative py-3 sm:max-w-xl sm:mx-auto">
+            <div className="absolute inset-0 bg-gradient-to-r from-amber-500 to-amber-800 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+            <div className="text-white relative px-4 py-10 bg-amber-900 shadow-lg sm:rounded-3xl sm:p-20">
+              <div className="text-center pb-6">
+                <h1 className="text-3xl uppercase font-bold">ADD service!</h1>
+                <p className="text-black font-bold">Fill up the form</p>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <label className="text-black font-bold mb-2" htmlFor="table_num">
+                  Table Number
+                </label>
                 <input
-                  className="shadow bg-black hover:bg-black-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="submit"
-                  defaultValue="Send ➤"
-                />
-                <input
-                  className="shadow bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  type="reset"
-                  onClick={() => {
-                    setTable_number("");
-                    setAvailable_time_end("");
-                    setAvailable_time_start("");
-                    setGuest_number("");
-                    setImg("");
+                  className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                  type="number"
+                  placeholder="Table Number"
+                  name="table_num"
+                  value={table_number}
+                  onChange={(e) => {
+                    setTable_number(e.target.value)
+                    setError("")
                   }}
                 />
-              </div>
-            </form>
+
+                <label className="text-black font-bold mb-2" htmlFor="time_start">
+                  Open
+                </label>
+                <input
+                  className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                  type="time"
+                  placeholder=""
+                  name="time_start"
+                  value={available_time_start}
+                  onChange={(e) => {
+                    setAvailable_time_start(e.target.value)
+                    setError("")
+                  }}
+                />
+                <label className="text-black font-bold mb-2" htmlFor="time_end">
+                  Close
+                </label>
+                <input
+                  className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                  type="time"
+                  placeholder=""
+                  name="time_end"
+                  value={available_time_end}
+                  onChange={(e) => {
+                    setAvailable_time_end(e.target.value)
+                    setError("")
+                  }}
+                />
+                <label className="text-black font-bold mb-2" htmlFor="guest_num">
+                  Guests Number
+                </label>
+                <input
+                  className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                  type="number"
+                  placeholder="Guest Number"
+                  name="guest_num"
+                  value={guest_number}
+                  onChange={(e) => {
+                    setGuest_number(e.target.value)
+                    setError("")
+                  }}
+                />
+                <label className="text-black font-bold mb-2" htmlFor="guest_num">
+                  Table Image
+                </label>
+                <input
+                  className="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
+                  type="file"
+                  placeholder="Table Image"
+                  name="guest_num"
+                  onChange={(e) => {
+                    onChange(e)
+                    setError("")
+                  }}
+                  accept="image/*"
+
+                />
+
+
+                {error && <p className='text-amber-100'>{error}</p>}
+                <div className="flex justify-between">
+                  <input
+                    className="shadow bg-black hover:bg-black-100 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="submit"
+                    defaultValue="Send ➤"
+                  />
+                  <input
+                    className="shadow bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                    type="reset"
+                    onClick={() => {
+                      setTable_number("");
+                      setAvailable_time_end("");
+                      setAvailable_time_start("");
+                      setGuest_number("");
+                      setImg("");
+                    }}
+                  />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
- 
- 
- </>
- } 
- 
- </>
+
+
+      </>
+      }
+
+    </>
   );
-  
+
 };
 
 export default RestaurantHome;
