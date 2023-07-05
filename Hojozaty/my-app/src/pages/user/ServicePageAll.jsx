@@ -128,7 +128,7 @@ const ServicePageAll = ({ setCurrentTable }) => {
                 filterDataByNameUsers(e.target.value);
               }} />
           </div>
-          <div className="flex flex-col md:flex-row md:items-center justify-between my-4">
+          <div className="flex flex-col md:flex-row md:items-center justify-between mt-6 md:mb-2">
             <p className="font-medium">Filters</p>
           </div>
           <div className="flex flex-col md:flex-row md:justify-between">
@@ -182,15 +182,18 @@ const ServicePageAll = ({ setCurrentTable }) => {
             return (
               <>
                 <div key={restaurant.restaurant_id} className="card bg-white w-80 h-[32rem] rounded-lg p-6 space-y-4">
-                  <img className="w-full h-64 rounded-lg" src={restaurant.img} alt={restaurant.restaurant_name} />
-                  <div className="space-y-4">
+                  <img className="w-full h-48 rounded-lg" src={restaurant.img} alt={restaurant.restaurant_name} />
+                  <div>
                     <h2 className="text-black font-semibold text-xl">
                       Name: {restaurant.restaurant_name}
                     </h2>
-                    <p className="text-slate-500 text-sm select-none">
-                    Description: {restaurant.des}
+                    <p className="text-lg mt-4">
+                    Description:
                     </p>
-                    <div className="flex items-center justify-between font-semibold text-sm border-b border-slate-500 pb-6">
+                    <p className="text-sm h-20 overflow-y-scroll pr-3 mt-2">
+                      {restaurant.des}
+                    </p>
+                    <div className="flex items-center justify-between mt-4 font-semibold text-sm border-b border-black pb-3">
                       <span
                         id="price"
                         className="flex justify-between items-center">
@@ -202,9 +205,9 @@ const ServicePageAll = ({ setCurrentTable }) => {
                         Food Type: {restaurant.type_food}
                       </span>
                     </div>
-                    <div className="flex justify-center items-center">
+                    <div className="flex justify-center mt-3 items-center">
                       <button
-                        onClick={() => {handleRes(restaurant);}}
+                        onClick={() => { handleRes(restaurant); }}
                         className="w-1/2 bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition">
                         View Details
                       </button>

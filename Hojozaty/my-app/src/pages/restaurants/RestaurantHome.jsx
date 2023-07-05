@@ -215,12 +215,11 @@ const RestaurantHome = () => {
             <Link
               smooth="true"
               to={`/profile/${restaurant_id}`}
-              className="inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 bg-gradient-to-r from-orange-700 to-orange-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gradient-to-r from-orange-500 to-orange-700 hover:shadow-lg focus:bg-amber-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-500 active:shadow-lg transition duration-150 ease-in-out"
+              className="inline-block px-7 py-3 mb-2 md:mb-0 mr-0 md:mr-2 bg-amber-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-gradient-to-r from-orange-500 to-orange-700 hover:shadow-lg focus:bg-amber-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-500 active:shadow-lg transition duration-150 ease-in-out"
               data-mdb-ripple="true"
               data-mdb-ripple-color="light"
               href="#!"
-              role="button"
-            >
+              role="button">
               PROFILE
             </Link>
           </div>

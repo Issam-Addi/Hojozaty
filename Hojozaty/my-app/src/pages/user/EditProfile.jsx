@@ -5,16 +5,6 @@ import Swal from 'sweetalert2';
 
 const EditProfile = () => {
 
-  // const [person, setPerson] = useState([]);
-
-  // useEffect(() => {
-  //     axios.get('http://localhost:5000/recordpId')
-  //     .then((response) => {
-  //         setPerson(response.data);
-  //         console.log(response.data)
-  //     })
-  //     .catch((error) => console.log(error.message))
-  // }, []);
 
   const [user, setUser] = useState({})
   const [id, setId] = useState({})
@@ -26,9 +16,9 @@ const EditProfile = () => {
   const [Password, setPassword] = useState("")
 
   useEffect(() => {
-      axios.get('http://localhost:5000/recordpId')
+    axios.get('http://localhost:5000/recordpId')
       .then((response) => {
-  
+
         setUser(response.data[0])
         setId(response.data[0].userid)
 
@@ -42,27 +32,6 @@ const EditProfile = () => {
 
       })
       .catch((error) => console.log(error.message))
-
-    // if(localStorage.curruntUser != null ){
-    //   let x= JSON.parse(localStorage.curruntUser)
-    //   setUser(x)
-    //   setId(x.userid)
-    // }
-
-
-    // axios.get(`http://localhost:5000/user/${id}`)
-    //   .then(function (response) {
-    //     console.log(response.data);
-
-    //     setUser(response.data);
-    //     while (user.length == 0) {
-
-    //     }
-
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
 
   }, []
 
