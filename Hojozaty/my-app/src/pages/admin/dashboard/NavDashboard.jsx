@@ -78,7 +78,7 @@ if(label == "Sign Out"){
 }
 
 };
- 
+
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>

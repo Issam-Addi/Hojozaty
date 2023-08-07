@@ -17,10 +17,8 @@ function Home() {
 
   return (
     <>
-      <section
-        className="relative  flex flex-col items-center justify-center text-center text-white h-[550px]">
-        <div
-          className="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
+      <section className="relative mt-16 flex flex-col items-center justify-center text-center text-white h-[550px]">
+        <div className="video-docker absolute top-0 left-0 w-full h-full overflow-hidden">
           <video
             className="min-w-full min-h-full absolute object-cover"
             src={video} type="video/mp4"
@@ -28,17 +26,12 @@ function Home() {
             muted={true}
             loop={true} />
         </div>
-        <div
-          className="video-content space-y-2 z-10 pb-5 h-[55vh]">
+        <div className="video-content space-y-2 z-10 pb-5 h-[55vh]">
           <h1 className="font-bold text-5xl uppercase text-amber-600">Foodie's Paradise Awaits</h1>
           <h3 className="font-bold text-2xl">Reserve your table with ease and indulge in culinary delights <br /> at your favorite restaurants</h3>
-          <div
-            class="rounded-md shadow mt-10">
-            <HashLink
-              smooth={true}
-              to="#food">
-              <button
-                class="bg-amber-600 text-white font-bold py-2 px-4 rounded-lg mt-5 border border-amber-600 hover:bg-transparent transition">
+          <div class="rounded-md shadow mt-10">
+            <HashLink smooth={true} to="#food">
+              <button class="bg-amber-600 text-white font-bold py-2 px-4 rounded-lg mt-5 border border-amber-600 hover:bg-transparent transition">
                 Pick Your Favorite Food
               </button>
             </HashLink>

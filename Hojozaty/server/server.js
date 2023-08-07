@@ -82,7 +82,6 @@ app.put("/records/:userid", async function (req, res) {
 });
 let useremail = "";
 let userpassword = "";
-
 let generatedRes;
 
 app.post("/recordp", async function (req, res) {
@@ -582,7 +581,6 @@ app.post("/payment", async function (req, res) {
     console.log(err.message);
   }
 });
-
 
 app.get("/paymentData", async (req, res) => {
   try {
