@@ -8,15 +8,12 @@ import { BsSearch } from "react-icons/bs";
 
 const ServicePageAll = ({ setCurrentTable }) => {
   const [restaurants, setRestaurants] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [FilterDataUsers, setFilterDataUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // get all the restaurants from database 
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/restaurantsAll")
+    axios.get("http://localhost:5000/restaurantsAll")
       .then((response) => {
-        console.log(response.data);
         setRestaurants(response.data);
         setFilterDataUsers(response.data);
         setLoading(false);
@@ -38,13 +35,9 @@ const ServicePageAll = ({ setCurrentTable }) => {
 
   const [yourSelectedStateValueType, setOptionType] = useState("");
   const [yourSelectedStateValueAddress, setOptionAddress] = useState("");
-  //-----------------------search------------------------//
-  const [searchTermUsers, setSearchTermUsers] = useState("");
 
   const [currentPageUsers, setCurrentPageUsers] = useState(1);
 
-
-  //This function is work as filter the restaurants based on their name and update the searchTermUsers state whenever the user types in the search input field.
   const filterDataByNameUsers = (searchTermUsers) => {
     const filteredDataUsers = restaurants?.filter((item) =>
       item.restaurant_name.toLowerCase().includes(searchTermUsers.toLowerCase())
@@ -55,15 +48,8 @@ const ServicePageAll = ({ setCurrentTable }) => {
   };
 
   function handleFind() {
-    console.log(restaurants[0].type_food.toLowerCase());
     const filteredDataUsers = restaurants?.filter((item) =>
-      item.type_food
-        ?.toLowerCase()
-        .includes(yourSelectedStateValueType.toLowerCase()) &&
-      item.address
-        ?.toLowerCase()
-        .includes(yourSelectedStateValueAddress.toLowerCase())
-    );
+      item.type_food?.toLowerCase().includes(yourSelectedStateValueType.toLowerCase()) && item.address?.toLowerCase().includes(yourSelectedStateValueAddress.toLowerCase()));
     setFilterDataUsers(filteredDataUsers);
   }
 
@@ -93,7 +79,7 @@ const ServicePageAll = ({ setCurrentTable }) => {
   return (
     <>
       <div
-        className="bg-cover bg-center h-screen shadow"
+        className="bg-cover bg-center h-screen mt-16"
         style={{ backgroundImage: 'url("https://zipinventory.com/assets/images/collections/10-restaurant-service-models-1607720498-5934-800-e549f94cb.webp")', height: "400px", marginBottom: "50px" }}>
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center">
@@ -124,7 +110,6 @@ const ServicePageAll = ({ setCurrentTable }) => {
               placeholder="Search by name, location"
               className="px-8 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
               onChange={(e) => {
-                setSearchTermUsers(e.target.value);
                 filterDataByNameUsers(e.target.value);
               }} />
           </div>

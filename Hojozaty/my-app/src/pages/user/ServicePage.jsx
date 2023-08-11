@@ -71,13 +71,12 @@ function ServicePage({ setCurrentTable }) {
     <>
 
 <div
-        className="bg-cover bg-center h-screen shadow"
+        className="bg-cover bg-center h-screen mt-16"
         style={{
           backgroundImage:
             'url("https://zipinventory.com/assets/images/collections/10-restaurant-service-models-1607720498-5934-800-e549f94cb.webp")',
           height: "400px", marginBottom: "50px"
-        }}
-      >
+        }}>
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-white mb-4">Restaurants</h1>
@@ -93,8 +92,7 @@ function ServicePage({ setCurrentTable }) {
                     className="h-4 w-4 mx-2"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
+                    stroke="currentColor">
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"

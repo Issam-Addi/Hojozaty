@@ -47,7 +47,7 @@ function ContactUs() {
   return (
     <>
       <div
-        className="bg-cover bg-center h-screen"
+        className="bg-cover bg-center h-screen mt-16"
         style={{ backgroundImage: 'url("https://media.istockphoto.com/id/1416335096/photo/businessman-hand-holding-smart-phone-with-icon-mobile-phone-mail-telephone-and-address.jpg?b=1&s=170667a&w=0&k=20&c=O39_wq7HB2oZHV3pyeZDxFAq0Xb_zNvLKrAIEWDVveY=")', height: "400px" }}>
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center">

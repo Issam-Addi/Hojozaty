@@ -64,7 +64,6 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [error, setError] = useState("");
-  const [id, setId] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -116,12 +115,11 @@ function SignUp() {
       setPasswordConfirm("");
     }
   };
-  // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}$/;
   const [showRegex, setShowRegex] = useState(false);
   const [passwordValid, setPasswordValid] = useState(false);
   return (
     <>
-      <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
+      <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center mt-16">
         <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
           <div class="flex-1 bg-teal-600 text-center hidden lg:flex">
             <img src={Signup} class="mx-auto" alt="Shopping image" />

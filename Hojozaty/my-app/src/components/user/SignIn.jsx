@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useContext} from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImg from "../../images/login.jpg";
 import axios from "axios";
@@ -7,86 +7,86 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 function SignIn() {
 
-  const navigate  = useNavigate('/')
-  const [ user, setUser ] = useState([]);
+  const navigate = useNavigate('/')
+  const [user, setUser] = useState([]);
   // Sign in with Google
 
 
-  const [ user0, setUser0 ] = useState([]);
-  const [ profile, setProfile ] = useState([]);
+  const [user0, setUser0] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const login = useGoogleLogin({
-      onSuccess: (codeResponse) => setUser0(codeResponse),
-      onError: (error) => console.log('Login Failed:', error)
+    onSuccess: (codeResponse) => setUser0(codeResponse),
+    onError: (error) => console.log('Login Failed:', error)
   });
 
   useEffect(
-      () => {
-          if (user0.length !== 0) {
-              axios
-                  .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user0.access_token}`, {
-                      headers: {
-                          Authorization: `Bearer ${user.access_token}`,
-                          Accept: 'application/json'
-                      }
-                  })
-                  .then((res) => {
-                      setProfile(res.data);
-                      console.log(res.data);
-                      axios.post("http://localhost:5000/recordp", {
-                        email: res.data.email,
-                        password: '123456',
-                      })
-                
-                      .then(function (response) {
-                        if (response.data != "not passed") {
-                          console.log(response.data[1]);
-                         let x =[]
-                            if (response.data[1]==0){
-                            x= [false ,true,true]
-                          }else if(response.data[1]==1){
-                             x= [true ,false,true]
-                          }else if(response.data[1]==2){
-                             x= [true ,true,false]
-                          }
-                          console.log(response.data[2])
-                          updateRouts(x)
-                          updateSetCurruntUser(response.data[2])
-                          localStorage.setItem("curruntUser",JSON.stringify(response.data[2]))
-                          console.log("passed");
-                          
-                          updateSignStatus("SignOut")
-                          localStorage.setItem("SignStatus","SignOut")
-                
-                          localStorage.setItem("auth",JSON.stringify(response.data[0]))
-                          localStorage.setItem("roles",JSON.stringify(x))
-                          window.location.href = '/';
-                        } else {
-                          console.log("not passed");
-                        }
-                      })
-                      .catch(function (error) {console.log(error.message);});
-                
-                  })
-                  .catch((err) => console.log(err.message));
+    () => {
+      if (user0.length !== 0) {
+        axios
+          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user0.access_token}`, {
+            headers: {
+              Authorization: `Bearer ${user.access_token}`,
+              Accept: 'application/json'
+            }
+          })
+          .then((res) => {
+            setProfile(res.data);
+            console.log(res.data);
+            axios.post("http://localhost:5000/recordp", {
+              email: res.data.email,
+              password: '123456',
+            })
 
-             
+              .then(function (response) {
+                if (response.data != "not passed") {
+                  console.log(response.data[1]);
+                  let x = []
+                  if (response.data[1] == 0) {
+                    x = [false, true, true]
+                  } else if (response.data[1] == 1) {
+                    x = [true, false, true]
+                  } else if (response.data[1] == 2) {
+                    x = [true, true, false]
+                  }
+                  console.log(response.data[2])
+                  updateRouts(x)
+                  updateSetCurruntUser(response.data[2])
+                  localStorage.setItem("curruntUser", JSON.stringify(response.data[2]))
+                  console.log("passed");
 
-             
-          }
-      },
-      [user0]
+                  updateSignStatus("SignOut")
+                  localStorage.setItem("SignStatus", "SignOut")
+
+                  localStorage.setItem("auth", JSON.stringify(response.data[0]))
+                  localStorage.setItem("roles", JSON.stringify(x))
+                  window.location.href = '/';
+                } else {
+                  console.log("not passed");
+                }
+              })
+              .catch(function (error) { console.log(error.message); });
+
+          })
+          .catch((err) => console.log(err.message));
+
+
+
+
+      }
+    },
+    [user0]
   );
 
 
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { routs,updateRouts } = useContext(UserContext)
-  const { SignStatus,updateSignStatus } = useContext(UserContext)
+  const { routs, updateRouts } = useContext(UserContext)
+  const { SignStatus, updateSignStatus } = useContext(UserContext)
 
 
-  const { curruntUser,updateSetCurruntUser } = useContext(UserContext)
+  const { curruntUser, updateSetCurruntUser } = useContext(UserContext)
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -99,42 +99,40 @@ function SignIn() {
       .then(function (response) {
         if (response.data != "not passed") {
           console.log(response.data[1]);
-         let x =[]
-            if (response.data[1]==0){
-            x= [false ,true,true]
-          }else if(response.data[1]==1){
-             x= [true ,false,true]
-          }else if(response.data[1]==2){
-             x= [true ,true,false]
+          let x = []
+          if (response.data[1] == 0) {
+            x = [false, true, true]
+          } else if (response.data[1] == 1) {
+            x = [true, false, true]
+          } else if (response.data[1] == 2) {
+            x = [true, true, false]
           }
           console.log(response.data[2])
           updateRouts(x)
           updateSetCurruntUser(response.data[2])
-          localStorage.setItem("curruntUser",JSON.stringify(response.data[2]))
+          localStorage.setItem("curruntUser", JSON.stringify(response.data[2]))
           console.log("passed");
-          
-          updateSignStatus("SignOut")
-          localStorage.setItem("SignStatus","SignOut")
 
-          localStorage.setItem("auth",JSON.stringify(response.data[0]))
-          localStorage.setItem("roles",JSON.stringify(x))
+          updateSignStatus("SignOut")
+          localStorage.setItem("SignStatus", "SignOut")
+
+          localStorage.setItem("auth", JSON.stringify(response.data[0]))
+          localStorage.setItem("roles", JSON.stringify(x))
           window.location.href = 'http://localhost:3000/';
         } else {
           console.log("not passed");
         }
       })
-      .catch(function (error) {});
+      .catch(function (error) { });
 
 
     const data = { email, password };
-    
 
-    // setEmail("")
-    // setPassword("")
+
   };
 
   return (
-    <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center">
+    <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center mt-16">
       <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
         <div class="flex-1 bg-teal-200 text-center hidden lg:flex">
           <img src={loginImg} alt="Shopping image" />
@@ -144,7 +142,7 @@ function SignIn() {
           <div class="mt-12 flex flex-col items-center">
             <h1
               class="text-2xl xl:text-3xl font-extrabold text-amber-500 "
-              
+
             >
               Sign in your account
             </h1>
@@ -175,7 +173,7 @@ function SignIn() {
                       className={`border-300 tex-900 dark:text--400 placeholder-700 dark:placeholder-500 focus:ring-500 focus:border-500 dark:border-500 bg-white border-2 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 focus:outline-none`}
                       placeholder="Enter your email"
                       value={email}
-                      onChange={(e) => {setEmail(e.target.value);}}
+                      onChange={(e) => { setEmail(e.target.value); }}
                     />
                     <p className={`mt-2 text-sm text-600 dark:text500`}>
                       <span class="font-medium"></span>
@@ -194,8 +192,8 @@ function SignIn() {
                       className={`border-300 text-900 placeholder-700 focus:ring--500 focus:border-500 dark:text-500 dark:placeholder-500 dark:border-500 bg-white border-2 text-sm rounded-lg dark:bg-gray-700 block w-full p-2.5 focus:outline-none`}
                       placeholder="Enter your password"
                       value={password}
-                      onChange={(e) => {setPassword(e.target.value);}}
-                      
+                      onChange={(e) => { setPassword(e.target.value); }}
+
                     />
                     <p className={`mt-2 text-sm text-600 dark:text-500`}>
                       <span class="font-medium"></span>
@@ -221,16 +219,16 @@ function SignIn() {
                   <p className={`mt-2 text-sm text-600 dark:text-500`}>
                     <span class="font-medium"></span>
                   </p>
-                
-                    <p className={`mt-2 text-sm text-red-700 dark:text-500`}>
-                      Don't have an account!{" "}
-                      <Link
-                        to="/signUp"
-                        className={`font-bold text-black transition hover:text-500/75`}
-                      >
-                        Sign Up
-                      </Link>
-                    </p>{" "}
+
+                  <p className={`mt-2 text-sm text-red-700 dark:text-500`}>
+                    Don't have an account!{" "}
+                    <Link
+                      to="/signUp"
+                      className={`font-bold text-black transition hover:text-500/75`}
+                    >
+                      Sign Up
+                    </Link>
+                  </p>{" "}
                 </div>
               </form>
             </div>

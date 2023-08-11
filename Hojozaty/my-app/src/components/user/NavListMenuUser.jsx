@@ -58,7 +58,7 @@ function NavListMenuUser() {
             return (
               <MenuItem
                 key={label}
-                onClick={() => {closeMenu(label);}}
+                onClick={() => { closeMenu(label); }}
                 className={`flex items-center gap-2 rounded transition ${i ? "hover:bg-red-500 focus:bg-red-500 active:bg-red-500" : "hover:bg-amber-600 focus:bg-amber-600 active:bg-amber-600"}`}>
                 {React.createElement(icon, { className: `h-4 w-4 text-black` })}
                 <Typography
@@ -107,52 +107,53 @@ function NavListMenuUser() {
   }
 
   return (
-    <Navbar
-      className="w-full fixed top-0 z-20 bg-black border-none rounded-none">
-      <div className="flex items-center justify-between text-white">
-        <Link to="/">
-          <img src={logo} alt="logo" width={150} />
-        </Link>
-        <div className="hidden lg:block">
+    <Navbar className="w-full fixed top-0 z-20 bg-black border-none rounded-none">
+      <div className=" max-w-screen-xl mx-auto lg:px-4">
+        <div className="flex items-center justify-between text-white">
+          <Link to="/">
+            <img src={logo} alt="logo" width={150} />
+          </Link>
+          <div className="hidden lg:block">
+            <NavList />
+          </div>
+          <div className="hidden gap-2 lg:flex">
+            {SignStatus == "signUp" ? (
+              <Link to="/SignUp">
+                <button
+                  className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
+                  Sign Up
+                </button>
+              </Link>
+            ) : (
+              <ProfileMenu />
+            )}
+          </div>
+          <button
+            className="lg:hidden hover:text-amber-600 transition"
+            onClick={() => setOpenNav(!openNav)}>
+            {openNav ? (
+              <XMarkIcon className="h-6 w-6" strokeWidth={2} />
+            ) : (
+              <Bars3Icon className="h-6 w-6" strokeWidth={2} />
+            )}
+          </button>
+        </div>
+        <Collapse open={openNav}>
           <NavList />
-        </div>
-        <div className="hidden gap-2 lg:flex">
-          {SignStatus == "signUp" ? (
-            <Link to="/SignUp">
-              <button
-                className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
-                Sign Up
-              </button>
-            </Link>
-          ) : (
-            <ProfileMenu />
-          )}
-        </div>
-        <button
-          className="lg:hidden hover:text-amber-600 transition"
-          onClick={() => setOpenNav(!openNav)}>
-          {openNav ? (
-            <XMarkIcon className="h-6 w-6" strokeWidth={2} />
-          ) : (
-            <Bars3Icon className="h-6 w-6" strokeWidth={2} />
-          )}
-        </button>
+          <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
+            {SignStatus == "signUp" ? (
+              <Link to="/SignUp">
+                <button
+                  className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
+                  Sign Up
+                </button>
+              </Link>
+            ) : (
+              <ProfileMenu />
+            )}
+          </div>
+        </Collapse>
       </div>
-      <Collapse open={openNav}>
-        <NavList />
-        <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
-        {SignStatus == "signUp" ? (
-            <Link to="/SignUp">
-              <button
-                className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
-                Sign Up
-              </button>
-            </Link>
-          ) : (
-            <ProfileMenu />
-          )}
-        </div>
-      </Collapse>
     </Navbar>
   );
 }

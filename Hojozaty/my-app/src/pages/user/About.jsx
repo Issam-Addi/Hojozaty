@@ -24,9 +24,8 @@ function About() {
 
     return (
         <>
-            {/* Hero section in about us */}
             <div
-                className="bg-cover bg-center h-screen shadow"
+                className="bg-cover bg-center h-screen mt-16"
                 style={{ backgroundImage: 'url("https://www.mycubez.com/client/ask/includes/pics/about-us-pic.jpg")', height: "400px" }}>
                 <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
                     <div className="text-center">
@@ -45,9 +44,7 @@ function About() {
                     </div>
                 </div>
             </div>
-            {/* End hero section */}
 
-            {/* features section */}
             <div className="py-16 bg-gray-200 shadow-lg overflow-hidden">
                 <div className="container m-auto px-6 space-y-8 md:px-12">
                     <div>
@@ -134,11 +131,8 @@ function About() {
                     </div>
                 </div>
             </div>
-            {/* End features */}
 
-            {/* ====== About Section Start */}
-            <section
-                className="bg-gray-200 shadow-lg my-5 overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
+            <section className="bg-gray-200 shadow-lg my-5 overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px]">
                 <div className="container mx-auto">
                     <div className="-mx-7 flex flex-wrap items-center">
                         <div className="w-full px-4 lg:w-6/12">
@@ -750,7 +744,6 @@ function About() {
                     </div>
                 </div>
             </section>
-            {/* ====== About Section End */}
         </>
     );
 }
