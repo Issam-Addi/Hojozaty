@@ -44,12 +44,12 @@ const ServicePageAll = ({ setCurrentTable }) => {
     );
     setFilterDataUsers(filteredDataUsers);
     setCurrentPageUsers(1);
-    console.log(searchTermUsers);
   };
 
   function handleFind() {
     const filteredDataUsers = restaurants?.filter((item) =>
-      item.type_food?.toLowerCase().includes(yourSelectedStateValueType.toLowerCase()) && item.address?.toLowerCase().includes(yourSelectedStateValueAddress.toLowerCase()));
+      item.type_food?.toLowerCase().includes(yourSelectedStateValueType.toLowerCase()) &&
+      item.address?.toLowerCase().includes(yourSelectedStateValueAddress.toLowerCase()));
     setFilterDataUsers(filteredDataUsers);
   }
 

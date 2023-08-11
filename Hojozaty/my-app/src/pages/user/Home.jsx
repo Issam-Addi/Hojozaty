@@ -40,7 +40,7 @@ function Home() {
       </section>
 
       <section className="bg-gray-200 shadow-lg">
-        <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16 lg:px-6">
+        <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16">
           <div className="sm:text-lg">
             <h2 className="mb-8 text-4xl tracking-tight font-bold text-amber-600 capitalize">
               Effortless reservations at favorite restaurants
