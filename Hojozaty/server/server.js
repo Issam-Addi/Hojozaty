@@ -282,7 +282,6 @@ app.put("/contactus00/:about_id", async function (req, res) {
   }
 });
 
-// Get All orders
 app.post("/orders", async function (req, res) {
   try {
     const email = req.body.email;
@@ -496,7 +495,6 @@ app.post("/table", async function (req, res) {
   }
 });
 
-// Get the orders of a specified restaurant by its id *******
 app.get("/orders/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -657,8 +655,6 @@ app.put("/user/:id", async function (req, res) {
 });
 
 
-
-// get user orders ******
 app.get("/userOrders/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -673,7 +669,6 @@ app.get("/userOrders/:id", async (req, res) => {
   }
 });
 
-// get prev. orders ********
 app.get("/oldOrders/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -689,7 +684,6 @@ app.get("/oldOrders/:id", async (req, res) => {
   }
 });
 
-// cancel pemding order
 app.delete("/deleteOrders/:id", async (req, res) => {
   try {
     const { id } = req.params;

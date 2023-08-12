@@ -75,37 +75,6 @@ function NavListMenuUser() {
     );
   }
 
-  function NavList() {
-    return (
-      <ui className="lg:flex">
-        <Link to="/">
-          <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition my-4 lg:my-0">
-            <HomeIcon className="h-[18px] w-[18px]" />
-            Home
-          </li>
-        </Link>
-        <Link to="/ServicePageAll">
-          <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
-            <RestaurantIcon style={{ height: "18px" }} />
-            Restaurants
-          </li>
-        </Link>
-        <Link to="/About">
-          <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
-            <CubeTransparentIcon className="h-[18px] w-[18px]" />
-            About Us
-          </li>
-        </Link>
-        <Link to="/ContactUs">
-          <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
-            <UserCircleIcon className="h-[18px] w-[18px]" />
-            Contact Us
-          </li>
-        </Link>
-      </ui>
-    );
-  }
-
   return (
     <Navbar className="w-full fixed top-0 z-20 bg-black border-none rounded-none">
       <div className=" max-w-screen-xl mx-auto lg:px-4">
@@ -114,7 +83,33 @@ function NavListMenuUser() {
             <img src={logo} alt="logo" width={150} />
           </Link>
           <div className="hidden lg:block">
-            <NavList />
+            <ui className="lg:flex">
+              <Link to="/">
+                <li
+                  className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition my-4 lg:my-0">
+                  <HomeIcon className="h-[18px] w-[18px]" />
+                  Home
+                </li>
+              </Link>
+              <Link to="/ServicePageAll">
+                <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
+                  <RestaurantIcon style={{ height: "18px" }} />
+                  Restaurants
+                </li>
+              </Link>
+              <Link to="/About">
+                <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
+                  <CubeTransparentIcon className="h-[18px] w-[18px]" />
+                  About Us
+                </li>
+              </Link>
+              <Link to="/ContactUs">
+                <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
+                  <UserCircleIcon className="h-[18px] w-[18px]" />
+                  Contact Us
+                </li>
+              </Link>
+            </ui>
           </div>
           <div className="hidden gap-2 lg:flex">
             {SignStatus == "signUp" ? (
@@ -138,8 +133,35 @@ function NavListMenuUser() {
             )}
           </button>
         </div>
+
         <Collapse open={openNav}>
-          <NavList />
+          <ui className="lg:flex">
+            <Link to="/">
+              <li
+                className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition my-4 lg:my-0">
+                <HomeIcon className="h-[18px] w-[18px]" />
+                Home
+              </li>
+            </Link>
+            <Link to="/ServicePageAll">
+              <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
+                <RestaurantIcon style={{ height: "18px" }} />
+                Restaurants
+              </li>
+            </Link>
+            <Link to="/About">
+              <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
+                <CubeTransparentIcon className="h-[18px] w-[18px]" />
+                About Us
+              </li>
+            </Link>
+            <Link to="/ContactUs">
+              <li className="flex items-center gap-2 py-2 pr-4 text-white hover:text-amber-600 transition mb-4 lg:mb-0">
+                <UserCircleIcon className="h-[18px] w-[18px]" />
+                Contact Us
+              </li>
+            </Link>
+          </ui>
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
             {SignStatus == "signUp" ? (
               <Link to="/SignUp">

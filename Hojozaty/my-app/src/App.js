@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 //-----------------------------user-------------------------------//
 import NavListMenuUser from "./components/user/NavListMenuUser"
 import Footer from "./components/user/Footer"
@@ -32,7 +33,6 @@ import AcceptTables from './pages/admin/AcceptTables';
 
 import React, { useEffect, useState, useContext } from 'react'
 import { UserContext } from './UserContext';
-import Profiles from './Profiles';
 
 function App() {
 
@@ -71,7 +71,6 @@ function App() {
         <Routes>
           <Route index element={<Home />} />
           <Route path="About" element={<About />} />
-          <Route path="profiles" element={<Profiles />} />
           <Route path='ContactUs' element={<ContactUs />} />
           <Route path="SignIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUp />} />
