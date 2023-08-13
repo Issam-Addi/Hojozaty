@@ -7,7 +7,10 @@ import Signup from "../../images/Signup.jpg";
 import { useGoogleLogin } from "@react-oauth/google";
 
 function SignUp() {
+
   const navigate = useNavigate("/");
+
+  // for google
   const [user, setUser] = useState([]);
   const [user0, setUser0] = useState([]);
   const [profile, setProfile] = useState([]);
@@ -20,9 +23,7 @@ function SignUp() {
 
   useEffect(() => {
     if (user0.length !== 0) {
-      axios
-        .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user0.access_token}`,
+      axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user0.access_token}`,
           {
             headers: {
               Authorization: `Bearer ${user.access_token}`,
@@ -34,8 +35,7 @@ function SignUp() {
           setProfile(res.data);
           setErrorG("");
           console.log(res.data);
-          axios
-            .post("http://localhost:5000/records", {
+          axios.post("http://localhost:5000/records", {
               name: res.data.name,
               phone: "",
               email: res.data.email,
@@ -46,7 +46,6 @@ function SignUp() {
                 console.log(response.data);
                 navigate("/SignIn");
               } else {
-                console.log("Email is already Used");
                 setErrorG("Email is already used, please Login");
               }
             })
@@ -56,6 +55,7 @@ function SignUp() {
     }
   }, [user0]);
 
+  // for normal user
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
@@ -66,6 +66,7 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let done = true;
+    const patternPassword = /^(?=.*?[A-Z])(?=.*?[0-9])(?=.*?[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,.?]).{8,}$/;
 
     if (name === "") {
       done = false;
@@ -79,28 +80,26 @@ function SignUp() {
     } else if (password === "") {
       done = false;
       setError("Please Enter a Password !");
+    } else if (!patternPassword.test(password)) {
+      done = false;
+      setError("Please enter a password that is at least 8 characters long and contains one uppercase letter, one number, and one special character.");
     } else if (password !== passwordConfirm) {
       done = false;
       setError("Please Enter the same Password !");
     }
 
     if (done) {
-      const data = { name, phone, email, password };
-      console.log(name, phone, email, password);
-
-      axios
-        .post("http://localhost:5000/records", {
-          name: name,
-          phone: phone,
-          email: email,
-          password: password,
-        })
+      axios.post("http://localhost:5000/records", {
+        name: name,
+        phone: phone,
+        email: email,
+        password: password,
+      })
         .then(function (response) {
           if (response.data != "taken") {
-            window.location.href = "http://localhost:3000/signIn";
+            window.location.href = "http://localhost:3000";
           } else {
             console.log(response.data);
-            alert("This Email is already taken");
             setError("This Email is already taken");
           }
         })
@@ -113,25 +112,29 @@ function SignUp() {
       setPasswordConfirm("");
     }
   };
-  const [showRegex, setShowRegex] = useState(false);
-  const [passwordValid, setPasswordValid] = useState(false);
+
   return (
     <>
       <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center mt-16">
         <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
+
           <div class="flex-1 bg-teal-600 text-center hidden lg:flex">
             <img src={Signup} class="mx-auto" alt="Shopping image" />
             <div class="hero-img xl:m-16 w-full bg-contain bg-center bg-no-repeat"></div>
           </div>
+
           <div class="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 sm:w-10/12">
             <div class="mt-12 flex flex-col items-center ">
+
               <h1 class="text-2xl xl:text-3xl font-extrabold text-amber-500 ">
                 Sign Up to Join Us!
               </h1>
+
               <div class="w-full flex-1 mt-8">
                 <div class="flex flex-col items-center">
+
                   <button
-                    className="bg-black p-2 rounded-lg text-white hover:text-black hover:bg-amber-500"
+                    className=" bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
                     onClick={() => login()}>
                     Sign Up with Google
                     <svg
@@ -165,6 +168,7 @@ function SignUp() {
                       ></path>
                     </svg>
                   </button>
+
                   <h4 className="text-red-800 text-sm font-light m-1">
                     {errorG}
                   </h4>
@@ -178,23 +182,26 @@ function SignUp() {
 
                 <form onSubmit={handleSubmit}>
                   <div class="mx-auto max-w-xs">
+                  <span className="text-red-500 text-sm mt-6">{error}</span>
                     <div class="mb-3">
                       <label
                         for="name"
                         className={`block mb-2 text-sm font-medium text-700 dark:text-500 `}>
                         Full name
+                        <span className='text-red-700 text-xl'>*</span>
                       </label>
                       <input
                         type="text"
                         id="name"
-                        className={`border-300 text-900 dark:text-400 placeholder-700 dark:placeholder-500 focus:ring-500 focus:border-500 dark:border--500 bg-white border-2 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 focus:outline-none`}
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                         placeholder="Enter your name"
                         value={name}
                         onChange={(e) => {
                           setName(e.target.value);
                           setError("");
-                        }}/>
+                        }} />
                     </div>
+
                     <div class="mb-3">
                       <label
                         for="phone"
@@ -204,13 +211,13 @@ function SignUp() {
                       <input
                         type="text"
                         id="phone"
-                        className={`border-300 text-900 dark:text-400 placeholder-700 dark:placeholder-500 focus:ring-500 focus:border-500 dark:border-500 bg-white border-2 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 focus:outline-none`}
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                         placeholder="Enter your phone"
                         value={phone}
                         onChange={(e) => {
                           setPhone(e.target.value);
                           setError("");
-                        }}/>
+                        }} />
                     </div>
                     <div class="mb-3">
                       <label
@@ -221,13 +228,13 @@ function SignUp() {
                       <input
                         type="text"
                         id="email"
-                        className={`border-300 text-900 dark:text-400 placeholder-700 dark:placeholder-500 focus:ring-500 focus:border-500 dark:border-500 bg-white border-2 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 focus:outline-none`}
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => {
                           setEmail(e.target.value);
                           setError("");
-                        }}/>
+                        }} />
                     </div>
                     <div class="mb-3">
                       <label
@@ -238,24 +245,12 @@ function SignUp() {
                       <input
                         type="password"
                         id="password"
-                        className={`border-300 text-900 placeholder-700 focus:ring-500 focus:border-500 dark:text-500 dark:placeholder-500 dark:border-500 bg-white border-2 text-sm rounded-lg dark:bg-gray-700 block w-full p-2.5 focus:outline-none`}
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => {
                           setPassword(e.target.value);
-                          setShowRegex(e.target === document.activeElement);
-                          setPasswordValid(
-                            /^(?=.\d)(?=.[!@#$%^&])(?=.[a-z])(?=.*[A-Z]).{8,}$/.test(
-                              e.target.value
-                            )
-                          );
-                        }}/>
-                      {showRegex && !passwordValid && (
-                        <p className="text-xs text-red-500 mb-1 ">
-                          Password must contain at least 8 characters including
-                          a digit and a special character.
-                        </p>
-                      )}
+                        }} />
                     </div>
                     <div>
                       <label
@@ -266,18 +261,17 @@ function SignUp() {
                       <input
                         type="password"
                         id="confirmPassword"
-                        className={`border--300 text--900 placeholder--700 focus:ring-500 focus:border-500 dark:text-500 dark:placeholder-500 dark:border-500 bg-white border-2 text-sm rounded-lg dark:bg-gray-700 block w-full p-2.5 focus:outline-none`}
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                         placeholder="Confirm password"
                         value={passwordConfirm}
                         onChange={(e) => {
                           setPasswordConfirm(e.target.value);
                           setError("");
-                        }}/>
+                        }} />
                     </div>
-                    <span className="text-red-500 text-sm mt-6">{error}</span>
                     <button
                       type="submit"
-                      class="mt-5 tracking-wide font-semibold bg-amber-500 text-black w-full py-4 rounded-lg hover:text-white hover:bg-amber-600 transition-bg duration-500 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none">
+                      class="mt-5 tracking-wide flex items-center justify-center w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                       <svg
                         class="w-6 h-6 -ml-2"
                         fill="none"
@@ -291,11 +285,11 @@ function SignUp() {
                       </svg>
                       <span class="ml-3 ">Sign Up</span>
                     </button>
-                    <p className={`mt-2 text-sm text-red-700 dark:text-500`}>
-                      You already have an account!{" "}
+                    <p className={`mt-2 text-sm text-black`}>
+                      You already have an account !{" "}
                       <Link
                         to="/signIn"
-                        className={`font-bold text-black transition hover:text-500/75`}>
+                        className="text-amber-500 hover:text-black hover:underline transition">
                         Sign In
                       </Link>
                     </p>
