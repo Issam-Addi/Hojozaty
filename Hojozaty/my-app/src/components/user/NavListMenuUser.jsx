@@ -113,10 +113,10 @@ function NavListMenuUser() {
           </div>
           <div className="hidden gap-2 lg:flex">
             {SignStatus == "signUp" ? (
-              <Link to="/SignUp">
+              <Link to="/SignIn">
                 <button
                   className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
-                  Sign Up
+                  Sign In
                 </button>
               </Link>
             ) : (
@@ -164,10 +164,10 @@ function NavListMenuUser() {
           </ui>
           <div className="flex w-full flex-nowrap items-center gap-2 lg:hidden">
             {SignStatus == "signUp" ? (
-              <Link to="/SignUp">
+              <Link to="/SignIn">
                 <button
                   className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
-                  Sign Up
+                  Sign In
                 </button>
               </Link>
             ) : (

@@ -24,23 +24,23 @@ function SignUp() {
   useEffect(() => {
     if (user0.length !== 0) {
       axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user0.access_token}`,
-          {
-            headers: {
-              Authorization: `Bearer ${user.access_token}`,
-              Accept: "application/json",
-            },
-          }
-        )
+        {
+          headers: {
+            Authorization: `Bearer ${user.access_token}`,
+            Accept: "application/json",
+          },
+        }
+      )
         .then((res) => {
           setProfile(res.data);
           setErrorG("");
           console.log(res.data);
           axios.post("http://localhost:5000/records", {
-              name: res.data.name,
-              phone: "",
-              email: res.data.email,
-              password: "123456",
-            })
+            name: res.data.name,
+            phone: "",
+            email: res.data.email,
+            password: "123456",
+          })
             .then(function (response) {
               if (response.data != "taken") {
                 console.log(response.data);
@@ -134,7 +134,7 @@ function SignUp() {
                 <div class="flex flex-col items-center">
 
                   <button
-                    className=" bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
+                    className="bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
                     onClick={() => login()}>
                     Sign Up with Google
                     <svg
@@ -182,7 +182,7 @@ function SignUp() {
 
                 <form onSubmit={handleSubmit}>
                   <div class="mx-auto max-w-xs">
-                  <span className="text-red-500 text-sm mt-6">{error}</span>
+                    <span className="text-red-500 text-sm mt-6">{error}</span>
                     <div class="mb-3">
                       <label
                         for="name"
@@ -271,7 +271,7 @@ function SignUp() {
                     </div>
                     <button
                       type="submit"
-                      class="mt-5 tracking-wide flex items-center justify-center w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
+                      className="mt-5 tracking-wide flex items-center justify-center w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                       <svg
                         class="w-6 h-6 -ml-2"
                         fill="none"

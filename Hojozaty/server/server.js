@@ -106,7 +106,7 @@ app.post("/recordp", async function (req, res) {
             { email: e.email, password: e.password },
             secretKey,
             { expiresIn: "9weeks" }
-          ); // Generate JWT
+          );
           generatedUserId = e.userid;
           res.json([token, e.type_id, e]);
           role000 = e.type_id;
@@ -114,7 +114,7 @@ app.post("/recordp", async function (req, res) {
       }
     });
 
-    //   res.json({email,password});
+      res.json({email,password});
   } catch (err) {
     console.log(err.message);
   }

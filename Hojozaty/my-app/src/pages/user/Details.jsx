@@ -208,9 +208,9 @@ function Details1() {
                 </div>
               </div>
               {SignStatus == "signUp" ?
-                <Link to="/SignUp">
+                <Link to="/SignIn">
                   <button type="submit" className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
-                    Sign Up to book!
+                    Sign in to book!
                   </button>
                 </Link>
                 :
