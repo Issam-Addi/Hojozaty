@@ -10,9 +10,10 @@ const EditProfile = () => {
   const [email, setEmail] = useState("")
   const [PhoneNumber, setPhoneNumber] = useState("")
   const [Password, setPassword] = useState("")
+  const userLogedIn = JSON.parse(localStorage?.getItem('curruntUser'));
 
   useEffect(() => {
-    axios.get('http://localhost:5000/recordpId')
+    axios.get(`http://localhost:5000/user/${userLogedIn.userid}`)
       .then((response) => {
         setUser(response.data[0])
         setId(response.data[0].userid)
@@ -49,7 +50,7 @@ const EditProfile = () => {
             <h2 className="font-semibold text-xl text-black-900">Edit Profile</h2>
             <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
               <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 lg:grid-cols-2">
-                {user.length !== 0 &&
+                {user?.length !== 0 &&
                   <form onSubmit={handleSubmit} className="lg:col-span-2">
                     <div className="lg:col-span-2">
                       <div className="grid gap-4 gap-y-2 text-sm grid-cols-1 md:grid-cols-5">
@@ -59,7 +60,7 @@ const EditProfile = () => {
                             type="text"
                             name="full_name"
                             id="full_name"
-                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                             defaultValue=""
                             placeholder='Your Name'
                             value={username}
@@ -71,7 +72,7 @@ const EditProfile = () => {
                             type="text"
                             name="email"
                             id="email"
-                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                             defaultValue=""
                             placeholder="email@domain.com"
                             value={email}
@@ -83,7 +84,7 @@ const EditProfile = () => {
                             type="text"
                             name="phone_number"
                             id="phone_number"
-                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                             defaultValue=""
                             placeholder="07XXXXXXXX"
                             value={PhoneNumber}
@@ -94,8 +95,8 @@ const EditProfile = () => {
                           <input
                             type="password"
                             name="password"
-                            id="passwoord"
-                            className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                            id="password"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                             defaultValue=""
                             placeholder="*******"
                             value={Password}
@@ -103,7 +104,7 @@ const EditProfile = () => {
                         </div>
                         <div className="md:col-span-5 text-right">
                           <div className="inline-flex items-end">
-                            <button type='submit' className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded">
+                            <button type='submit' className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
                               Save
                             </button>
                           </div>

@@ -74,7 +74,7 @@ function App() {
           <Route path='ContactUs' element={<ContactUs />} />
           <Route path="SignIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUp />} />
-          <Route path="PaymentPage" element={<PaymentPage />} />
+          <Route path="PaymentPage/:restaurant_id" element={<PaymentPage />} />
           <Route path="ProfilePage" element={<ProfilePage />} />
           <Route path="ServicePageAll" element={<ServicePageAll setCurrentTable={setCurrentTable} />} />
           <Route path="/Details/:restaurant_id" element={<Details currentTable={currentTable} />} />

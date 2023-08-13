@@ -190,7 +190,7 @@ app.put("/recordss/:userid", async function (req, res) {
 app.get("/restaurants", async function (req, res) {
   try {
     const all_records = await pool.query(
-      "SELECT *  FROM restaurant JOIN users ON users.userid = restaurant.user_id WHERE users.flags = 1 ;"
+      "SELECT * FROM restaurant JOIN users ON users.userid = restaurant.user_id WHERE users.flags = 1 ;"
     );
     res.json(all_records.rows);
   } catch (err) {
@@ -211,8 +211,6 @@ app.post("/restaurants", async function (req, res) {
     );
 
     generatedId = all_records.rows[0].userid;
-
-    // res.json(all_records.rows);
 
     const restaurant_name = "";
     const contact_number = "";
@@ -526,9 +524,6 @@ app.put("/tableStatus/:id", async (req, res) => {
   }
 })
 
-
-///////////////
-
 //
 app.get("/orderedEmail/:id", async (req, res) => {
   try {
@@ -559,12 +554,10 @@ app.put("/orders/:id", async (req, res) => {
   }
 });
 
-// ---------------- issa --------------------//
-// Add a new payment
 app.post("/payment", async function (req, res) {
   try {
     const username = req.body.username;
-    const cardnumber = req.body.cardnumber;
+    const cardnumber = req.body.cardNumber;
     const hashedCardNumber = bcrypt.hashSync(cardnumber, 10);
     const datecard = req.body.datecard;
     const cvc = req.body.cvc;
@@ -573,7 +566,6 @@ app.post("/payment", async function (req, res) {
       "INSERT INTO payment (username, cardnumber, datecard, cvc, userid) VALUES($1, $2, $3, $4, $5) RETURNING *",
       [username, hashedCardNumber, datecard, cvc, userid]
     );
-
     res.json(newPayment.rows);
   } catch (err) {
     console.log(err.message);
@@ -623,6 +615,7 @@ app.get("/restaurantTables", async (req, res) => {
     console.log(err.message);
   }
 });
+
 // ------------------farah ------------------------//
 
 // get user data

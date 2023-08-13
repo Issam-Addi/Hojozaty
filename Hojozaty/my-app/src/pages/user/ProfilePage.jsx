@@ -7,12 +7,10 @@ import Swal from 'sweetalert2';
 const ProfilePage = () => {
 
     const userLogedIn = JSON.parse(localStorage?.getItem('curruntUser'));
-    const [orders, setOrders] = useState([])
+    const [orders, setOrders] = useState([]);
     const order_pending = false;
-    const [prevOrders, setPrevOrders] = useState([])
-    const [user, setUser] = useState([])
-    console.log(user);
-
+    const [prevOrders, setPrevOrders] = useState([]);
+    const [user, setUser] = useState([]);
     useEffect(() => {
 
         axios.get(`http://localhost:5000/user/${userLogedIn.userid}`)
@@ -185,9 +183,7 @@ const ProfilePage = () => {
                                                             <p className="text-sm font-medium text-gray-500">
                                                                 Order Time:
                                                                 <span className="text-black">
-
                                                                     {formatTime(order.order_time)}
-
                                                                 </span>
                                                             </p>
                                                         </div>

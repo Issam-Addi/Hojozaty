@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import payment from "../../images/payment.jpg";
 import Swal from "sweetalert2";
 import axios from "axios";
@@ -8,6 +8,7 @@ function PaymentPage() {
 
   const [person, setPerson] = useState([]);
   const userLogedIn = JSON.parse(localStorage?.getItem('curruntUser'));
+  const { restaurant_id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:5000/user/${userLogedIn.userid}`)
@@ -66,6 +67,7 @@ function PaymentPage() {
       cvc,
       userid: person[0].userid,
     };
+    console.log(paymentData);
     axios.post("http://localhost:5000/payment", paymentData)
       .then(() => {
         showSuccessAlert("Payment Successful");
@@ -116,6 +118,7 @@ function PaymentPage() {
                     htmlFor="email"
                     className="mt-4 mb-2 block text-sm font-medium">
                     Email
+                    <span className='text-red-700 text-xl'>*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -143,6 +146,7 @@ function PaymentPage() {
                     htmlFor="card-holder"
                     className="mt-4 mb-2 block text-sm font-medium">
                     Card Holder
+                    <span className='text-red-700 text-xl'>*</span>
                   </label>
                   <div className="relative">
                     <input
@@ -172,6 +176,7 @@ function PaymentPage() {
                     htmlFor="card-no"
                     className="mt-4 mb-2 block text-sm font-medium">
                     Card Details
+                    <span className='text-red-700 text-xl'>*</span>
                   </label>
                   <div className="flex">
                     <div className="relative w-7/12 flex-shrink-0">
@@ -219,7 +224,7 @@ function PaymentPage() {
                   <p className="font-semibold text-gray-900">5.00 JOD</p>
                 </div>
                 <div className="mt-6 flex justify-between">
-                  <Link to="/reservation" className="text-sm text-indigo-600">
+                  <Link to={`/Details/${restaurant_id}`} className="text-sm text-indigo-600">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="h-5 w-5 mr-1 inline-block text-sm"
@@ -230,7 +235,7 @@ function PaymentPage() {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M15 19l-7-7 7-7"/>
+                        d="M15 19l-7-7 7-7" />
                     </svg>
                     Return to reservation
                   </Link>

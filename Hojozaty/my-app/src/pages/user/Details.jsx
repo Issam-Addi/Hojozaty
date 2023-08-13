@@ -1,6 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
 import React, { useState, useContext, useEffect } from 'react'
-import { Typography } from "@material-tailwind/react";
 import axios from 'axios';
 import { UserContext } from '../../UserContext';
 import { HashLink } from 'react-router-hash-link'
@@ -56,7 +55,7 @@ function Details1() {
       restaurant_id: restaurant_id
     })
       .then(function (response) {
-        window.location.href = "http://localhost:3000/PaymentPage"
+        window.location.href = `http://localhost:3000/PaymentPage/${restaurant_id}`
       })
       .catch(function (error) {
         console.log(error);

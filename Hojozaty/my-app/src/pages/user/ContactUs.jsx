@@ -6,7 +6,6 @@ import { AiOutlineRight } from "react-icons/ai";
 import { ImLocation } from "react-icons/im";
 import { IoMdMail } from "react-icons/io";
 import { BsFillTelephoneFill } from "react-icons/bs";
-import { AiFillLinkedin } from "react-icons/ai";
 
 function ContactUs() {
   const [name, setName] = useState("");
@@ -114,38 +113,47 @@ function ContactUs() {
                 </a>
               </div>
             </div>
+
             <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
               <div className="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
                 <form method="post" onSubmit={handleSubmit}>
                   <div className="mb-6">
+                    <label htmlFor='name'>Name <span className='text-red-700 text-xl'>*</span></label>
                     <input
+                      id="name"
                       type="text"
                       placeholder="Your Name"
-                      className="border focus:border-amber-600 w-full text-amber-600 rounded-lg border-black py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                       onChange={(event) => setName(event.target.value)}
                       required />
                   </div>
                   <div className="mb-6">
+                  <label htmlFor='email'>Email <span className='text-red-700 text-xl'>*</span></label>
                     <input
+                      id="email"
                       type="email"
                       placeholder="Your Email"
-                      className="border focus:border-amber-600 w-full text-amber-600 rounded-lg border-black py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                       onChange={(event) => setEmail(event.target.value)}
                       required />
                   </div>
                   <div className="mb-6">
+                  <label htmlFor='Phone'>Phone <span className='text-red-700 text-xl'>*</span></label>
                     <input
+                      id="Phone"
                       type="text"
                       placeholder="Your Phone"
-                      className="border focus:border-amber-600 w-full text-amber-600 rounded-lg border-black py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                       onChange={(event) => setPhone(event.target.value)}
                       required />
                   </div>
                   <div className="mb-6">
+                    <label htmlFor='message'>Message <span className='text-red-700 text-xl'>*</span></label>
                     <textarea
+                      id="message"
                       rows={6}
                       placeholder="Your Message"
-                      className="border focus:border-amber-600 w-full text-amber-600 rounded-lg border-black py-3 px-[14px] text-base outline-none focus-visible:shadow-none"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                       value={message}
                       onChange={(event) => setMessage(event.target.value)}
                       required />
