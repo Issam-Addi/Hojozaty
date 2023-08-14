@@ -246,6 +246,9 @@ const RestaurantProfile = () => {
         </div>
       </aside>
 
+
+      {/* لهون وقفت  */}
+
       <div className="p-4 sm:ml-64 mt-20">
         <div className="p-4 border-2 border-black border-dashed bg-white rounded-lg">
 
