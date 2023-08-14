@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import useFetch from "../../components/CustomHook/useFetch";
 import CircularProgress from '@mui/material/CircularProgress';
@@ -8,23 +7,18 @@ import axios from 'axios';
 
 const RestaurantProfile = () => {
 
-
-  const [restaurant0, setRestaurant0] = useState([]);
-
-
-
-  // //////////////////////////////////////////
   let [base64code, setbase64code] = useState("");
+
   const onChange = e => {
     const files = e.target.files;
     const file = files[0];
     getBase64(file);
-    console.log(base64code);
   };
-  const onLoad = fileString => {
 
+  const onLoad = fileString => {
     setbase64code(fileString);
   };
+
   const getBase64 = file => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -33,20 +27,18 @@ const RestaurantProfile = () => {
     };
   };
 
-  // //////////////////////////////////////////////
-
-  // //////////////////////////////////////////
   const [foodImg, setFoodImg] = useState("");
+
   const onChange2 = e => {
     const files = e.target.files;
     const file = files[0];
     getBase64_2(file);
-    console.log(foodImg);
   };
-  const onLoad2 = fileString => {
 
+  const onLoad2 = fileString => {
     setFoodImg(fileString);
   };
+
   const getBase64_2 = file => {
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -55,12 +47,30 @@ const RestaurantProfile = () => {
     };
   };
 
-  // //////////////////////////////////////////////
+  const [choise, setChoise] = useState();
+  const [restaurantInfo, setRestaurantInfo] = useState([]);
+  const restaurant_id = restaurantInfo[0]?.restaurant_id;
+  console.log(restaurant_id);
+  
+  useEffect(() => {
+    axios.get('http://localhost:5000/generatedRes')
+      .then((response) => {
+        setRestaurantInfo(response.data);
+      })
+      .catch((error) => console.log(error.message))
+  }, []);
 
-  const [choise, setChoise] = useState(localStorage.getItem('choise') ? localStorage.getItem('choise') : "profile");
+
+
+
+
+
+
+
+// لهون وقفت 
+
   const [status, setStatus] = useState(localStorage.getItem('status') ? localStorage.getItem('status') : "pending");
   const [edit, setEdit] = useState(false);
-  const restaurant_id = restaurant0[0]?.restaurant_id;
   const [search, setSearch] = useState("");
 
   const [email, setEmail] = useState("");
@@ -71,26 +81,17 @@ const RestaurantProfile = () => {
   const { error, isPending, data: restaurant } = useFetch(`http://localhost:5000/restaurant/${restaurant_id}`);
   const { error: order_error, isPending: order_pending, data: restaurant_orders } = useFetch(`http://localhost:5000/orders/${restaurant_id}`);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/generatedRes')
-      .then((response) => {
-        setRestaurant0(response.data);
-      })
-      .catch((error) => console.log(error.message))
-  }, [restaurant_orders, restaurant]);
-
 
 
 
   let formattedTime;
   let formattedDate;
 
-  // Change the format of the Time.
   function formatTime(t) {
 
     if (!order_pending) {
       const timestamp = t;
-      const time = timestamp.substring(0, 5); // Extract the time portion
+      const time = timestamp.substring(0, 5);
 
       const date = new Date(`2000-01-01T${time}:00`);
       formattedTime = date.toLocaleString('en-US', {
@@ -153,8 +154,6 @@ const RestaurantProfile = () => {
 
     window.location.reload(false);
 
-
-
   }
 
 
@@ -166,120 +165,93 @@ const RestaurantProfile = () => {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-      >
+        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200  dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span className="sr-only">Open sidebar</span>
         <svg
           className="w-6 h-6"
           aria-hidden="true"
           fill="currentColor"
           viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          xmlns="http://www.w3.org/2000/svg">
           <path
             clipRule="evenodd"
             fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-          ></path>
+            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+          </path>
         </svg>
       </button>
 
-      <aside
-        id="default-sidebar"
-        className="fixed top-18 left-0 z-40 w-64 bg-gray-950 h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
-        <div
-          className="h-full px-3 py-4 overflow-y-auto"
-          style={{ backgroundColor: "black", border: "1px solid white" }}
-        >
+      <aside className="fixed top-[4.5rem] left-0 z-40 w-64 h-screen">
+        <div className="h-full bg-black px-3 py-4 overflow-y-auto">
           <ul className="space-y-2 font-medium">
-            <li>
-              <span className="flex-1 ml-3 whitespace-nowrap text-amber-700 font-bold uppercase">
-                My Profile
-              </span>
+            <li className="flex-1 ml-3 whitespace-nowrap text-amber-700 font-bold uppercase">
+            Restaurant information
             </li>
-            <li>
-              <Link
-                to=""
-                onClick={() => {
-                  setChoise("profile");
-                  localStorage.setItem("choise", "profile");
-                }}
-                className="flex items-center p-2 text-white rounded-lg  hover:bg-amber-700"
-              >
-                <svg
-                  aria-hidden="true"
-                  className="flex-shrink-0 w-6 h-6 text-white transition duration-75"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
-              </Link>
+            <li
+              onClick={() => {
+                setChoise("profile");
+              }}
+              className="flex items-center p-2 text-white rounded-lg hover:bg-amber-700">
+              <svg
+                aria-hidden="true"
+                className="flex-shrink-0 w-6 h-6 text-white transition duration-75"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fillRule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
             </li>
-            <li>
-              <Link
-                to=""
-                onClick={() => {
-                  setChoise("reservation");
-                  localStorage.setItem("choise", "reservation");
-                }}
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-700"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="bi bi-ui-checks"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-                </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">
-                  Reservations
-                </span>
-              </Link>
+            <li
+              onClick={() => {
+                setChoise("reservation");
+              }}
+              className="flex items-center p-2 text-white rounded-lg hover:bg-amber-700">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                fill="currentColor"
+                className="bi bi-ui-checks"
+                viewBox="0 0 16 16">
+                <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+              </svg>
+              <span className="flex-1 ml-3 whitespace-nowrap">Reservations</span>
             </li>
             <li>
               <HashLink
                 smooth="true"
                 to="/"
-                className="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-amber-700"
-              >
+                className="flex items-center p-2 text-white rounded-lg dark:text-white hover:bg-amber-700">
                 <svg
                   aria-hidden="true"
                   className="flex-shrink-0 w-6 h-6 text-white transition duration-75 "
                   fill="currentColor"
                   viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
                     d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Sign Out</span>
+                <span className="flex-1 ml-3 whitespace-nowrap">Go home page</span>
               </HashLink>
             </li>
           </ul>
         </div>
       </aside>
 
-      <div className="p-4 sm:ml-64">
-        <div className="p-4 border-2 border-gray-200 border-dashed bg-white rounded-lg dark:border-gray-700">
+      <div className="p-4 sm:ml-64 mt-20">
+        <div className="p-4 border-2 border-black border-dashed bg-white rounded-lg">
 
           {choise === "profile" && (
             <>
-              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-400 ">
+              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
                 RESTAURANT PROFILE
               </h1>
 

@@ -120,8 +120,6 @@ app.post("/recordp", async function (req, res) {
   }
 });
 
-// ------------------restaurant ----------------------
-
 app.get("/generatedRes", async function (req, res) {
   try {
     res.json(generatedRes);

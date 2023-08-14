@@ -184,7 +184,7 @@ function Home() {
 
         <div className="flex justify-center mt-5">
           <HashLink smooth={true} to="ServicePageAll#">
-            <button className=" px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+            <button className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
               Show All Restaurants
             </button>
           </HashLink>

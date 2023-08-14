@@ -59,7 +59,7 @@ function NavListMenuUser() {
               <MenuItem
                 key={label}
                 onClick={() => { closeMenu(label); }}
-                className={`flex items-center gap-2 rounded transition ${i ? "hover:bg-red-500 focus:bg-red-500 active:bg-red-500" : "hover:bg-amber-600 focus:bg-amber-600 active:bg-amber-600"}`}>
+                className={`flex items-center gap-2 rounded-lg transition ${i ? "hover:bg-red-500 focus:bg-red-500 active:bg-red-500" : "hover:bg-amber-600 focus:bg-amber-600 active:bg-amber-600"}`}>
                 {React.createElement(icon, { className: `h-4 w-4 text-black` })}
                 <Typography
                   as="span"

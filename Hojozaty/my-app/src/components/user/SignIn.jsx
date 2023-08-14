@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import loginImg from "../../images/login.jpg";
 import axios from "axios";
 import { UserContext } from '../../UserContext';
@@ -7,7 +7,6 @@ import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 
 function SignIn() {
 
-  const navigate = useNavigate('/')
   const [user, setUser] = useState([]);
 
   // Sign in with Google
@@ -100,10 +99,12 @@ function SignIn() {
           localStorage.setItem("SignStatus", "SignOut")
           localStorage.setItem("auth", JSON.stringify(response.data[0]))
           localStorage.setItem("roles", JSON.stringify(role))
-          window.location.href = 'http://localhost:3000/';
+          window.location.href = 'http://localhost:3000';
         }
       })
-      .catch(function (error) { });
+      .catch(function (error) { 
+        console.log(error);
+      });
   };
 
   return (
