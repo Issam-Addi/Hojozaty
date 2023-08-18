@@ -161,7 +161,7 @@ function ContactUs() {
                   <div>
                     <button
                       type="submit"
-                      className="bg-amber-500 border-amber-600 w-1/2 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent">
+                      className="bg-amber-500 border-amber-600 w-1/2 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl">
                       Send Message
                     </button>
                   </div>

@@ -167,7 +167,7 @@ function SignIn() {
                 <div class="mx-auto max-w-xs">
                   <div class="mb-6">
                     <label
-                      for="email"
+                      htmlFor="email"
                       className={`block mb-2 text-sm font-medium text-700 dark:text--500 `}>
                       Email
                       <span className='text-red-700 text-xl'>*</span>
@@ -186,7 +186,7 @@ function SignIn() {
                   </div>
                   <div>
                     <label
-                      for="password"
+                      htmlFor="password"
                       className={`text-700 dark:text-500 block mb-2 text-sm font-medium`}>
                       Password
                       <span className='text-red-700 text-xl'>*</span>
