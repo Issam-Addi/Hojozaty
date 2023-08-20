@@ -1,4 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react'
+import { UserContext } from './UserContext';
 
 //-----------------------------user-------------------------------//
 import NavListMenuUser from "./components/user/NavListMenuUser"
@@ -22,7 +24,6 @@ import NavListMenuRestaurants from "./components/user/NavListMenuRestaurants"
 
 //----------------------------admin------------------------------//
 import Sidebar from './pages/admin/dashboard/Sidebar';
-import NavListMenuD from './pages/admin/dashboard/NavDashboard'
 import MainDashboard from './pages/admin/MainDashboard';
 import ListUser from './pages/admin/ListUser'
 import ListRestaurant from './pages/admin/ListRestaurant';
@@ -30,9 +31,6 @@ import Chat from './pages/admin/Chat';
 import EditAboutContact from './pages/admin/EditAboutContact';
 import AcceptTables from './pages/admin/AcceptTables';
 //---------------------------------------------------------------//
-
-import React, { useEffect, useState, useContext } from 'react'
-import { UserContext } from './UserContext';
 
 function App() {
 
@@ -48,7 +46,6 @@ function App() {
 
     if (localStorage.roles != null) {
       let roles = JSON.parse(localStorage.roles)
-      let status = localStorage.SignStatus
       setHideRouterUser(roles[0])
       setHideRouterAdmin(roles[1])
       setHideRouterRestaurants(roles[2])
@@ -94,7 +91,6 @@ function App() {
       <Router>
         <Sidebar />
         <div style={{ width: "100%" }}>
-          <NavListMenuD />
           <Routes>
             <Route index element={<MainDashboard />} />
             <Route path="ListUser" element={<ListUser />} />
@@ -146,6 +142,7 @@ function App() {
           <AppRouterRestaurants />
         </>
       )}
+
     </>
   );
 }

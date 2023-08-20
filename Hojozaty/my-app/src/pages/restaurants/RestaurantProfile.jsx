@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
 import useFetch from "../../components/CustomHook/useFetch";
-import CircularProgress from '@mui/material/CircularProgress';
+import { AiOutlineClose } from "react-icons/ai";
 import axios from 'axios';
 
 
@@ -62,7 +62,7 @@ const RestaurantProfile = () => {
   const [restaurantInfo, setRestaurantInfo] = useState([]);
   const restaurant_id = restaurantInfo[0]?.restaurant_id;
   const { error, data: restaurant } = useFetch(`http://localhost:5000/restaurant/${restaurant_id}`);
-  const { error: order_error, isPending: order_pending, data: restaurant_orders } = useFetch(`http://localhost:5000/orders/${restaurant_id}`);
+  const { isPending: order_pending, data: restaurant_orders } = useFetch(`http://localhost:5000/orders/${restaurant_id}`);
 
   useEffect(() => {
     axios.get('http://localhost:5000/generatedRes')
@@ -115,103 +115,111 @@ const RestaurantProfile = () => {
 
   const addEmail = async (id) => {
     await axios.get(`http://localhost:5000/orderedEmail/${id}`, { timeout: 5000 })
-    .then((response) => {
-      setEmail(response.data[0].email);
-      window.location.href = `mailto:${response.data[0].email}?subject=${subject}&body=${body}`;
-    }).catch(error => {
-      console.log(error.message)
-    });
+      .then((response) => {
+        setEmail(response.data[0].email);
+        window.location.href = `mailto:${response.data[0].email}?subject=${subject}&body=${body}`;
+      }).catch(error => {
+        console.log(error.message)
+      });
     window.location.reload(false);
   }
+
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
 
   return (
     <>
-      <button
-        data-drawer-target="default-sidebar"
-        data-drawer-toggle="default-sidebar"
-        aria-controls="default-sidebar"
-        type="button"
-        className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200">
-        <span className="sr-only">Open sidebar</span>
-        <svg
-          className="w-6 h-6"
-          aria-hidden="true"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg">
-          <path
-            clipRule="evenodd"
-            fillRule="evenodd"
-            d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
-          </path>
-        </svg>
-      </button>
-
-      <aside className="fixed top-[4.45rem] left-0 z-10 w-64 h-screen">
-        <div className="h-full bg-black px-3 py-4 overflow-y-auto">
-          <ul className="space-y-2 font-medium">
-            <li className="flex-1 ml-3 whitespace-nowrap text-amber-600 font-bold uppercase">
-              Restaurant information
-            </li>
-            <li
-              onClick={() => {
-                setChoise("profile");
-              }}
-              className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
-              <svg
-                aria-hidden="true"
-                className="flex-shrink-0 w-6 h-6 text-white transition duration-75"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg">
-                <path
-                  fillRule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clipRule="evenodd"
-                ></path>
-              </svg>
-              <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
-            </li>
-            <li
-              onClick={() => {
-                setChoise("reservation");
-              }}
-              className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                fill="currentColor"
-                className="bi bi-ui-checks"
-                viewBox="0 0 16 16">
-                <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
-              </svg>
-              <span className="flex-1 ml-3 whitespace-nowrap">Reservations</span>
-            </li>
-            <li>
-              <HashLink
-                smooth="true"
-                to="/"
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600">
+      <div className="relative top-20">
+        <button
+          onClick={toggleSidebar}
+          aria-expanded={sidebarOpen}
+          type="button"
+          className="inline-flex items-center p-2 mt-2 ml-3 sm:hidden hover:text-amber-600 transition">
+          <span className="sr-only">Open sidebar</span>
+          <svg
+            className="w-6 h-6"
+            aria-hidden="true"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              clipRule="evenodd"
+              fillRule="evenodd"
+              d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z">
+            </path>
+          </svg>
+        </button>
+        {restaurant !== null &&
+          <aside className={`fixed top-[4.45rem] left-0 z-10 sm:w-64 w-52 h-screen bg-black px-3 py-4 overflow-y-auto ${sidebarOpen ? 'translate-x-0' : 'sm:translate-x-0 -translate-x-full'}`}>
+            <ul className="space-y-2 font-medium">
+              <li className="flex-1 ml-3 whitespace-nowrap text-amber-600 font-bold uppercase">
+              {restaurant[0].restaurant_name}
+              </li>
+              <li
+                onClick={() => { setChoise("profile"); }}
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
                 <svg
                   aria-hidden="true"
-                  className="flex-shrink-0 w-6 h-6 text-white transition duration-75 "
+                  className="flex-shrink-0 w-6 h-6 text-white transition duration-75"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg">
                   <path
                     fillRule="evenodd"
-                    d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                     clipRule="evenodd"
                   ></path>
                 </svg>
-                <span className="flex-1 ml-3 whitespace-nowrap">Go home page</span>
-              </HashLink>
-            </li>
-          </ul>
-        </div>
-      </aside>
+                <span className="flex-1 ml-3 whitespace-nowrap">Profile</span>
+              </li>
+              <li
+                onClick={() => { setChoise("reservation"); }}
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  fill="currentColor"
+                  className="bi bi-ui-checks"
+                  viewBox="0 0 16 16">
+                  <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
+                </svg>
+                <span className="flex-1 ml-3 whitespace-nowrap">Reservations</span>
+              </li>
+              <li>
+                <HashLink
+                  smooth="true"
+                  to="/"
+                  className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600">
+                  <svg
+                    aria-hidden="true"
+                    className="flex-shrink-0 w-6 h-6 text-white transition duration-75 "
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      fillRule="evenodd"
+                      d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+                  <span className="flex-1 ml-3 whitespace-nowrap">Go home page</span>
+                </HashLink>
+              </li>
+              <li
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 sm:hidden"
+                onClick={toggleSidebar}>
+                <AiOutlineClose className="h-6 w-6" />
+                <span className="flex-1 ml-3 whitespace-nowrap">Close</span>
+              </li>
+            </ul>
+          </aside>
+        }
+      </div>
 
       <div className="p-4 sm:ml-64 mt-24">
         <div className="p-4 border-2 border-black border-dashed bg-white rounded-lg">
@@ -678,9 +686,9 @@ const RestaurantProfile = () => {
                                     <button
                                       className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
                                       onClick={() => {
-                                        axios.put(`http://localhost:5000/orders/${order.orders_id}`, {status: "completed"})
+                                        axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "completed" })
                                           .then(() => {
-                                            axios.put(`http://localhost:5000/tableStatus/${order.table_number}`, {status: "available"})
+                                            axios.put(`http://localhost:5000/tableStatus/${order.table_number}`, { status: "available" })
                                               .catch(() => { console.log(error.message) })
                                             window.location.reload();
                                           })
