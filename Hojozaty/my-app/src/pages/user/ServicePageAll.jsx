@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Pagination from "@mui/material/Pagination";
 import { FaUtensils, FaMapMarkerAlt } from "react-icons/fa";
@@ -21,13 +21,6 @@ const ServicePageAll = ({ setCurrentTable }) => {
       });
   }, []);
 
-  const navigate = useNavigate();
-  function handleRes(element) {
-    setCurrentTable(element);
-    let restaurant_id = element.restaurant_id;
-    navigate(`/Details/${restaurant_id}`);
-  }
-
   const [yourSelectedStateValueType, setOptionType] = useState("");
   const [yourSelectedStateValueAddress, setOptionAddress] = useState("");
   const [currentPageUsers, setCurrentPageUsers] = useState(1);
@@ -47,21 +40,15 @@ const ServicePageAll = ({ setCurrentTable }) => {
     setFilterDataUsers(filteredDataUsers);
   }
 
-
   let totalItemsUsers;
-
   let totalPagesUsers;
-
   let slicedArrayUsers;
-
   const itemsPerPage = 6;
 
   totalItemsUsers = FilterDataUsers.length;
-
   totalPagesUsers = Math.ceil(totalItemsUsers / itemsPerPage);
 
   const startIndexUsers = (currentPageUsers - 1) * itemsPerPage;
-
   const endIndexUsers = startIndexUsers + itemsPerPage;
 
   slicedArrayUsers = FilterDataUsers.slice(startIndexUsers, endIndexUsers);
@@ -92,7 +79,6 @@ const ServicePageAll = ({ setCurrentTable }) => {
           </div>
         </div>
       </div>
-
       <div className="flex justify-center mb-5 bg-gray-200 shadow-xl py-16">
         <div className="w-full sm:w-11/12 md:w-5/6 lg:w-2/3 xl:w-1/2 mx-auto py-10 px-4 rounded-lg bg-white border border-black">
           <div className="relative">
@@ -147,14 +133,12 @@ const ServicePageAll = ({ setCurrentTable }) => {
           </div>
         </div>
       </div>
-
       <div className="bg-gray-200 shadow-xl py-10 mb-5">
         <div className="text-center mb-16">
           <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-600">
             Restaurants
           </h3>
         </div>
-
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 max-w-screen-xl mx-auto px-6">
           {slicedArrayUsers?.map((restaurant) => {
             return (
@@ -181,20 +165,18 @@ const ServicePageAll = ({ setCurrentTable }) => {
                     </span>
                   </div>
                   <div className="flex justify-center mt-3 items-center">
-                    <button
-                      onClick={() => { handleRes(restaurant); }}
-                      className="w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
+                    <Link to={`/Details/${restaurant.restaurant_id}`}>
+                    <button className="w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                       View Details
                     </button>
+                        </Link>
                   </div>
                 </div>
               </div>
             );
           })}
         </div>
-
       </div>
-
       {restaurants.length >= 6 &&
         <div className="flex w-full justify-center mt-5 bg-[#f8f8f8] mb-5">
           {

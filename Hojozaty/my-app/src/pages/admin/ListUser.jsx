@@ -3,13 +3,9 @@ import Users from '../../components/admin/UsersInfo';
 
 const ListUser = () => {
   return (
-    <div className='bg-[#f5f8fe] pt-10 pb-10'>
-
-
-<Users/>
-
+    <div className='bg-white pt-10 pb-10'>
+      <Users />
     </div>
-  
   )
 }
 

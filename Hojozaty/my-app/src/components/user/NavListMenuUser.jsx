@@ -39,6 +39,7 @@ function NavListMenuUser() {
         localStorage.setItem("SignStatus", "signUp");
         localStorage.removeItem("auth");
         localStorage.removeItem("roles");
+        localStorage.removeItem("curruntUser");
         window.location.href = "http://localhost:3000/";
       } else if (label == "Profile") {
         window.location.href = "http://localhost:3000/ProfilePage";

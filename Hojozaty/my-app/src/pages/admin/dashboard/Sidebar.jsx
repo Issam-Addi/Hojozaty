@@ -4,7 +4,6 @@ import { mdiAccountMultipleOutline } from '@mdi/js';
 import { mdiInformationOutline } from '@mdi/js';
 import { UserContext } from '../../../UserContext';
 import React, { useContext } from "react";
-import { mdiTableFurniture } from '@mdi/js';
 import { PresentationChartBarIcon, InboxIcon, PowerIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
 import Swal from 'sweetalert2'
@@ -29,6 +28,7 @@ export default function Sidebar() {
         localStorage.setItem("SignStatus", "signUp")
         localStorage.removeItem("auth");
         localStorage.removeItem("roles");
+        localStorage.removeItem("curruntUser");
         window.location.href = 'http://localhost:3000/';
       } else
         Swal.fire(' Cancelled', '', 'error')
@@ -63,12 +63,6 @@ export default function Sidebar() {
           <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
             <Icon path={mdiInformationOutline} size={1} className='mr-4' />
             Edit About
-          </li>
-        </Link>
-        <Link to='/AcceptTables'>
-          <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
-            <Icon path={mdiTableFurniture} size={1} className='mr-4' />
-            Pending Tables
           </li>
         </Link>
         <Link to='/Chat'>

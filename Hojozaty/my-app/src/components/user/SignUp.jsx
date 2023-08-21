@@ -120,7 +120,7 @@ function SignUp() {
       <div class="min-h-screen bg-gray-100 text-gray-900 flex justify-center mt-16">
         <div class="max-w-screen-xl m-0 sm:m-20 bg-white shadow sm:rounded-lg flex justify-center flex-1">
 
-          <div class="flex-1 bg-teal-600 text-center hidden lg:flex">
+          <div class="flex-1 hidden lg:flex">
             <img src={Signup} class="mx-auto" alt="Shopping image" />
             <div class="hero-img xl:m-16 w-full bg-contain bg-center bg-no-repeat"></div>
           </div>

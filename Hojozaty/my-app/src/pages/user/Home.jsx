@@ -1,4 +1,3 @@
-import { Button } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import video from '../../images/video.mp4'
 import { HashLink } from "react-router-hash-link";

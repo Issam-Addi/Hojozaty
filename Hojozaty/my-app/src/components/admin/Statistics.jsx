@@ -11,8 +11,9 @@ const Statistics = () => {
   const [payment, setPayment] = useState()
   const [ordersData, setOrdersData] = useState([])
   const [restaurantTables, setRestaurantTables] = useState([])
-  const [pendingTables, setPendingTables] = useState([])
 
+  const admin = users?.filter((admin) => admin.type_id === 1);
+  const user = users?.filter((user) => user.type_id === 0);
 
   useEffect(() => {
 
@@ -43,13 +44,11 @@ const Statistics = () => {
     axios.get('http://localhost:5000/restaurantTables')
       .then((response) => {
         setRestaurantTables(response.data.restaurantTables);
-        setPendingTables(response.data.pendingTables);
+        // setPendingTables(response.data.pendingTables);
       })
       .catch((error) => console.log(error.message))
 
   }, []);
-
-  console.log(payment)
 
   return (
     <div className="mt-3 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 p-10">
@@ -83,7 +82,7 @@ const Statistics = () => {
             Total Users
           </p>
           <h4 className="text-xl font-bold text-amber-600 dark:text-white">
-            {users.length}
+            {user.length}
           </h4>
         </div>
       </div>
@@ -146,10 +145,10 @@ const Statistics = () => {
         </div>
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
           <p className="font-dm text-sm font-medium text-white">
-            Pending Tables
+            Total admin
           </p>
           <h4 className="text-xl font-bold text-amber-600 dark:text-white">
-            {pendingTables.length}
+          {admin.length}
           </h4>
         </div>
       </div>

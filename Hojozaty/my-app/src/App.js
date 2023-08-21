@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState, useContext } from 'react'
 import { UserContext } from './UserContext';
-
 //-----------------------------user-------------------------------//
 import NavListMenuUser from "./components/user/NavListMenuUser"
 import Footer from "./components/user/Footer"
@@ -16,12 +15,10 @@ import ServicePage from './pages/user/ServicePage';
 import ServicePageAll from './pages/user/ServicePageAll';
 import Details from './pages/user/Details';
 import EditProfile from './pages/user/EditProfile';
-
 //------------------------ Restaurants----------------------------//
 import RestaurantProfile from './pages/restaurants/RestaurantProfile';
 import RestaurantHome from './pages/restaurants/RestaurantHome';
 import NavListMenuRestaurants from "./components/user/NavListMenuRestaurants"
-
 //----------------------------admin------------------------------//
 import Sidebar from './pages/admin/dashboard/Sidebar';
 import MainDashboard from './pages/admin/MainDashboard';
@@ -29,18 +26,13 @@ import ListUser from './pages/admin/ListUser'
 import ListRestaurant from './pages/admin/ListRestaurant';
 import Chat from './pages/admin/Chat';
 import EditAboutContact from './pages/admin/EditAboutContact';
-import AcceptTables from './pages/admin/AcceptTables';
-//---------------------------------------------------------------//
 
 function App() {
 
   const { routs, updateRouts } = useContext(UserContext)
-
   const [hideRouterUser, setHideRouterUser] = useState(false);
   const [hideRouterAdmin, setHideRouterAdmin] = useState(true);
   const [hideRouterRestaurants, setHideRouterRestaurants] = useState(true);
-
-
 
   useEffect(() => {
 
@@ -51,18 +43,14 @@ function App() {
       setHideRouterRestaurants(roles[2])
       updateRouts(roles)
     }
-
   }, []);
-
-
-
 
   //-----------------------------User Router-------------------------------//
   const AppRouterUser = () => {
+
     const [currentTable, setCurrentTable] = useState({})
 
     return (
-
       <Router>
         <NavListMenuUser />
         <Routes>
@@ -80,14 +68,12 @@ function App() {
         </Routes>
         <Footer />
       </Router>
-
     );
   };
 
   //----------------------------Admin Router------------------------------//
   const AppRouterAdmin = () => {
     return (
-
       <Router>
         <Sidebar />
         <div style={{ width: "100%" }}>
@@ -97,18 +83,15 @@ function App() {
             <Route path="ListRestaurant" element={<ListRestaurant />} />
             <Route path="Chat" element={<Chat />} />
             <Route path="EditAboutContact" element={<EditAboutContact />} />
-            <Route path="AcceptTables" element={<AcceptTables />} />
           </Routes>
         </div>
       </Router>
-
     );
   };
 
   //------------------------ Restaurants Router----------------------------//
   const AppRouterRestaurants = () => {
     return (
-
       <Router>
         <NavListMenuRestaurants />
         <Routes>
@@ -116,19 +99,16 @@ function App() {
           <Route path="profile/:id" element={<RestaurantProfile />} />
         </Routes>
       </Router>
-
     );
   };
 
   return (
     <>
-
       {hideRouterUser ? null : (
         <>
           <AppRouterUser />
         </>
       )}
-
       {hideRouterAdmin ? null : (
         <>
           <div className='flex'>
@@ -136,13 +116,11 @@ function App() {
           </div>
         </>
       )}
-
       {hideRouterRestaurants ? null : (
         <>
           <AppRouterRestaurants />
         </>
       )}
-
     </>
   );
 }
