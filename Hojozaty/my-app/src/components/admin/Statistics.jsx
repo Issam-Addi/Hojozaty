@@ -44,7 +44,6 @@ const Statistics = () => {
     axios.get('http://localhost:5000/restaurantTables')
       .then((response) => {
         setRestaurantTables(response.data.restaurantTables);
-        // setPendingTables(response.data.pendingTables);
       })
       .catch((error) => console.log(error.message))
 

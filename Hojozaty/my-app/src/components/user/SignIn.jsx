@@ -83,7 +83,6 @@ function SignIn() {
     })
       .then(function (response) {
         if (response.data != "not passed") {
-          console.log(response.data[1]);
           let role = []
           if (response.data[1] == 0) {
             role = [false, true, true]

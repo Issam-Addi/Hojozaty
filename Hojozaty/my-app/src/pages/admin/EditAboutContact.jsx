@@ -30,7 +30,7 @@ const EditAboutContact = () => {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.put('http://localhost:5000/contactus00/0', {
+          axios.put('http://localhost:5000/aboutus', {
             about_title: about_title,
             about_us: about_us,
           })

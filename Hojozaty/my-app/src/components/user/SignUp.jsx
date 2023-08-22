@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
 import { Link, useNavigate } from "react-router-dom";
-
 import Signup from "../../images/Signup.jpg";
 import { useGoogleLogin } from "@react-oauth/google";
 
@@ -34,7 +32,6 @@ function SignUp() {
         .then((res) => {
           setProfile(res.data);
           setErrorG("");
-          console.log(res.data);
           axios.post("http://localhost:5000/records", {
             name: res.data.name,
             phone: "",
@@ -43,7 +40,6 @@ function SignUp() {
           })
             .then(function (response) {
               if (response.data != "taken") {
-                console.log(response.data);
                 navigate("/SignIn");
               } else {
                 setErrorG("Email is already used, please Login");
@@ -89,6 +85,7 @@ function SignUp() {
     }
 
     if (done) {
+
       axios.post("http://localhost:5000/records", {
         name: name,
         phone: phone,
@@ -97,9 +94,8 @@ function SignUp() {
       })
         .then(function (response) {
           if (response.data != "taken") {
-            window.location.href = "http://localhost:3000";
+            window.location.href = "http://localhost:3000/SignIn";
           } else {
-            console.log(response.data);
             setError("This Email is already taken");
           }
         })

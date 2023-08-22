@@ -27,10 +27,8 @@ function ContactUs() {
         "http://localhost:5000/contacts",
         contactMessage
       );
-
       if (response.status === 200) {
         Swal.fire("Success", "Message sent successfully!", "success");
-
         setName("");
         setEmail("");
         setPhone("");

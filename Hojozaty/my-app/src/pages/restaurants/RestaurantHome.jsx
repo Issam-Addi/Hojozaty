@@ -8,9 +8,7 @@ import { HiOutlineArrowNarrowDown } from "react-icons/hi";
 const RestaurantHome = () => {
 
   const [restaurant, setRestaurant] = useState([]);
-  console.log(restaurant);
   const restaurant_id = restaurant[0]?.restaurant_id;
-  console.log(restaurant_id);
 
   useEffect(() => {
     axios.get('http://localhost:5000/generatedRes')
