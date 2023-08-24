@@ -16,7 +16,7 @@ function Details1() {
   const [restaurantTable, setRestaurantTable] = useState([]);
   const [menuItem, setMenuItem] = useState([]);
   const { restaurant_id } = useParams();
-const tableGuestNumber = restaurantTable[0]?.guest_number;
+  const tableGuestNumber = restaurantTable[0]?.guest_number;
 
   useEffect(() => {
     axios.get(`http://localhost:5000/user/${user.userid}`)
@@ -54,7 +54,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
   const [date, setDate] = useState('')
   const { SignStatus, updateSignStatus } = useContext(UserContext)
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:5000/orders', {
@@ -69,12 +68,26 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
       restaurant_id: restaurant_id,
       tableGuestNumber: tableGuestNumber
     })
-      .then(function (response) {
+      .then(function () {
         window.location.href = `http://localhost:3000/PaymentPage/${restaurant_id}`
       })
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  let formattedTime;
+
+  function formatTime(t) {
+    const timestamp = t;
+    const time = timestamp.substring(0, 5);
+    const date = new Date(`2000-01-01T${time}:00`);
+    formattedTime = date.toLocaleString('en-US', {
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    });
+    return formattedTime;
   }
 
   return (
@@ -105,31 +118,27 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
           </div>
         </div>
       </div>
-
-      <section>
-        <div className="max-w-screen px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-20 bg-gray-200 mt-5 shadow-lg">
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
-            <div
-              className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
-              <img
-                alt={restaurantInfo.restaurant_name}
-                src={restaurantInfo.img}
-                className="absolute inset-0 h-full w-full object-cover" />
-            </div>
-            <div className="lg:py-24">
-              <h2 className="text-3xl font-bold sm:text-4xl">{restaurantInfo.restaurant_name}</h2>
-              <div class="w-20 h-2 bg-amber-500 my-4"></div>
-              <h2 className="text-xl font-bold mb-4"><BsFillTelephoneFill className='mr-4 inline-block' />{restaurantInfo.contact_number}</h2>
-              <h2 className="text-xl font-bold mb-4"><ImLocation className='mr-4 inline-block' />{restaurantInfo.address}</h2>
-              <h2 className="text-xl font-bold mb-4"><FaUtensils className='mr-4 inline-block' />{restaurantInfo.type_food}</h2>
-              <p className="mt-4">
-                <span className='font-bold text-xl'>Description: </span>{restaurantInfo.des}
-              </p>
-            </div>
+      <section className="max-w-screen px-4 py-8 sm:py-12 sm:px-6 lg:py-16 lg:px-20 bg-gray-200 mt-5 shadow-lg">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16">
+          <div
+            className="relative h-64 overflow-hidden rounded-lg sm:h-80 lg:order-last lg:h-full">
+            <img
+              alt={restaurantInfo.restaurant_name}
+              src={restaurantInfo.img}
+              className="absolute inset-0 h-full w-full object-cover" />
+          </div>
+          <div className="lg:py-24">
+            <h2 className="text-3xl font-bold sm:text-4xl">{restaurantInfo.restaurant_name}</h2>
+            <div class="w-20 h-2 bg-amber-500 my-4"></div>
+            <h2 className="text-xl font-bold mb-4"><BsFillTelephoneFill className='mr-4 inline-block' />{restaurantInfo.contact_number}</h2>
+            <h2 className="text-xl font-bold mb-4"><ImLocation className='mr-4 inline-block' />{restaurantInfo.address}</h2>
+            <h2 className="text-xl font-bold mb-4"><FaUtensils className='mr-4 inline-block' />{restaurantInfo.type_food}</h2>
+            <p className="mt-4">
+              <span className='font-bold text-xl'>Description: </span>{restaurantInfo.des}
+            </p>
           </div>
         </div>
       </section>
-
       <div className="flex flex-wrap items-center gap-4 justify-center">
         {menuItem?.map((item) => {
           return (
@@ -151,7 +160,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
           );
         })}
       </div>
-
       <div className="bg-gray-200 mt-5 shadow-lg pb-10">
         {restaurantTable?.length !== 0 ?
           <>
@@ -161,21 +169,59 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
             <div className='flex flex-wrap gap-10 justify-center '>
               {restaurantTable?.map((info) => {
                 return (
-                  <div className="max-w-sm my-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <img className="rounded-t-lg" src={info?.img} alt="an image" />
-                    <div className="p-5">
-                      <h5 className="mb-2 text-2xl font-bold tracking-tight text-black dark:text-white">
-                        Table number {info?.table_number}
-                      </h5>
-                      <button className="px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
-                        <HashLink smooth={true} to="#book"
-                          onClick={() => {
-                            setTableNumber(info?.table_number);
-                            setEmail(person[0]?.email);
-                          }}>
-                          BOOK
-                        </HashLink>
-                      </button>
+                  <div className="max-w-sm my-5 bg-white border border-black rounded-lg shadow">
+                    <div className="rounded-lg overflow-hidden shadow-xl">
+                      <div className="relative">
+                        <img
+                          className="w-64 h-44"
+                          src={info.img}
+                          alt="table image" />
+                        <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
+                      </div>
+                      <div className='p-4'>
+                        <div className="flex items-center justify-start">
+                          <h3 className="text-black">
+                            Table Number:{" "}
+                          </h3>
+                          <span className="text-black">
+                            {info.table_number}
+                          </span>
+                        </div>
+                        <div class="mt-4 flex items-center justify-between">
+                          <p class="text-black">
+                            available time Time:
+                          </p>
+                        </div>
+                        <div class="mt-4 ml-5">
+                          from:{" "}
+                          <span className="text-black">
+                            {formatTime(info.available_time_start)}
+                          </span>
+                        </div>
+                        <div class="mt-4 ml-5">
+                          to:{" "}
+                          <span className="text-black">
+                            {formatTime(info.available_time_end)}
+                          </span>
+                        </div>
+                        <div class="mt-4 flex items-center justify-between">
+                          <p class="text-sm font-medium text-black">
+                            Number of guest: {" "}
+                            <span className="text-black">
+                              {info.guest_number}
+                            </span>
+                          </p>
+                        </div>
+                        <button className="px-4 py-2 mt-4 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                          <HashLink smooth={true} to="#book"
+                            onClick={() => {
+                              setTableNumber(info?.table_number);
+                              setEmail(person[0]?.email);
+                            }}>
+                            BOOK
+                          </HashLink>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 )
@@ -185,8 +231,7 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
           :
           <h1 className='bg-white uppercase  text-center text-5xl font-bold tracking-tight text-white mt-5 shadow pt-5' style={{ marginTop: "80px" }} >NO available tables</h1>}
         <span id='book'></span>
-      </div>
-
+      </div >
       <div className="py-10 bg-gray-200 my-5 shadow-lg">
         <div className="my-4 px-4 lg:px-20">
           <form onSubmit={handleSubmit} >
@@ -197,7 +242,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
-
                 <div>
                   <label htmlFor='Name'>Name <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -208,7 +252,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
                     placeholder="Your name"
                     onChange={(e) => { setName(e.target.value); }} />
                 </div>
-
                 <div>
                   <label htmlFor='Phone'>Phone <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -219,7 +262,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
                     placeholder="Your phone number"
                     onChange={(e) => { setPhone(e.target.value); }} />
                 </div>
-
                 <div>
                   <label htmlFor='email'>Email <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -231,7 +273,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); }} />
                 </div>
-
                 <div>
                   <label htmlFor='Table_number'>Table number <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -242,7 +283,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
                     value={tableNumber}
                     onChange={(e) => { setTableNumber(e.target.value); }} />
                 </div>
-
                 <div>
                   <label htmlFor="time_start">Starting Booking <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -251,7 +291,6 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
                     id="time_start"
                     onChange={(e) => { setStartingTime(e.target.value); }} />
                 </div>
-
                 <div>
                   <label htmlFor="time_end">End Booking <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -298,10 +337,7 @@ const tableGuestNumber = restaurantTable[0]?.guest_number;
           </div>
         </div>
       </div>
-
-
     </>
-
   )
 }
 
