@@ -56,9 +56,6 @@ const RestaurantProfile = () => {
     };
   };
 
-  const subject = "Reservation confirmed!";
-  const body = "Your reservation has been confirmed. Please, Enjoy Your Meal. Thank you for your Reservation."
-
   const [choise, setChoise] = useState("profile");
   const [status, setStatus] = useState("pending");
   const [edit, setEdit] = useState(false);
@@ -84,7 +81,6 @@ const RestaurantProfile = () => {
   let formattedDate;
 
   function formatTime(t) {
-
     if (!order_pending) {
       const timestamp = t;
       const time = timestamp.substring(0, 5);
@@ -106,6 +102,9 @@ const RestaurantProfile = () => {
       return formattedDate;
     }
   }
+
+  const subject = "Reservation confirmed!";
+  const body = "Your reservation has been confirmed. Please, Enjoy Your Meal. Thank you for your Reservation."
 
   const addEmail = async (id) => {
     await axios.get(`http://localhost:5000/orderedEmail/${id}`, { timeout: 5000 })
@@ -550,6 +549,407 @@ const RestaurantProfile = () => {
             </>
           )}
 
+          {choise === "reservation" && (
+            <>
+              <div className="grid grid-cols-1 gap-4 mb-4">
+                <div className="text-2xl">
+                  <label
+                    htmlFor="default-search"
+                    className="mb-2 text-sm font-medium text-black sr-only ">
+                    Search
+                  </label>
+                  <div className="relative">
+                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                      <svg
+                        aria-hidden="true"
+                        className="w-5 h-5 text-amber-600"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <input
+                      type="search"
+                      id="default-search"
+                      className="block w-full p-4 pl-10 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      placeholder="Search by Table Number"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)} />
+                  </div>
+                </div>
+              </div>
+              <h1 class="text-2xl md:text-3xl pl-2 border-l-4 text-black mt-10 border-amber-600">
+                RESRVATIONS
+              </h1>
+              <div className="flex flex-wrap items-start justify-start p-10 py-10">
+                <button
+                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                  onClick={() => { setStatus("pending"); }}>
+                  Pending Orders
+                </button>
+                <button
+                  className="px-4 py-2.5 rounded-lg mx-4 hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                  onClick={() => { setStatus("confirmed"); }}>
+                  Confirmed Orders
+                </button>
+                <button
+                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                  onClick={() => { setStatus("completed"); }}>
+                  Completed Orders
+                </button>
+              </div>
+
+              {restaurant_orders !== null &&
+                <>
+                  {status === "pending" &&
+                    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
+                        Pending orders
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
+                      </h1>
+                      {restaurant_orders.length !== 0 &&
+                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
+                          {restaurant_orders.filter((order) => {
+                            return search === '' ? order : order.table_number.includes(search)
+                          }).map((order) => {
+                            if (order.status === 'pending') {
+                              return <div className="rounded-lg overflow-hidden shadow-xl">
+                                <div className="relative">
+                                  <img
+                                    className="w-full"
+                                    src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
+                                    alt="image" />
+                                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
+                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
+                                    {order.status}
+                                  </div>
+                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
+                                    <span>Order</span>
+                                    {order.orders_id}
+                                  </div>
+                                </div>
+                                <div className="bg-white overflow-hidden max-w-sm mx-auto">
+                                  <div className="px-4 py-5 sm:px-6">
+                                    <div className="flex items-center justify-between">
+                                      <h3 className="text-black">
+                                        Table Number
+                                      </h3>
+                                      <p className="text-black">
+                                        {order.table_number}
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client name: {" "}
+                                        <span className="text-black">
+                                          {order.username}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client phone:{" "}
+                                        <span className="text-black">
+                                          {order.user_phone_number}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client email:{" "}
+                                        <span className="text-black">
+                                          {order.user_email}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Date: {" "}
+                                        <span className="text-black">
+                                          {formatDate(order.order_date)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Time:
+                                        <span className="text-black">
+                                          {formatTime(order.order_start_time)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Time:
+                                        <span className="text-black">
+                                          {formatTime(order.order_end_time)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Number of guests: {" "}
+                                        <span className="text-black">
+                                          {order.guest_number}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <button
+                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                                      onClick={() => {
+                                        axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "confirmed", })
+                                          .then(() => {
+                                            axios.put(`http://localhost:5000/tableStatus/${order.table_number}`, { status: "busy" })
+                                              .catch(() => { console.log(error.message) })
+                                          })
+                                        addEmail(order.user_id);
+                                      }}>
+                                      Confirm
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                          })}
+                        </div>}
+                    </div>
+                  }
+                </>
+              }
+
+              {restaurant_orders !== null &&
+                <>
+                  {status === "confirmed" &&
+                    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
+                        Confirmed Orders
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
+                      </h1>
+                      {restaurant_orders.length !== 0 &&
+                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
+                          {restaurant_orders.filter((order) => {
+                            return search === '' ? order : order.table_number.includes(search)
+                          }).map((order) => {
+                            if (order.status === 'confirmed') {
+                              return <div className="rounded-lg overflow-hidden shadow-xl">
+                                <div className="relative">
+                                  <img
+                                    className="w-full"
+                                    src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
+                                    alt="image" />
+                                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
+                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
+                                    {order.status}
+                                  </div>
+                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
+                                    <span>Order</span>
+                                    {order.orders_id}
+                                  </div>
+                                </div>
+                                <div className="bg-white overflow-hidden max-w-sm mx-auto">
+                                  <div className="px-4 py-5 sm:px-6">
+                                    <div className="flex items-center justify-between">
+                                      <h3 className="text-black">
+                                        Table Number
+                                      </h3>
+                                      <p className="text-black">
+                                        {order.table_number}
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client name: {" "}
+                                        <span className="text-black">
+                                          {order.username}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client phone:{" "}
+                                        <span className="text-black">
+                                          {order.user_phone_number}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client email:{" "}
+                                        <span className="text-black">
+                                          {order.user_email}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Date: {" "}
+                                        <span className="text-black">
+                                          {formatDate(order.order_date)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Time:
+                                        <span className="text-black">
+                                          {formatTime(order.order_start_time)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Time:
+                                        <span className="text-black">
+                                          {formatTime(order.order_end_time)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Number of guests: {" "}
+                                        <span className="text-black">
+                                          {order.guest_number}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <button
+                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                                      onClick={() => {
+                                        axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "completed" })
+                                          .then(() => {
+                                            axios.put(`http://localhost:5000/tableStatus/${order.table_number}`, { status: "available" })
+                                              .catch(() => { console.log(error.message) })
+                                            window.location.reload();
+                                          })
+                                      }}>
+                                      Completed
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                          })}
+                        </div>}
+                    </div>
+                  }
+                </>
+              }
+
+              {restaurant_orders !== null &&
+                <>
+                  {status === "completed" &&
+                    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
+                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
+                        Completed Orders
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
+                      </h1>
+                      {restaurant_orders.length !== 0 &&
+                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
+                          {restaurant_orders.filter((order) => {
+                            return search === '' ? order : order.table_number.includes(search)
+                          }).map((order) => {
+                            if (order.status === 'completed') {
+                              return <div className="rounded-lg overflow-hidden shadow-xl">
+                                <div className="relative">
+                                  <img
+                                    className="w-full"
+                                    src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
+                                    alt="image" />
+                                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
+                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
+                                    {order.status}
+                                  </div>
+                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
+                                    <span>Order</span>
+                                    {order.orders_id}
+                                  </div>
+                                </div>
+                                <div className="bg-white overflow-hidden max-w-sm mx-auto">
+                                  <div className="px-4 py-5 sm:px-6">
+                                    <div className="flex items-center justify-between">
+                                      <h3 className="text-black">
+                                        Table Number
+                                      </h3>
+                                      <p className="text-black">
+                                        {order.table_number}
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client name: {" "}
+                                        <span className="text-black">
+                                          {order.username}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client phone:{" "}
+                                        <span className="text-black">
+                                          {order.user_phone_number}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Client email:{" "}
+                                        <span className="text-black">
+                                          {order.user_email}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Date: {" "}
+                                        <span className="text-black">
+                                          {formatDate(order.order_date)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Time:
+                                        <span className="text-black">
+                                          {formatTime(order.order_start_time)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-black">
+                                        Order Time:
+                                        <span className="text-black">
+                                          {formatTime(order.order_end_time)}
+                                        </span>
+                                      </p>
+                                    </div>
+                                    <div class="mt-4 flex items-center justify-between">
+                                      <p class="text-sm font-medium text-black">
+                                        Number of guests: {" "}
+                                        <span className="text-black">
+                                          {order.guest_number}
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            }
+                          })}
+                        </div>}
+                    </div>
+                  }
+                </>
+              }
+            </>
+          )}
+
           {choise === "menu" && (
             <>
               <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
@@ -661,307 +1061,6 @@ const RestaurantProfile = () => {
             </>
           )}
 
-          {choise === "reservation" && (
-            <>
-              <div className="grid grid-cols-1 gap-4 mb-4">
-                <div className="text-2xl">
-                  <label
-                    htmlFor="default-search"
-                    className="mb-2 text-sm font-medium text-black sr-only ">
-                    Search
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                      <svg
-                        aria-hidden="true"
-                        className="w-5 h-5 text-amber-600"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        ></path>
-                      </svg>
-                    </div>
-                    <input
-                      type="search"
-                      id="default-search"
-                      className="block w-full p-4 pl-10 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
-                      placeholder="Search by Table Number"
-                      value={search}
-                      onChange={(e) => setSearch(e.target.value)} />
-                  </div>
-                </div>
-              </div>
-              <h1 class="text-2xl md:text-3xl pl-2 border-l-4 text-black mt-10 border-amber-600">
-                RESRVATIONS
-              </h1>
-              <div className="flex flex-wrap items-start justify-start p-10 py-10">
-                <button
-                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
-                  onClick={() => { setStatus("pending"); }}>
-                  Pending Orders
-                </button>
-                <button
-                  className="px-4 py-2.5 rounded-lg mx-4 hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
-                  onClick={() => { setStatus("confirmed"); }}>
-                  Confirmed Orders
-                </button>
-                <button
-                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
-                  onClick={() => { setStatus("completed"); }}>
-                  Completed Orders
-                </button>
-              </div>
-              {restaurant_orders !== null &&
-                <>
-                  {status === "pending" &&
-                    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
-                        Pending orders
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
-                      </h1>
-                      {restaurant_orders.length !== 0 &&
-                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
-                          {restaurant_orders.filter((order) => {
-                            return search === '' ? order : order.table_number.includes(search)
-                          }).map((order) => {
-                            if (order.status === 'pending') {
-                              return <div className="rounded-lg overflow-hidden shadow-xl">
-                                <div className="relative">
-                                  <img
-                                    className="w-full"
-                                    src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
-                                    alt="image" />
-                                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
-                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
-                                    {order.status}
-                                  </div>
-                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
-                                    <span>Order</span>
-                                    {order.orders_id}
-                                  </div>
-                                </div>
-                                <div className="bg-white overflow-hidden max-w-sm mx-auto">
-                                  <div className="px-4 py-5 sm:px-6">
-                                    <div className="flex items-center justify-between">
-                                      <h3 className="text-black">
-                                        Table Number
-                                      </h3>
-                                      <p className="text-black">
-                                        {order.table_number}
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-black">
-                                        Order Date:
-                                        <span className="text-black">
-                                          {formatDate(order.order_date)}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-black">
-                                        Order Time:
-                                        <span className="text-black">
-                                          {formatTime(order.order_time)}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-sm font-medium text-black">
-                                        Guest Number:
-                                        <span className="text-black">
-                                          {order.guest_number}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <button
-                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
-                                      onClick={() => {
-                                        axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "confirmed", })
-                                          .then(() => {
-                                            axios.put(`http://localhost:5000/tableStatus/${order.table_number}`, { status: "busy" })
-                                              .catch(() => { console.log(error.message) })
-                                          })
-                                        addEmail(order.user_id);
-                                      }}>
-                                      Confirm
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            }
-                          })}
-                        </div>}
-                    </div>
-                  }
-                </>
-              }
-              {restaurant_orders !== null &&
-                <>
-                  {status === "confirmed" &&
-                    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
-                        Confirmed Orders
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
-                      </h1>
-                      {restaurant_orders.length !== 0 &&
-                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
-                          {restaurant_orders.filter((order) => {
-                            return search === '' ? order : order.table_number.includes(search)
-                          }).map((order) => {
-                            if (order.status === 'confirmed') {
-                              return <div className="rounded-lg overflow-hidden shadow-xl">
-                                <div className="relative">
-                                  <img
-                                    className="w-full"
-                                    src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
-                                    alt="image" />
-                                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
-                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
-                                    {order.status}
-                                  </div>
-                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
-                                    <span>Order</span>
-                                    {order.orders_id}
-                                  </div>
-                                </div>
-                                <div className="bg-white overflow-hidden max-w-sm mx-auto">
-                                  <div className="px-4 py-5 sm:px-6">
-                                    <div className="flex items-center justify-between">
-                                      <h3 className="text-black">
-                                        Table Number
-                                      </h3>
-                                      <p className="text-black">
-                                        {order.table_number}
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-black">
-                                        Order Date:
-                                        <span className="text-black">
-                                          {formatDate(order.order_date)}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-black">
-                                        Order Time:
-                                        <span className="text-black">
-                                          {formatTime(order.order_time)}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-sm font-medium text-black">
-                                        Guest Number:
-                                        <span className="text-black">
-                                          {order.guest_number}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <button
-                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
-                                      onClick={() => {
-                                        axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "completed" })
-                                          .then(() => {
-                                            axios.put(`http://localhost:5000/tableStatus/${order.table_number}`, { status: "available" })
-                                              .catch(() => { console.log(error.message) })
-                                            window.location.reload();
-                                          })
-                                      }}>
-                                      Completed
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            }
-                          })}
-                        </div>}
-                    </div>
-                  }
-                </>
-              }
-              {restaurant_orders !== null &&
-                <>
-                  {status === "completed" &&
-                    <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
-                        Completed Orders
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
-                      </h1>
-                      {restaurant_orders.length !== 0 &&
-                        <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
-                          {restaurant_orders.filter((order) => {
-                            return search === '' ? order : order.table_number.includes(search)
-                          }).map((order) => {
-                            if (order.status === 'completed') {
-                              return <div className="rounded-lg overflow-hidden shadow-xl">
-                                <div className="relative">
-                                  <img
-                                    className="w-full"
-                                    src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
-                                    alt="image" />
-                                  <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
-                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
-                                    {order.status}
-                                  </div>
-                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
-                                    <span>Order</span>
-                                    {order.orders_id}
-                                  </div>
-                                </div>
-                                <div className="bg-white overflow-hidden max-w-sm mx-auto">
-                                  <div className="px-4 py-5 sm:px-6">
-                                    <div className="flex items-center justify-between">
-                                      <h3 className="text-black">
-                                        Table Number
-                                      </h3>
-                                      <p className="text-black">
-                                        {order.table_number}
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-black">
-                                        Order Date:
-                                        <span className="text-black">
-                                          {formatDate(order.order_date)}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-black">
-                                        Order Time:
-                                        <span className="text-black">
-                                          {formatTime(order.order_time)}
-                                        </span>
-                                      </p>
-                                    </div>
-                                    <div class="mt-4 flex items-center justify-between">
-                                      <p class="text-sm font-medium text-black">
-                                        Guest Number:
-                                        <span className="text-black">
-                                          {order.guest_number}
-                                        </span>
-                                      </p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            }
-                          })}
-                        </div>}
-                    </div>
-                  }
-                </>
-              }
-            </>
-          )}
         </div>
       </div>
     </>

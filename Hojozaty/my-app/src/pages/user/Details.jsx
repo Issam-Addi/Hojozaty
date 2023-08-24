@@ -13,9 +13,10 @@ function Details1() {
   const [person, setPerson] = useState([]);
   const user = JSON.parse(localStorage?.getItem('curruntUser'));
   const [restaurantInfo, setRestaurantInfo] = useState({});
-  const [restauranttable, setrestauranttable] = useState([]);
+  const [restaurantTable, setRestaurantTable] = useState([]);
   const [menuItem, setMenuItem] = useState([]);
   const { restaurant_id } = useParams();
+const tableGuestNumber = restaurantTable[0]?.guest_number;
 
   useEffect(() => {
     axios.get(`http://localhost:5000/user/${user.userid}`)
@@ -26,7 +27,7 @@ function Details1() {
 
     axios.get(`http://localhost:5000/recordtable/${restaurant_id}`)
       .then((response) => {
-        setrestauranttable(response.data);
+        setRestaurantTable(response.data);
       })
       .catch((error) => console.log(error.message))
 
@@ -44,9 +45,12 @@ function Details1() {
   }, []);
 
 
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [tableNumber, setTableNumber] = useState('');
-  const [time, setTime] = useState('')
+  const [startingTime, setStartingTime] = useState('')
+  const [endTime, setEndTime] = useState('')
   const [date, setDate] = useState('')
   const { SignStatus, updateSignStatus } = useContext(UserContext)
 
@@ -54,12 +58,16 @@ function Details1() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post('http://localhost:5000/orders', {
+      name: name,
+      phone: phone,
       email: email,
       tableNumber: tableNumber,
-      time: time,
+      startingTime: startingTime,
+      endTime: endTime,
       date: date,
       userid: person[0].userid,
-      restaurant_id: restaurant_id
+      restaurant_id: restaurant_id,
+      tableGuestNumber: tableGuestNumber
     })
       .then(function (response) {
         window.location.href = `http://localhost:3000/PaymentPage/${restaurant_id}`
@@ -123,35 +131,35 @@ function Details1() {
       </section>
 
       <div className="flex flex-wrap items-center gap-4 justify-center">
-                {menuItem?.map((item) => {
-                  return (
-                    <div className="relative overflow-hidden bg-amber-600 rounded-lg w-60 h-96 shadow-lg">
-                      <div className="pt-3 px-10 flex items-center justify-center">
-                        <img
-                          className="w-40 h-40 bg-white rounded-full"
-                          src={item.item_image}
-                          alt={item.item_name} />
-                      </div>
-                      <div className="text-white p-4">
-                        <p className="text-black mb-4">Name: {item.item_name}</p>
-                        <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
-                        <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-600 px-3 py-2">
-                          {item.item_price} $
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+        {menuItem?.map((item) => {
+          return (
+            <div className="relative overflow-hidden bg-amber-600 rounded-lg w-60 h-96 shadow-lg">
+              <div className="pt-3 px-10 flex items-center justify-center">
+                <img
+                  className="w-40 h-40 bg-white rounded-full"
+                  src={item.item_image}
+                  alt={item.item_name} />
               </div>
+              <div className="text-white p-4">
+                <p className="text-black mb-4">Name: {item.item_name}</p>
+                <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
+                <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-600 px-3 py-2">
+                  {item.item_price} $
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
 
       <div className="bg-gray-200 mt-5 shadow-lg pb-10">
-        {restauranttable?.length !== 0 ?
+        {restaurantTable?.length !== 0 ?
           <>
             <h5 className="uppercase text-center text-4xl pt-10 mb-5 font-bold text-amber-600">
               Available TAbles
             </h5>
             <div className='flex flex-wrap gap-10 justify-center '>
-              {restauranttable?.map((info) => {
+              {restaurantTable?.map((info) => {
                 return (
                   <div className="max-w-sm my-5 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <img className="rounded-t-lg" src={info?.img} alt="an image" />
@@ -189,6 +197,29 @@ function Details1() {
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
+
+                <div>
+                  <label htmlFor='Name'>Name <span className='text-red-700 text-xl'>*</span></label>
+                  <input
+                    required
+                    id='Name'
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    type="text"
+                    placeholder="Your name"
+                    onChange={(e) => { setName(e.target.value); }} />
+                </div>
+
+                <div>
+                  <label htmlFor='Phone'>Phone <span className='text-red-700 text-xl'>*</span></label>
+                  <input
+                    required
+                    id='Phone'
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    type="text"
+                    placeholder="Your phone number"
+                    onChange={(e) => { setPhone(e.target.value); }} />
+                </div>
+
                 <div>
                   <label htmlFor='email'>Email <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -196,10 +227,11 @@ function Details1() {
                     id='email'
                     className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                     type="text"
-                    placeholder="Email"
+                    placeholder="Your email"
                     value={email}
                     onChange={(e) => { setEmail(e.target.value); }} />
                 </div>
+
                 <div>
                   <label htmlFor='Table_number'>Table number <span className='text-red-700 text-xl'>*</span></label>
                   <input
@@ -210,20 +242,23 @@ function Details1() {
                     value={tableNumber}
                     onChange={(e) => { setTableNumber(e.target.value); }} />
                 </div>
+
                 <div>
                   <label htmlFor="time_start">Starting Booking <span className='text-red-700 text-xl'>*</span></label>
                   <input
                     className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                     type="time"
                     id="time_start"
-                    onChange={(e) => { setTime(e.target.value); }} />
+                    onChange={(e) => { setStartingTime(e.target.value); }} />
                 </div>
+
                 <div>
                   <label htmlFor="time_end">End Booking <span className='text-red-700 text-xl'>*</span></label>
                   <input
                     className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
                     type="time"
-                    id="time_end" />
+                    id="time_end"
+                    onChange={(e) => { setEndTime(e.target.value); }} />
                 </div>
                 <div>
                   <label htmlFor='date'>Date <span className='text-red-700 text-xl'>*</span></label>

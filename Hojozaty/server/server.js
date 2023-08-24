@@ -15,7 +15,7 @@ app.post("/records", async function (req, res) {
     const phone = req.body.phone;
     const email = req.body.email;
     const password = req.body.password;
-    const checkEmail = await pool.query("SELECT email FROM users where email = $1",[email]);
+    const checkEmail = await pool.query("SELECT email FROM users where email = $1", [email]);
     if (checkEmail.rows.length == 0) {
       const all_records = await pool.query("INSERT INTO users (username,phone_number, email, password,type_id,flags) VALUES($1, $2, $3 , $4 , $5, $6) RETURNING *",
         [name, phone, email, password, 0, 1]);
@@ -56,7 +56,7 @@ app.put("/records/:userid", async function (req, res) {
     } else {
       id = 0;
     }
-    const record = await pool.query("UPDATE users SET type_id = $1 WHERE userid = $2",[id, userid]);
+    const record = await pool.query("UPDATE users SET type_id = $1 WHERE userid = $2", [id, userid]);
     res.send("Updated Successfully");
   } catch (err) {
     console.log(err.message);
@@ -85,7 +85,7 @@ app.post("/recordp", async function (req, res) {
         }
       }
     });
-      res.json({email,password});
+    res.json({ email, password });
   } catch (err) {
     console.log(err.message);
   }
@@ -136,7 +136,7 @@ app.get("/recordtable/:id", async function (req, res) {
 app.put("/recordss/:userid", async function (req, res) {
   try {
     const { userid } = req.params;
-    const deleteRecord = await pool.query("UPDATE users SET flags = 0 WHERE userid = $1",[userid]);
+    const deleteRecord = await pool.query("UPDATE users SET flags = 0 WHERE userid = $1", [userid]);
     res.send("Deleted Successfully");
   } catch (err) {
     console.log(err.message);
@@ -159,12 +159,12 @@ app.post("/restaurants", async function (req, res) {
     const phone = "";
     const email = req.body.email;
     const password = "aaa";
-    const all_records_to_user = await pool.query("INSERT INTO users (username,phone_number, email, password,type_id,flags) VALUES($1, $2, $3 , $4 , $5,$6) RETURNING userid",[name, phone, email, password, 2, 1]);
+    const all_records_to_user = await pool.query("INSERT INTO users (username,phone_number, email, password,type_id,flags) VALUES($1, $2, $3 , $4 , $5,$6) RETURNING userid", [name, phone, email, password, 2, 1]);
     generatedId = all_records_to_user.rows[0].userid;
     const restaurant_name = "";
     const contact_number = "";
     const user_id = generatedId;
-    const all_records_to_restaurant = await pool.query("INSERT INTO restaurant (restaurant_name ,contact_number, user_id) VALUES($1, $2, $3) RETURNING *",[restaurant_name, contact_number, user_id]);
+    const all_records_to_restaurant = await pool.query("INSERT INTO restaurant (restaurant_name ,contact_number, user_id) VALUES($1, $2, $3) RETURNING *", [restaurant_name, contact_number, user_id]);
     const all = { user: all_records_to_user.rows, restaurant: all_records_to_restaurant.rows };
     res.json(all);
   } catch (err) {
@@ -184,7 +184,7 @@ app.get("/restaurants/:id", async function (req, res) {
 app.put("/restaurants/:userid", async function (req, res) {
   try {
     const { userid } = req.params;
-    const deleteRecord = await pool.query("UPDATE users SET flags = 0 WHERE userid = $1",[userid]);
+    const deleteRecord = await pool.query("UPDATE users SET flags = 0 WHERE userid = $1", [userid]);
     res.send("Deleted Successfully");
   } catch (err) {
     console.log(err.message);
@@ -204,26 +204,28 @@ app.put("/aboutEdit/:about_id", async function (req, res) {
   try {
     const { about_id } = req.params;
     const about_title = req.body.content;
-    const record = await pool.query("UPDATE aboutus SET about_title = $1  WHERE about_id = $2",[about_title, about_id]);
+    const record = await pool.query("UPDATE aboutus SET about_title = $1  WHERE about_id = $2", [about_title, about_id]);
     res.send("Updated Successfully");
   } catch (err) {
     console.log(err.message);
   }
 });
 
-// بدي اعدل هون واحط الايميل وقت الانتهاء
-
 app.post("/orders", async function (req, res) {
   try {
+    const name = req.body.name;
+    const phone = req.body.phone;
     const email = req.body.email;
     const table_number = req.body.tableNumber;
-    const order_time = req.body.time;
+    const order_start_time = req.body.startingTime;
+    const order_end_time = req.body.endTime;
     const order_date = req.body.date;
     const userid = req.body.userid;
     const restaurant_id = req.body.restaurant_id;
+    const tableGuestNumber = req.body.tableGuestNumber;
     const all_records = await pool.query(
-      "INSERT INTO orders (table_number,order_time, order_date ,user_id ,restaurant_id ,status ,guest_number ) VALUES($1, $2, $3 , $4,$5,$6,$7 ) RETURNING *",
-      [ table_number, order_time, order_date, userid, restaurant_id, "pending", 2, ]);
+      "INSERT INTO orders (username, user_phone_number, user_email ,table_number, order_start_time, order_end_time, order_date, user_id, restaurant_id, status ,guest_number ) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11 ) RETURNING *",
+      [name, phone, email, table_number, order_start_time, order_end_time, order_date, userid, restaurant_id, "pending", tableGuestNumber,]);
     res.json(all_records.rows);
   } catch (err) {
     console.log(err.message);
@@ -248,14 +250,14 @@ app.post("/contacts", async function (req, res) {
 
 app.get("/restaurants/:type_food", (req, res) => {
   const { type_food } = req.params;
-  pool.query("SELECT * FROM restaurant WHERE type_food = $1",[type_food],(error, results) => {
-      if (error) {
-        console.error(error);
-        res.status(500).json({ error: "Internal server error" });
-      } else {
-        res.json(results.rows);
-      }
+  pool.query("SELECT * FROM restaurant WHERE type_food = $1", [type_food], (error, results) => {
+    if (error) {
+      console.error(error);
+      res.status(500).json({ error: "Internal server error" });
+    } else {
+      res.json(results.rows);
     }
+  }
   );
 });
 
@@ -287,7 +289,7 @@ app.post("/restaurant", async function (req, res) {
     const { restaurant_name, address, contact_number, type_food, des, img, food_image } = req.body;
     const newRecord = await pool.query(
       "INSERT INTO restaurant (restaurant_name, address, contact_number, type_food, des, img, food_image) VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING *",
-      [ restaurant_name, address, contact_number, type_food, des, img, food_image ]);
+      [restaurant_name, address, contact_number, type_food, des, img, food_image]);
     res.json(newRecord.rows);
   } catch (err) {
     console.log(err.message);
@@ -297,7 +299,7 @@ app.post("/restaurant", async function (req, res) {
 app.get("/restaurant/:id", async function (req, res) {
   try {
     const { id } = req.params;
-    const restaurant = await pool.query("SELECT * FROM restaurant WHERE restaurant_id = $1",[id]);
+    const restaurant = await pool.query("SELECT * FROM restaurant WHERE restaurant_id = $1", [id]);
     res.json(restaurant.rows);
   } catch (err) {
     console.log(err.message);
@@ -310,7 +312,7 @@ app.put("/restaurant/:id", async function (req, res) {
     const { restaurant_name, address, contact_number, type_food, des, img, food_image, password } = req.body;
     const updated_restaurant = await pool.query(
       "UPDATE restaurant SET restaurant_name = $1, address = $2, contact_number = $3, type_food = $4, des = $5, img = $6, food_image = $7 WHERE restaurant_id = $8",
-      [ restaurant_name, address, contact_number, type_food, des, img, food_image, id ]);
+      [restaurant_name, address, contact_number, type_food, des, img, food_image, id]);
     const updatePassword = await pool.query("UPDATE users SET password = $1 WHERE email = $2", [password, useremail]);
     res.json(updated_restaurant.rows);
   } catch (err) {
@@ -325,7 +327,7 @@ app.post("/table", async function (req, res) {
     if (check_table_number.rows.length === 0) {
       const newRecord = await pool.query(
         "INSERT INTO res_table (table_number, available_time_start, guest_number, available_time_end, img, table_status, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6,'0', $7) RETURNING *",
-        [ table_number, available_time_start, guest_number, available_time_end, img, table_status, restaurant_id ]);
+        [table_number, available_time_start, guest_number, available_time_end, img, table_status, restaurant_id]);
       res.json(newRecord.rows);
     } else {
       res.send("Table number is Already taken!");
@@ -340,7 +342,7 @@ app.post("/menu", async function (req, res) {
     const { itemName, itemPrice, itemDescription, itemImage, restaurant_id } = req.body;
     const newitem = await pool.query(
       "INSERT INTO menu (item_name, item_price, item_description, item_image, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
-      [ itemName, itemPrice, itemDescription, itemImage, 1, restaurant_id]);
+      [itemName, itemPrice, itemDescription, itemImage, 1, restaurant_id]);
     res.json(newitem.rows);
   } catch (error) {
     console.log(error.message);
@@ -350,7 +352,7 @@ app.post("/menu", async function (req, res) {
 app.get("/menu/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const rows = await pool.query("SELECT * FROM menu WHERE restaurant_id = $1 and flags=$2",[id , 1]);
+    const rows = await pool.query("SELECT * FROM menu WHERE restaurant_id = $1 and flags=$2", [id, 1]);
     res.json(rows.rows);
   } catch (error) {
     console.error("Error fetching data:", error);
@@ -487,7 +489,7 @@ app.put("/user/:id", async function (req, res) {
 app.get("/userOrders/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const order = await pool.query("SELECT * FROM orders WHERE user_id = $1",[id]);
+    const order = await pool.query("SELECT * FROM orders WHERE user_id = $1", [id]);
     res.json(order.rows);
   } catch (err) {
     console.log(err.message);
