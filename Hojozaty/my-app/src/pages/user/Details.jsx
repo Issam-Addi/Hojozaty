@@ -14,6 +14,7 @@ function Details1() {
   const user = JSON.parse(localStorage?.getItem('curruntUser'));
   const [restaurantInfo, setRestaurantInfo] = useState({});
   const [restauranttable, setrestauranttable] = useState([]);
+  const [menuItem, setMenuItem] = useState([]);
   const { restaurant_id } = useParams();
 
   useEffect(() => {
@@ -32,6 +33,12 @@ function Details1() {
     axios.get('http://localhost:5000/recordrId/' + restaurant_id)
       .then((response) => {
         setRestaurantInfo(response.data[0]);
+      })
+      .catch((error) => console.log(error.message))
+
+    axios.get(`http://localhost:5000/menu/${restaurant_id}`)
+      .then((response) => {
+        setMenuItem(response.data);
       })
       .catch((error) => console.log(error.message))
   }, []);
@@ -114,6 +121,28 @@ function Details1() {
           </div>
         </div>
       </section>
+
+      <div className="flex flex-wrap items-center gap-4 justify-center">
+                {menuItem?.map((item) => {
+                  return (
+                    <div className="relative overflow-hidden bg-amber-600 rounded-lg w-60 h-96 shadow-lg">
+                      <div className="pt-3 px-10 flex items-center justify-center">
+                        <img
+                          className="w-40 h-40 bg-white rounded-full"
+                          src={item.item_image}
+                          alt={item.item_name} />
+                      </div>
+                      <div className="text-white p-4">
+                        <p className="text-black mb-4">Name: {item.item_name}</p>
+                        <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
+                        <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-600 px-3 py-2">
+                          {item.item_price} $
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
 
       <div className="bg-gray-200 mt-5 shadow-lg pb-10">
         {restauranttable?.length !== 0 ?

@@ -28,7 +28,6 @@ function SignIn() {
         })
           .then((res) => {
             setProfile(res.data);
-            console.log(res.data);
             axios.post("http://localhost:5000/recordp", {
               email: res.data.email,
               password: '123456',
@@ -36,7 +35,6 @@ function SignIn() {
 
               .then(function (response) {
                 if (response.data != "not passed") {
-                  console.log(response.data[1]);
                   let x = []
                   if (response.data[1] == 0) {
                     x = [false, true, true]
@@ -45,11 +43,9 @@ function SignIn() {
                   } else if (response.data[1] == 2) {
                     x = [true, true, false]
                   }
-                  console.log(response.data[2])
                   updateRouts(x)
                   updateSetCurruntUser(response.data[2])
                   localStorage.setItem("curruntUser", JSON.stringify(response.data[2]))
-                  console.log("passed");
                   updateSignStatus("SignOut")
                   localStorage.setItem("SignStatus", "SignOut")
                   localStorage.setItem("auth", JSON.stringify(response.data[0]))

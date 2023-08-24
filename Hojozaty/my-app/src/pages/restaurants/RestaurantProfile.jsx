@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { HashLink } from "react-router-hash-link";
+import { useParams } from 'react-router-dom'
 import useFetch from "../../components/CustomHook/useFetch";
 import { AiOutlineClose } from "react-icons/ai";
+import { MdMenuBook, MdAssignmentAdd } from "react-icons/md";
 import axios from 'axios';
-
+import Swal from 'sweetalert2'
 
 const RestaurantProfile = () => {
+
+  const { id } = useParams();
 
   const [restaurantName, setRestaurantName] = useState("");
   const [address, setAddress] = useState("");
@@ -13,7 +17,7 @@ const RestaurantProfile = () => {
   const [foodType, setFoodType] = useState("");
   const [des, setDes] = useState("");
   const [password, setPassword] = useState("");
-  let [base64code, setbase64code] = useState("");
+  const [base64code, setbase64code] = useState("");
   const [foodImg, setFoodImg] = useState("");
 
   const onChange = e => {
@@ -27,7 +31,7 @@ const RestaurantProfile = () => {
   };
 
   const getBase64 = file => {
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       onLoad(reader.result);
@@ -45,7 +49,7 @@ const RestaurantProfile = () => {
   };
 
   const getBase64_2 = file => {
-    let reader = new FileReader();
+    const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
       onLoad2(reader.result);
@@ -59,23 +63,13 @@ const RestaurantProfile = () => {
   const [status, setStatus] = useState("pending");
   const [edit, setEdit] = useState(false);
   const [search, setSearch] = useState("");
-  const [restaurantInfo, setRestaurantInfo] = useState([]);
-  const restaurant_id = restaurantInfo[0]?.restaurant_id;
-  const { error, data: restaurant } = useFetch(`http://localhost:5000/restaurant/${restaurant_id}`);
-  const { isPending: order_pending, data: restaurant_orders } = useFetch(`http://localhost:5000/orders/${restaurant_id}`);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/generatedRes')
-      .then((response) => {
-        setRestaurantInfo(response.data);
-      })
-      .catch((error) => console.log(error.message))
-  }, []);
+  const { error, data: restaurant } = useFetch(`http://localhost:5000/restaurant/${id}`);
+  const { isPending: order_pending, data: restaurant_orders } = useFetch(`http://localhost:5000/orders/${id}`);
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const updateRes = { restaurant_name: restaurantName, address: address, contact_number: contact, type_food: foodType, des: des, img: base64code, food_image: foodImg, password: password };
-    axios.put('http://localhost:5000/restaurant/' + restaurant_id, updateRes)
+    axios.put('http://localhost:5000/restaurant/' + id, updateRes)
       .then(function () {
         window.location.reload(false);
       })
@@ -130,6 +124,71 @@ const RestaurantProfile = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const [itemName, setItemName] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
+  const [itemImage, setItemImage] = useState("");
+
+  const item_image = e => {
+    const files = e.target.files;
+    const file = files[0];
+    getBase64_3(file);
+  };
+
+  const getBase64_3 = file => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      onLoad3(reader.result);
+    };
+  };
+
+  const onLoad3 = fileString => {
+    setItemImage(fileString);
+  };
+
+  const handleSubmitItemMenu = (event) => {
+    event.preventDefault();
+    const newItem = { itemName, itemPrice, itemDescription, itemImage, id };
+    Swal.fire({
+      title: ` Are you sure you want to add this item`,
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "OK",
+      cancelButtonText: "Cancel",
+      icon: 'warning'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios.post('http://localhost:5000/menu', newItem)
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title:
+            "Your item has been added",
+        });
+        setItemName("")
+        setItemPrice("")
+        setItemDescription("")
+        setItemImage("")
+      } else {
+        Swal.fire(' Cancelled', '', 'error')
+        setItemName("")
+        setItemPrice("")
+        setItemDescription("")
+        setItemImage("")
+      }
+    })
+  }
+
+  const [menuItem, setMenuItem] = useState([]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/menu/${id}`)
+      .then((response) => {
+        setMenuItem(response.data);
+      })
+      .catch((error) => console.log(error.message))
+  }, []);
 
   return (
     <>
@@ -157,7 +216,7 @@ const RestaurantProfile = () => {
           <aside className={`fixed top-[4.45rem] left-0 z-10 sm:w-64 w-52 h-screen bg-black px-3 py-4 overflow-y-auto ${sidebarOpen ? 'translate-x-0' : 'sm:translate-x-0 -translate-x-full'}`}>
             <ul className="space-y-2 font-medium">
               <li className="flex-1 ml-3 whitespace-nowrap text-amber-600 font-bold uppercase">
-              {restaurant[0].restaurant_name}
+                {restaurant[0].restaurant_name}
               </li>
               <li
                 onClick={() => { setChoise("profile"); }}
@@ -189,6 +248,18 @@ const RestaurantProfile = () => {
                   <path d="M7 2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zM2 1a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm0 8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2H2zm.854-3.646a.5.5 0 0 1-.708 0l-1-1a.5.5 0 1 1 .708-.708l.646.647 1.646-1.647a.5.5 0 1 1 .708.708l-2 2zm0 8a.5.5 0 0 1-.708 0l-1-1a.5.5 0 0 1 .708-.708l.646.647 1.646-1.647a.5.5 0 0 1 .708.708l-2 2zM7 10.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5v-1zm0-5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 8a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z" />
                 </svg>
                 <span className="flex-1 ml-3 whitespace-nowrap">Reservations</span>
+              </li>
+              <li
+                onClick={() => { setChoise("menu"); }}
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                <MdMenuBook className="h-6 w-6" />
+                <span className="flex-1 ml-3 whitespace-nowrap">Menu</span>
+              </li>
+              <li
+                onClick={() => { setChoise("add_menu"); }}
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                <MdAssignmentAdd className="h-6 w-6" />
+                <span className="flex-1 ml-3 whitespace-nowrap">Add to menu</span>
               </li>
               <li>
                 <HashLink
@@ -223,6 +294,7 @@ const RestaurantProfile = () => {
 
       <div className="p-4 sm:ml-64 mt-24">
         <div className="p-4 border-2 border-black border-dashed bg-white rounded-lg">
+
           {choise === "profile" && (
             <>
               <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
@@ -411,9 +483,7 @@ const RestaurantProfile = () => {
                                 required
                                 id="foodType"
                                 className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
-                                onChange={(e) => {
-                                  setFoodType(e.target.value)
-                                }}>
+                                onChange={(e) => { setFoodType(e.target.value) }}>
                                 <option value="none">select</option>
                                 <option value="arabian">Arabian</option>
                                 <option value="italian">Italian</option>
@@ -479,7 +549,119 @@ const RestaurantProfile = () => {
                 )}
             </>
           )}
-          {choise === "reservation" &&
+
+          {choise === "menu" && (
+            <>
+              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
+                RESTAURANT MENU
+              </h1>
+              <div className="flex flex-wrap items-center gap-4 justify-center">
+                {menuItem?.map((item) => {
+                  return (
+                    <div className="relative overflow-hidden bg-amber-600 rounded-lg w-60 h-96 shadow-lg">
+                      <div className="pt-3 px-10 flex items-center justify-center">
+                        <img
+                          className="w-40 h-40 bg-white rounded-full"
+                          src={item.item_image}
+                          alt={item.item_name} />
+                      </div>
+                      <div className="text-white p-4">
+                        <p className="text-black mb-4">Name: {item.item_name}</p>
+                        <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
+                        <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-600 px-3 py-2">
+                          {item.item_price} $
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </>
+          )}
+
+          {choise === "add_menu" && (
+            <>
+              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
+                Add item to menu
+              </h1>
+              <div className="flex justify-center mt-20 px-8">
+                <form
+                  onSubmit={handleSubmitItemMenu}
+                  className="max-w-2xl bg-white border border-black rounded-lg shadow-xl">
+                  <div className="flex flex-wrap border shadow rounded-lg p-3">
+                    <h2 className="text-xl pb-2 text-amber-600">
+                      New item
+                    </h2>
+                    <div className="flex flex-col gap-2 w-full">
+                      <div>
+                        <label
+                          htmlFor="Item_name"
+                          className="text-black">
+                          Item name
+                        </label>
+                        <input
+                          required
+                          id="Item_name"
+                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          type="text"
+                          onChange={(e) => setItemName(e.target.value)} />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="Item_price"
+                          className="text-black">
+                          Item price
+                        </label>
+                        <input
+                          required
+                          id="Item_price"
+                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          type="number"
+                          min={1}
+                          onChange={(e) => setItemPrice(e.target.value)} />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="Item_description"
+                          className="text-black">
+                          Item description
+                        </label>
+                        <input
+                          required
+                          id="Item_description"
+                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          type="text"
+                          onChange={(e) => setItemDescription(e.target.value)} />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="Item_image"
+                          className="text-black">
+                          Item Image
+                        </label>
+                        <input
+                          required
+                          id="Item_image"
+                          className="w-full py-3 px-7 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => item_image(e)} />
+                      </div>
+                      <div className="flex justify-center">
+                        <button
+                          className="bg-amber-500 border-amber-600 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl"
+                          type="submit">
+                          Save changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </>
+          )}
+
+          {choise === "reservation" && (
             <>
               <div className="grid grid-cols-1 gap-4 mb-4">
                 <div className="text-2xl">
@@ -779,7 +961,7 @@ const RestaurantProfile = () => {
                 </>
               }
             </>
-          }
+          )}
         </div>
       </div>
     </>

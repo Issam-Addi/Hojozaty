@@ -65,7 +65,6 @@ app.put("/records/:userid", async function (req, res) {
 
 let useremail = "";
 let userpassword = "";
-let generatedRes;
 
 app.post("/recordp", async function (req, res) {
   try {
@@ -92,13 +91,6 @@ app.post("/recordp", async function (req, res) {
   }
 });
 
-app.get("/generatedRes", async function (req, res) {
-  try {
-    res.json(generatedRes);
-  } catch (err) {
-    console.log(err.message);
-  }
-});
 
 app.get("/recordpId", async function (req, res) {
   try {
@@ -113,6 +105,15 @@ app.get("/recordpId", async function (req, res) {
 });
 
 app.get("/recordrId/:id", async function (req, res) {
+  try {
+    const id = req.params.id;
+    const currentRecord = await pool.query("SELECT * FROM restaurant WHERE restaurant_id = '" + id + "'");
+    let person = currentRecord.rows;
+    res.json(person);
+  } catch (err) { }
+});
+
+app.get("/restaurantInfo/:id", async function (req, res) {
   try {
     const id = req.params.id;
     const currentRecord = await pool.query("SELECT * FROM restaurant WHERE restaurant_id = '" + id + "'");
@@ -169,6 +170,15 @@ app.post("/restaurants", async function (req, res) {
   } catch (err) {
     console.log(err.message);
   }
+});
+
+app.get("/restaurants/:id", async function (req, res) {
+  try {
+    const id = req.params.id;
+    const currentRecord = await pool.query("SELECT * FROM restaurant WHERE user_id = '" + id + "'");
+    let person = currentRecord.rows;
+    res.json(person);
+  } catch (err) { }
 });
 
 app.put("/restaurants/:userid", async function (req, res) {
@@ -249,7 +259,6 @@ app.get("/restaurants/:type_food", (req, res) => {
   );
 });
 
-
 app.get("/aboutus", async (req, res) => {
   try {
     const query = "SELECT about_title, about_us FROM aboutus";
@@ -288,11 +297,7 @@ app.post("/restaurant", async function (req, res) {
 app.get("/restaurant/:id", async function (req, res) {
   try {
     const { id } = req.params;
-    const restaurant = await pool.query(
-      "SELECT * FROM restaurant WHERE restaurant_id = $1",
-      [id]
-    );
-
+    const restaurant = await pool.query("SELECT * FROM restaurant WHERE restaurant_id = $1",[id]);
     res.json(restaurant.rows);
   } catch (err) {
     console.log(err.message);
@@ -327,6 +332,41 @@ app.post("/table", async function (req, res) {
     }
   } catch (err) {
     console.log(err.message);
+  }
+});
+
+app.post("/menu", async function (req, res) {
+  try {
+    const { itemName, itemPrice, itemDescription, itemImage, restaurant_id } = req.body;
+    const newitem = await pool.query(
+      "INSERT INTO menu (item_name, item_price, item_description, item_image, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
+      [ itemName, itemPrice, itemDescription, itemImage, 1, restaurant_id]);
+    res.json(newitem.rows);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+app.get("/menu/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const rows = await pool.query("SELECT * FROM menu WHERE restaurant_id = $1 and flags=$2",[id , 1]);
+    res.json(rows.rows);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
+app.get("/menu/", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const rows = await pool.query("SELECT * FROM menu");
+    console.log(rows);
+    res.json(rows.rows);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "An error occurred" });
   }
 });
 
@@ -400,12 +440,9 @@ app.get("/paymentData", async (req, res) => {
   }
 });
 
-
 app.get("/ordersData", async (req, res) => {
   try {
-    const ordersData = await pool.query(
-      "SELECT * FROM orders "
-    );
+    const ordersData = await pool.query("SELECT * FROM orders");
     res.json(ordersData.rows);
   } catch (err) {
     console.log(err.message);

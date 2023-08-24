@@ -28,7 +28,6 @@ export default function Sidebar() {
         localStorage.setItem("SignStatus", "signUp")
         localStorage.removeItem("auth");
         localStorage.removeItem("roles");
-        localStorage.removeItem("curruntUser");
         window.location.href = 'http://localhost:3000/';
       } else
         Swal.fire(' Cancelled', '', 'error')

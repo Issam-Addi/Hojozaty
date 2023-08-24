@@ -9,12 +9,15 @@ const RestaurantHome = () => {
 
   const [restaurant, setRestaurant] = useState([]);
   const restaurant_id = restaurant[0]?.restaurant_id;
+  let userData = JSON.parse(localStorage.curruntUser)
+  const user_id = userData.userid;
 
   useEffect(() => {
-    axios.get('http://localhost:5000/generatedRes')
+    axios.get(`http://localhost:5000/restaurants/${user_id}`)
       .then((response) => {
         setRestaurant(response.data);
-      }).catch((error) => console.log(error.message));
+      })
+      .catch((error) => console.log(error.message))
   }, []);
 
   const [img, setImg] = useState("");
@@ -160,22 +163,24 @@ const RestaurantHome = () => {
           </path>
         </g>
       </svg>
-      <div className="container mx-auto px-6 md:px-12 xl:px-32">
-        <div className="text-center text-gray-950">
-          <div className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12 mt-[4.5rem] bg-white backdrop-blur-2xl">
-            <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
-              Welcome, The Best Choise <br />
-              <span className="text-amber-600">For Your Business</span>
-            </h1>
-            <Link
-              to={`/profile/${restaurant_id}`}
-              className="inline-block mb-2 md:mb-0 mr-0 md:mr-2 px-4 py-2.5 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
-              role="button">
-              PROFILE
-            </Link>
+      {(restaurant[0]?.restaurant_name !== "") &&
+        <div className="container mx-auto px-6 md:px-12 xl:px-32">
+          <div className="text-center text-gray-950">
+            <div className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12 mt-[4.5rem] bg-white backdrop-blur-2xl">
+              <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
+                Welcome, The Best Choise <br />
+                <span className="text-amber-600">For Your Business</span>
+              </h1>
+              <Link
+                to={`/profile/${restaurant_id}`}
+                className="inline-block mb-2 md:mb-0 mr-0 md:mr-2 px-4 py-2.5 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                role="button">
+                PROFILE
+              </Link>
+            </div>
           </div>
         </div>
-      </div>
+      }
 
       {(restaurant[0]?.restaurant_name !== "") &&
         <>
@@ -323,11 +328,11 @@ const RestaurantHome = () => {
                     placeholder="Table Image"
                     name="table-img"
                     id="table-img"
-                    accept="image/*" 
+                    accept="image/*"
                     onChange={(e) => {
                       upLoadIamge(e)
                       setError("")
-                    }}/>
+                    }} />
                   <p className='text-red-700 mb-2'>{error}</p>
                   <div className="flex justify-between">
                     <input
