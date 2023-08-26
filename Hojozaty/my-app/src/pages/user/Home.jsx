@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import video from '../../images/video.mp4'
 import { HashLink } from "react-router-hash-link";
+import video from '../../images/video.mp4'
 import mcd from '../../images/mcd.png'
 import kfc from '../../images/kfc.png'
 import dom from '../../images/Dom.png'
@@ -37,7 +37,6 @@ function Home() {
           </div>
         </div>
       </section>
-
       <section className="bg-gray-200 shadow-xl">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16">
           <div className="sm:text-lg">
@@ -61,16 +60,13 @@ function Home() {
           </div>
         </div>
       </section>
-
       <div className="bg-gray-200 mt-5 shadow-xl">
         <section id="food" className="pt-7">
           <h2 className="text-4xl mb-8 tracking-tight font-bold text-amber-600 text-center">
             Which food do you prefer?
           </h2>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-xl mx-auto p-4">
-
-            <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer">
+            <div className="relative overflow-hidden rounded-lg shadow-lg ">
               <img
                 className="object-cover w-full h-48"
                 src="https://media.istockphoto.com/id/545286388/photo/chinese-food-blank-background.jpg?s=612x612&w=0&k=20&c=pqOIy07YKO5PlU5VxjscwTGRrrZ8PluKMUjSOz-II60="
@@ -87,8 +83,7 @@ function Home() {
                 </button>
               </div>
             </div>
-
-            <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer">
+            <div className="relative overflow-hidden rounded-lg shadow-lg ">
               <img
                 className="object-cover w-full h-48"
                 src="https://i.ndtvimg.com/i/2016-05/arabic-food_625x350_71463118204.jpg"
@@ -105,8 +100,7 @@ function Home() {
                 </button>
               </div>
             </div>
-
-            <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer">
+            <div className="relative overflow-hidden rounded-lg shadow-lg ">
               <img
                 className="object-cover w-full h-48"
                 src="https://blog.amigofoods.com/wp-content/uploads/2020/12/tacos-authentic-mexican-food.jpg"
@@ -123,8 +117,7 @@ function Home() {
                 </button>
               </div>
             </div>
-
-            <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer">
+            <div className="relative overflow-hidden rounded-lg shadow-lg ">
               <img
                 className="object-cover w-full h-48"
                 src="https://static1.squarespace.com/static/5e484ab628c78d6f7e602d73/5e484d29dd42c458f31f0b22/5f52972ad03efd52606d4ad9/1680649812918/What-to-eat-in-Italy.png?format=1500w"
@@ -141,8 +134,7 @@ function Home() {
                 </button>
               </div>
             </div>
-
-            <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer">
+            <div className="relative overflow-hidden rounded-lg shadow-lg ">
               <img
                 className="object-cover w-full h-48"
                 src="https://www.blueosa.com/wp-content/uploads/2020/01/the-best-top-10-indian-dishes.jpg"
@@ -159,8 +151,7 @@ function Home() {
                 </button>
               </div>
             </div>
-
-            <div className="relative overflow-hidden rounded-lg shadow-lg cursor-pointer">
+            <div className="relative overflow-hidden rounded-lg shadow-lg ">
               <img
                 className="object-cover w-full h-48"
                 src="https://www.americancafe.com/wp-content/uploads/2021/09/americancafe-What-Started-American-Cuisine-%E2%80%93-Discover-How-It-All-Started.jpg"
@@ -177,10 +168,8 @@ function Home() {
                 </button>
               </div>
             </div>
-
           </div>
         </section>
-
         <div className="flex justify-center mt-5">
           <HashLink smooth={true} to="ServicePageAll#">
             <button className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
@@ -188,7 +177,6 @@ function Home() {
             </button>
           </HashLink>
         </div>
-
       </div>
       <div className="p-20 bg-gray-200 shadow-xl my-5">
         <div className="text-center mb-16">

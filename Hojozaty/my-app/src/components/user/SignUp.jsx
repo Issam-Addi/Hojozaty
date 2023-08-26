@@ -99,7 +99,7 @@ function SignUp() {
             setError("This Email is already taken");
           }
         })
-        .catch(function (error) { 
+        .catch(function (error) {
           console.log(error);
         });
 

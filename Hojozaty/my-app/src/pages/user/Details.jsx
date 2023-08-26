@@ -31,7 +31,7 @@ function Details1() {
       })
       .catch((error) => console.log(error.message))
 
-    axios.get('http://localhost:5000/recordrId/' + restaurant_id)
+    axios.get('http://localhost:5000/recordrId/' + parseInt(restaurant_id))
       .then((response) => {
         setRestaurantInfo(response.data[0]);
       })

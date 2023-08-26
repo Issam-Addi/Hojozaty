@@ -4,8 +4,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 import Pagination from "@mui/material/Pagination";
+import { BsSearch } from "react-icons/bs";
 
-const ApproveTable = () => {
+const RestaurantsList = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [FilterDataRestaurants, setFilterDataRestaurants] = useState([]);
   const [email, setEmail] = useState("");
@@ -97,16 +98,19 @@ const ApproveTable = () => {
         <div className="relative flex items-center justify-between mt-5 pb-2 text-black">
           Restaurants
         </div>
-        <form>
-          <div className="relative">
+
+        <form className="relative">
+        <div className="absolute flex items-center ml-2 h-full">
+              <BsSearch className="text-amber-600" />
+            </div>
             <input
               type="text"
               id="search"
-              className="block px-4 py-3 w-1/2 mt-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              className="block px-8 py-3 w-1/2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
               placeholder="Search by name"
               onChange={(e) => { filterDataByNameRestaurants(e.target.value); }} />
-          </div>
         </form>
+
         <div className="mt-8 overflow-x-scroll xl:overflow-hidden">
           <table className="w-full">
             <thead>
@@ -183,4 +187,4 @@ const ApproveTable = () => {
   );
 };
 
-export default ApproveTable
+export default RestaurantsList;

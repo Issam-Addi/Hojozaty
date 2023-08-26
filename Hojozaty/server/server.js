@@ -40,7 +40,7 @@ app.get("/records", async function (req, res) {
 app.get("/records/:id", async function (req, res) {
   try {
     const { id } = req.params;
-    const record = await pool.query("SELECT * FROM users WHERE userid = $1", [id,]);
+    const record = await pool.query("SELECT * FROM users WHERE userid = $1", [id]);
     res.json(record.rows);
   } catch (err) {
     console.log(err.message);
@@ -73,8 +73,6 @@ app.post("/recordp", async function (req, res) {
     useremail = email;
     userpassword = password;
     const all_records = await pool.query("SELECT * FROM users");
-    const res_id = await pool.query(`SELECT *  FROM restaurant JOIN users ON restaurant.user_id = users.userid WHERE users.email = $1`, [useremail]);
-    generatedRes = res_id.rows;
     let persons = all_records.rows;
     persons.map((user) => {
       if (user.email == email) {
@@ -90,7 +88,6 @@ app.post("/recordp", async function (req, res) {
     console.log(err.message);
   }
 });
-
 
 app.get("/recordpId", async function (req, res) {
   try {
@@ -145,7 +142,7 @@ app.put("/recordss/:userid", async function (req, res) {
 
 app.get("/restaurants", async function (req, res) {
   try {
-    const all_records = await pool.query("SELECT * FROM restaurant JOIN users ON users.userid = restaurant.user_id WHERE users.flags = 1 ;");
+    const all_records = await pool.query(" SELECT * FROM restaurant JOIN users ON users.userid = restaurant.user_id WHERE users.flags = 1 ;");
     res.json(all_records.rows);
   } catch (err) {
     console.log(err.message);
@@ -248,18 +245,6 @@ app.post("/contacts", async function (req, res) {
   }
 });
 
-app.get("/restaurants/:type_food", (req, res) => {
-  const { type_food } = req.params;
-  pool.query("SELECT * FROM restaurant WHERE type_food = $1", [type_food], (error, results) => {
-    if (error) {
-      console.error(error);
-      res.status(500).json({ error: "Internal server error" });
-    } else {
-      res.json(results.rows);
-    }
-  }
-  );
-});
 
 app.get("/aboutus", async (req, res) => {
   try {
@@ -326,7 +311,7 @@ app.post("/table", async function (req, res) {
     const check_table_number = await pool.query("SELECT * FROM res_table WHERE table_number = $1", [table_number]);
     if (check_table_number.rows.length === 0) {
       const newRecord = await pool.query(
-        "INSERT INTO res_table (table_number, available_time_start, guest_number, available_time_end, img, table_status, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6,'0', $7) RETURNING *",
+        "INSERT INTO res_table (table_number, available_time_start, guest_number, available_time_end, img, table_status, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6,'1', $7) RETURNING *",
         [table_number, available_time_start, guest_number, available_time_end, img, table_status, restaurant_id]);
       res.json(newRecord.rows);
     } else {
@@ -342,7 +327,7 @@ app.post("/menu", async function (req, res) {
     const { itemName, itemPrice, itemDescription, itemImage, restaurant_id } = req.body;
     const newitem = await pool.query(
       "INSERT INTO menu (item_name, item_price, item_description, item_image, flags, restaurant_id) VALUES($1, $2, $3, $4, $5, $6) RETURNING *",
-      [itemName, itemPrice, itemDescription, itemImage, 1, restaurant_id]);
+      [itemName, itemPrice, itemDescription, itemImage, 1, 0]);
     res.json(newitem.rows);
   } catch (error) {
     console.log(error.message);
@@ -454,10 +439,8 @@ app.get("/ordersData", async (req, res) => {
 app.get("/restaurantTables", async (req, res) => {
   try {
     const restaurantTablesData = await pool.query("SELECT * FROM res_table");
-    const pendingTablesData = await pool.query("SELECT * FROM res_table WHERE flags = 0 ");
     const restaurantTables = restaurantTablesData.rows
-    const pendingTables = pendingTablesData.rows
-    res.json({ restaurantTables, pendingTables });
+    res.json({ restaurantTables});
   } catch (err) {
     console.log(err.message);
   }
@@ -525,6 +508,17 @@ app.get("/restaurantsAll", (req, res) => {
       res.json(results.rows);
     }
   });
+});
+
+// شوف شو قصتها 
+app.get("/restaurants/:type_food", async function (req, res) {
+  try {
+    const { type_food } = req.params;
+    const restaurant = await pool.query("SELECT * FROM restaurant WHERE type_food = $1", [type_food]);
+    res.json(restaurant.rows);
+  } catch (err) {
+    console.log(err.message);
+  }
 });
 
 const port = 5000;

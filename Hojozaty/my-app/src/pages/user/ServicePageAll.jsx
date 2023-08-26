@@ -6,7 +6,7 @@ import { FaUtensils, FaMapMarkerAlt } from "react-icons/fa";
 import { AiOutlineRight } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 
-const ServicePageAll = ({ setCurrentTable }) => {
+const ServicePageAll = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [FilterDataUsers, setFilterDataUsers] = useState([]);
 
@@ -53,7 +53,7 @@ const ServicePageAll = ({ setCurrentTable }) => {
 
   slicedArrayUsers = FilterDataUsers.slice(startIndexUsers, endIndexUsers);
 
-  const handlePageChangeUsers = (event, pageNumber) => {
+  const handlePageChangeUsers = (pageNumber) => {
     setCurrentPageUsers(pageNumber);
   };
 

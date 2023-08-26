@@ -6,16 +6,15 @@ import { FaUtensils, FaMapMarkerAlt, FaBook } from 'react-icons/fa'
 
 
 function ServicePage({ setCurrentTable }) {
-  const [restaurants, setRestaurants] = useState([]);
+
   const { type_food } = useParams();
+  const [restaurants, setRestaurants] = useState([]);
 
   useEffect(() => {
     axios
       .get(`http://localhost:5000/restaurants/${type_food}`)
       .then((response) => {
-        console.log(response.data);
         setRestaurants(response.data);
-        console.log(response.data);
       })
       .catch((error) => console.log(error.message));
   }, [type_food]);

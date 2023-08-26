@@ -15,18 +15,10 @@ function ContactUs() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const contactMessage = {
-      name,
-      email,
-      phone,
-      message,
-    };
+    const contactMessage = { name, email, phone, message };
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/contacts",
-        contactMessage
-      );
+      const response = await axios.post( "http://localhost:5000/contacts", contactMessage);
       if (response.status === 200) {
         Swal.fire("Success", "Message sent successfully!", "success");
         setName("");

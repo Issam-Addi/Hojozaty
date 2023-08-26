@@ -75,8 +75,7 @@ const RestaurantHome = () => {
             Swal.fire({
               position: "center",
               icon: "success",
-              title:
-                "Your Table has been Added successfullyYour table information has been sent to the admin, and you will be contacted if it is approved or not",
+              title:"Your Table has been Added successfully",
             });
           }
         })

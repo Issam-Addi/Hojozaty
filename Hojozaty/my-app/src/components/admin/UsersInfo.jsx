@@ -114,8 +114,8 @@ const UsersInfo = () => {
             Users Table
           </div>
         </div>
-        <form>
-          <div className="relative mt-5">
+
+        <form className="relative mt-5">
             <div className="absolute flex items-center ml-2 h-full">
               <BsSearch className="text-amber-600" />
             </div>
@@ -129,8 +129,8 @@ const UsersInfo = () => {
                 setSearchTermUsers(e.target.value);
                 filterDataByNameUsers(e.target.value);
               }} />
-          </div>
         </form>
+
         <div className="mt-8 overflow-x-scroll xl:overflow-hidden">
           <table className="w-full">
             <thead>
