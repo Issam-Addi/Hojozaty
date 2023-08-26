@@ -36,36 +36,36 @@ export default function Sidebar() {
 
   return (
     <aside className="w-full max-w-[20rem] min-h-screen p-4 shadow-xl bg-black">
-      <div className="mb-2 p-4 text-amber-600">
+      <div className="mb-2 p-4 text-amber-500">
         Admin page
       </div>
       <ui>
         <Link to='/'>
-          <li className="hover:bg-amber-600 text-white flex py-2.5 rounded-lg">
+          <li className="hover:bg-amber-500 text-white flex py-2.5 rounded-lg">
             <PresentationChartBarIcon className="h-5 w-5 mx-4" />
             Statistics
           </li>
         </Link>
         <Link to='/ListUser'>
-          <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
+          <li className="hover:bg-amber-500 text-white flex px-4 py-2.5 rounded-lg">
             <Icon path={mdiAccountMultipleOutline} size={1} className='mr-4' />
             Users list
           </li>
         </Link>
         <Link to='/ListRestaurant'>
-          <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
+          <li className="hover:bg-amber-500 text-white flex px-4 py-2.5 rounded-lg">
             <Icon path={mdiSilverwareForkKnife} size={1} className='mr-4' />
             Restaurants List
           </li>
         </Link>
         <Link to='/EditAboutContact'>
-          <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
+          <li className="hover:bg-amber-500 text-white flex px-4 py-2.5 rounded-lg">
             <Icon path={mdiInformationOutline} size={1} className='mr-4' />
             Edit About
           </li>
         </Link>
         <Link to='/Chat'>
-          <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
+          <li className="hover:bg-amber-500 text-white flex px-4 py-2.5 rounded-lg">
             <InboxIcon className="h-5 w-5 mr-4" />
             Inbox
           </li>
@@ -73,7 +73,7 @@ export default function Sidebar() {
         <button
           className='w-full'
           onClick={handleLogOut}>
-          <li className="hover:bg-amber-600 text-white flex px-4 py-2.5 rounded-lg">
+          <li className="hover:bg-amber-500 text-white flex px-4 py-2.5 rounded-lg">
             <PowerIcon className="h-5 w-5 mr-4" />
             Log Out
           </li>

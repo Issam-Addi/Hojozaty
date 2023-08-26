@@ -83,12 +83,12 @@ const ServicePageAll = () => {
         <div className="w-full sm:w-11/12 md:w-5/6 lg:w-2/3 xl:w-1/2 mx-auto py-10 px-4 rounded-lg bg-white border border-black">
           <div className="relative">
             <div className="absolute flex items-center ml-2 h-full">
-              <BsSearch className=" text-amber-600" />
+              <BsSearch className=" text-amber-500" />
             </div>
             <input
               type="text"
               placeholder="Search by name, location"
-              className="px-8 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              className="px-8 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
               onChange={(e) => { filterDataByNameUsers(e.target.value); }} />
           </div>
           <div className="flex flex-col md:flex-row md:items-center justify-between mt-6 md:mb-2">
@@ -96,7 +96,7 @@ const ServicePageAll = () => {
           </div>
           <div className="flex flex-col md:flex-row md:justify-between">
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 xl:grid-cols-2 mt-4 md:mt-0">
-              <select className=" text-amber-600 px-4 py-3 w-full md:w-60 rounded-lg bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              <select className=" text-amber-500 px-4 py-3 w-full md:w-60 rounded-lg bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                 onChange={(e) => setOptionType(e.target.value)}>
                 <option value="">All Type</option>
                 <option value="arabian">arabian</option>
@@ -106,7 +106,7 @@ const ServicePageAll = () => {
                 <option value="indian">indian</option>
                 <option value="american">american</option>
               </select>
-              <select className="text-amber-600 px-4 py-3 w-full md:w-60 rounded-lg bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              <select className="text-amber-500 px-4 py-3 w-full md:w-60 rounded-lg bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                 onChange={(e) => setOptionAddress(e.target.value)}>
                 <option value="">All Addresses</option>
                 <option value="amman">amman</option>
@@ -125,7 +125,7 @@ const ServicePageAll = () => {
             </div>
             <div className="mt-4 md:mt-0">
               <button
-                className="w-20 h-10 bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
+                className="w-20 h-10 bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
                 onClick={handleFind}>
                 Find
               </button>
@@ -135,7 +135,7 @@ const ServicePageAll = () => {
       </div>
       <div className="bg-gray-200 shadow-xl py-10 mb-5">
         <div className="text-center mb-16">
-          <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-600">
+          <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-500">
             Restaurants
           </h3>
         </div>
@@ -166,7 +166,7 @@ const ServicePageAll = () => {
                   </div>
                   <div className="flex justify-center mt-3 items-center">
                     <Link to={`/Details/${restaurant.restaurant_id}`}>
-                    <button className="w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
+                    <button className="w-full bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                       View Details
                     </button>
                         </Link>

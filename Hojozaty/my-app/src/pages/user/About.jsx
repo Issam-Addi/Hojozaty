@@ -49,7 +49,7 @@ function About() {
                 <div className="max-w-screen-xl mx-auto">
                     <div className="px-4 space-y-8">
                         <div>
-                            <h2 className="text-4xl text-center font-bold text-amber-600">
+                            <h2 className="text-4xl text-center font-bold text-amber-500">
                                 Main features
                             </h2>
                         </div>
@@ -734,7 +734,7 @@ function About() {
                     </div>
                     <div className="w-full px-6 sm:px-0 lg:w-1/2 text-black capitalize ">
                         <div className="mt-10 lg:mt-0">
-                            <h2 className="text-amber-600 mb-8 text-4xl font-bold sm:text-4xl">
+                            <h2 className="text-amber-500 mb-8 text-4xl font-bold sm:text-4xl">
                                 {aboutUsData.about_title}
                             </h2>
                             <p className="text-body-color mb-8 text-base">

@@ -83,14 +83,14 @@ const RestaurantsList = () => {
               type="email"
               id="email"
               name='email'
-              className="block px-4 py-3 w-1/2 mt-4 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              className="block px-4 py-3 w-1/2 mt-4 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
               placeholder="Add new restaurants"
               required
               onChange={(e) => { setEmail(e.target.value); }} />
             <button
               onClick={() => addrestaurants()}
               type="submit"
-              className="absolute right-2.5 -bottom-10 px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+              className="absolute right-2.5 -bottom-10 px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
               Add
             </button>
           </div>
@@ -101,12 +101,12 @@ const RestaurantsList = () => {
 
         <form className="relative">
         <div className="absolute flex items-center ml-2 h-full">
-              <BsSearch className="text-amber-600" />
+              <BsSearch className="text-amber-500" />
             </div>
             <input
               type="text"
               id="search"
-              className="block px-8 py-3 w-1/2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              className="block px-8 py-3 w-1/2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
               placeholder="Search by name"
               onChange={(e) => { filterDataByNameRestaurants(e.target.value); }} />
         </form>

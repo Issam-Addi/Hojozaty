@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import logo from '../../images/logo.png';
+import logo from '../../images/hojozaty.png';
 import { ImLocation } from "react-icons/im";
 import { IoMdMail } from "react-icons/io";
 import { BsFillTelephoneFill } from "react-icons/bs";
@@ -17,7 +17,7 @@ const Footer = () => {
             <div className="grid-1 grid gap-8 md:grid-cols-3 lg:grid-cols-3">
               <div>
                 <h6 className="mb-4 flex items-center justify-center md:justify-start">
-                  <img src={logo} alt="logo" width="200" />
+                  <img src={logo} alt="logo" width="100" />
                 </h6>
                 <p className='text-white'>
                   Book your faviorate restaurant and enjoy 😋

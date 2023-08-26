@@ -117,12 +117,12 @@ const UsersInfo = () => {
 
         <form className="relative mt-5">
             <div className="absolute flex items-center ml-2 h-full">
-              <BsSearch className="text-amber-600" />
+              <BsSearch className="text-amber-500" />
             </div>
             <input
               type="text"
               id="search"
-              className="block px-8 py-3 w-1/4 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+              className="block px-8 py-3 w-1/4 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
               placeholder="Search by username"
               value={searchTermUsers}
               onChange={(e) => {
@@ -207,9 +207,9 @@ const UsersInfo = () => {
                     <td className="pt-5 pb-6">
                       <button onClick={() => handleUpdate(e.userid, e.type_id, e.username)}>
                         {e.type_id == 0 ?
-                          <Icon className="text-amber-600" path={mdiHumanEdit} size={1} />
+                          <Icon className="text-amber-500" path={mdiHumanEdit} size={1} />
                           :
-                          <Icon className="text-amber-600" path={mdiHumanEdit} size={1} />}
+                          <Icon className="text-amber-500" path={mdiHumanEdit} size={1} />}
                       </button>
                     </td>
                     <td className="pt-5 pb-6">

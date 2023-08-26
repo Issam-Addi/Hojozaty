@@ -56,13 +56,13 @@ const Statistics = () => {
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-white p-3">
             <span className="flex items-center">
-              <Icon className="text-amber-600" path={mdiCashRegister} size={1} />
+              <Icon className="text-amber-500" path={mdiCashRegister} size={1} />
             </span>
           </div>
         </div>
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
           <p className="font-dm text-sm font-medium text-white">Earnings</p>
-          <h4 className="text-xl font-bold text-amber-600 dark:text-white">
+          <h4 className="text-xl font-bold text-amber-500 dark:text-white">
             $ {payment * 5}
           </h4>
         </div>
@@ -72,7 +72,7 @@ const Statistics = () => {
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-white p-3">
             <span className="flex items-center">
-              <Icon className="text-amber-600" path={mdiAccountMultipleOutline} size={1} />
+              <Icon className="text-amber-500" path={mdiAccountMultipleOutline} size={1} />
             </span>
           </div>
         </div>
@@ -80,7 +80,7 @@ const Statistics = () => {
           <p className="font-dm text-sm font-medium text-white">
             Total Users
           </p>
-          <h4 className="text-xl font-bold text-amber-600 dark:text-white">
+          <h4 className="text-xl font-bold text-amber-500 dark:text-white">
             {user.length}
           </h4>
         </div>
@@ -90,13 +90,13 @@ const Statistics = () => {
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-white p-3">
             <span className="flex items-center">
-              <Icon className="text-amber-600" path={mdiSilverwareForkKnife} size={1} />
+              <Icon className="text-amber-500" path={mdiSilverwareForkKnife} size={1} />
             </span>
           </div>
         </div>
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
           <p className="font-dm text-sm font-medium text-white">Total Restaurants</p>
-          <h4 className="text-xl font-bold text-amber-600 dark:text-white">
+          <h4 className="text-xl font-bold text-amber-500 dark:text-white">
             {restaurant.length}
           </h4>
         </div>
@@ -106,13 +106,13 @@ const Statistics = () => {
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-white p-3">
             <span className="flex items-center">
-              <Icon className="text-amber-600" path={mdiTableFurniture} size={1} />
+              <Icon className="text-amber-500" path={mdiTableFurniture} size={1} />
             </span>
           </div>
         </div>
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
           <p className="font-dm text-sm font-medium text-white">Total tables</p>
-          <h4 className="text-xl font-bold text-amber-600 dark:text-white">
+          <h4 className="text-xl font-bold text-amber-500 dark:text-white">
             {restaurantTables.length}
           </h4>
         </div>
@@ -122,13 +122,13 @@ const Statistics = () => {
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-white p-3">
             <span className="flex items-center">
-              <Icon className="text-amber-600" path={mdiNotebookEditOutline} size={1} />
+              <Icon className="text-amber-500" path={mdiNotebookEditOutline} size={1} />
             </span>
           </div>
         </div>
         <div className="h-50 ml-4 flex w-auto flex-col justify-center">
           <p className="font-dm text-sm font-medium text-white">Total orders</p>
-          <h4 className="text-xl font-bold text-amber-600 dark:text-white">
+          <h4 className="text-xl font-bold text-amber-500 dark:text-white">
             {ordersData.length}
           </h4>
         </div>
@@ -138,7 +138,7 @@ const Statistics = () => {
         <div className="ml-[18px] flex h-[90px] w-auto flex-row items-center">
           <div className="rounded-full bg-white p-3">
             <span className="flex items-center">
-              <Icon className="text-amber-600" path={mdiAccountMultipleOutline} size={1} />
+              <Icon className="text-amber-500" path={mdiAccountMultipleOutline} size={1} />
             </span>
           </div>
         </div>
@@ -146,7 +146,7 @@ const Statistics = () => {
           <p className="font-dm text-sm font-medium text-white">
             Total admin
           </p>
-          <h4 className="text-xl font-bold text-amber-600 dark:text-white">
+          <h4 className="text-xl font-bold text-amber-500 dark:text-white">
           {admin.length}
           </h4>
         </div>

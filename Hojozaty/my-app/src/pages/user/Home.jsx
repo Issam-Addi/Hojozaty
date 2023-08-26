@@ -26,11 +26,11 @@ function Home() {
             loop={true} />
         </div>
         <div className="video-content space-y-2 z-10 pb-5 h-[55vh]">
-          <h1 className="font-bold text-5xl uppercase text-amber-600">Foodie's Paradise Awaits</h1>
+          <h1 className="font-bold text-5xl uppercase text-amber-500">Foodie's Paradise Awaits</h1>
           <h3 className="font-bold text-2xl">Reserve your table with ease and indulge in culinary delights <br /> at your favorite restaurants</h3>
           <div class="rounded-md shadow mt-10">
             <HashLink smooth={true} to="#food">
-              <button class="bg-amber-600 text-white py-2 px-4 rounded-lg mt-5 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1">
+              <button class="bg-amber-500 text-white py-2 px-4 rounded-lg mt-5 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1">
                 Pick Your Favorite Food
               </button>
             </HashLink>
@@ -40,7 +40,7 @@ function Home() {
       <section className="bg-gray-200 shadow-xl">
         <div className="gap-16 items-center py-8 px-4 mx-auto max-w-screen-xl lg:grid lg:grid-cols-2 lg:py-16">
           <div className="sm:text-lg">
-            <h2 className="mb-8 text-4xl tracking-tight font-bold text-amber-600 capitalize">
+            <h2 className="mb-8 text-4xl tracking-tight font-bold text-amber-500 capitalize">
               Effortless reservations at favorite restaurants
             </h2>
             <p>
@@ -62,7 +62,7 @@ function Home() {
       </section>
       <div className="bg-gray-200 mt-5 shadow-xl">
         <section id="food" className="pt-7">
-          <h2 className="text-4xl mb-8 tracking-tight font-bold text-amber-600 text-center">
+          <h2 className="text-4xl mb-8 tracking-tight font-bold text-amber-500 text-center">
             Which food do you prefer?
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-screen-xl mx-auto p-4">
@@ -77,7 +77,7 @@ function Home() {
                   Asian Food
                 </h4>
                 <button
-                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-600 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1"
+                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-500 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1"
                   onClick={() => handleFoodTypeSelection("asian")}>
                   View More
                 </button>
@@ -94,7 +94,7 @@ function Home() {
                   Arabian Food
                 </h4>
                 <button
-                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-600 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1"
+                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-500 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1"
                   onClick={() => handleFoodTypeSelection("arabian")}>
                   View More
                 </button>
@@ -111,7 +111,7 @@ function Home() {
                   Mexican Food
                 </h4>
                 <button
-                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-600 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1"
+                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-500 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1"
                   onClick={() => handleFoodTypeSelection("mexican")}>
                   View More
                 </button>
@@ -128,7 +128,7 @@ function Home() {
                   Italian Food
                 </h4>
                 <button
-                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-600 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1"
+                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-500 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1"
                   onClick={() => handleFoodTypeSelection("italian")}>
                   View More
                 </button>
@@ -145,7 +145,7 @@ function Home() {
                   Indian Food
                 </h4>
                 <button
-                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-600 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1"
+                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-500 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1"
                   onClick={() => handleFoodTypeSelection("indian")}>
                   View More
                 </button>
@@ -162,7 +162,7 @@ function Home() {
                   American Food
                 </h4>
                 <button
-                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-600 border border-amber-600 hover:bg-transparent transition transform hover:-translate-y-1"
+                  className="text-sm font-medium mt-4 text-white px-5 py-2.5 rounded-lg bg-amber-500 border border-amber-500 hover:bg-transparent transition transform hover:-translate-y-1"
                   onClick={() => handleFoodTypeSelection("american")}>
                   View More
                 </button>
@@ -172,7 +172,7 @@ function Home() {
         </section>
         <div className="flex justify-center mt-5">
           <HashLink smooth={true} to="ServicePageAll#">
-            <button className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+            <button className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
               Show All Restaurants
             </button>
           </HashLink>
@@ -180,7 +180,7 @@ function Home() {
       </div>
       <div className="p-20 bg-gray-200 shadow-xl my-5">
         <div className="text-center mb-16">
-          <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-600">
+          <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-500">
             Our partners
           </h3>
         </div>

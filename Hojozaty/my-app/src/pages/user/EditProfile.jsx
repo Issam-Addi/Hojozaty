@@ -60,7 +60,7 @@ const EditProfile = () => {
                             type="text"
                             name="full_name"
                             id="full_name"
-                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                             defaultValue=""
                             placeholder='Your Name'
                             value={username}
@@ -72,7 +72,7 @@ const EditProfile = () => {
                             type="text"
                             name="email"
                             id="email"
-                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                             defaultValue=""
                             placeholder="email@domain.com"
                             value={email}
@@ -84,7 +84,7 @@ const EditProfile = () => {
                             type="text"
                             name="phone_number"
                             id="phone_number"
-                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                             defaultValue=""
                             placeholder="07XXXXXXXX"
                             value={PhoneNumber}
@@ -96,7 +96,7 @@ const EditProfile = () => {
                             type="password"
                             name="password"
                             id="password"
-                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                            className="px-4 w-full mt-2 py-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                             defaultValue=""
                             placeholder="*******"
                             value={Password}
@@ -104,7 +104,7 @@ const EditProfile = () => {
                         </div>
                         <div className="md:col-span-5 text-right">
                           <div className="inline-flex items-end">
-                            <button type='submit' className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                            <button type='submit' className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                               Save
                             </button>
                           </div>

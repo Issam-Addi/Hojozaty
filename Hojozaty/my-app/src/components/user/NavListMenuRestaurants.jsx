@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 import { Navbar, Collapse, Typography, Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react";
 import { ChevronDownIcon, Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import logo from "../../images/logo.png";
+import logo from "../../images/hojozaty.png";
 import { BiSolidUser } from "react-icons/bi";
 import { AiOutlinePoweroff } from "react-icons/ai";
 
@@ -58,7 +58,7 @@ export default function Example() {
       <div className=" max-w-screen-xl mx-auto lg:px-4">
         <div className="flex items-center justify-between text-white">
           <Link to="/">
-            <img src={logo} alt="logo" width={150} />
+            <img src={logo} alt="logo" width={70} />
           </Link>
           <div className="hidden gap-2 lg:flex">
             <ProfileMenu />

@@ -104,7 +104,7 @@ function PaymentPage() {
         </div>
         <div className="lg:w-1/2 xl:w-5/12 p-6 sm:p-12 sm:w-10/12">
           <div className="mt-12 flex flex-col items-center">
-            <h1 className="text-2xl xl:text-3xl font-extrabold text-amber-600">
+            <h1 className="text-2xl xl:text-3xl font-extrabold text-amber-500">
               Payment Page
             </h1>
             <div className="w-full flex-1 mt-8">
@@ -125,7 +125,7 @@ function PaymentPage() {
                       type="text"
                       id="email"
                       name="email"
-                      className="w-full px-4 py-3 pl-11 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full px-4 py-3 pl-11 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       placeholder="your.email@gmail.com" />
                     <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
                       <svg
@@ -153,7 +153,7 @@ function PaymentPage() {
                       type="text"
                       id="card-holder"
                       name="card-holder"
-                      className="w-full px-4 py-3 pl-11 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full px-4 py-3 pl-11 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       placeholder="Your full name here"
                       value={username}
                       onChange={(e) => setUserName(e.target.value)} />
@@ -184,7 +184,7 @@ function PaymentPage() {
                         type="text"
                         id="card-no"
                         name="card-no"
-                        className="w-full px-4 py-3 pl-11 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                        className="w-full px-4 py-3 pl-11 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                         placeholder="xxxx-xxxx-xxxx-xxxx"
                         onChange={(e) => setCardNumber(e.target.value)} />
                       <div className="pointer-events-none absolute inset-y-0 left-0 inline-flex items-center px-3">
@@ -203,13 +203,13 @@ function PaymentPage() {
                     <input
                       type="text"
                       name="credit-expiry"
-                      className="w-full px-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full px-2 py-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       placeholder="MM/YY"
                       onChange={(e) => setDateCard(e.target.value)} />
                     <input
                       type="text"
                       name="credit-cvc"
-                      className="w-1/6 flex-shrink-0 px-2 py-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-1/6 flex-shrink-0 px-2 py-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       placeholder="CVC"
                       value={cvc}
                       onChange={(e) => setCvc(e.target.value)} />
@@ -240,7 +240,7 @@ function PaymentPage() {
                     Return to reservation
                   </Link>
                   <button
-                    className="inline-block px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                    className="inline-block px-4 py-2 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                     onClick={handlePayment}
                     type="submit">
                     Pay Now

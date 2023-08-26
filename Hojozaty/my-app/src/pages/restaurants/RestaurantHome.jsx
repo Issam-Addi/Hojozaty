@@ -168,11 +168,11 @@ const RestaurantHome = () => {
             <div className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12 mt-[4.5rem] bg-white backdrop-blur-2xl">
               <h1 className="text-5xl md:text-6xl xl:text-7xl font-bold tracking-tight mb-12">
                 Welcome, The Best Choise <br />
-                <span className="text-amber-600">For Your Business</span>
+                <span className="text-amber-500">For Your Business</span>
               </h1>
               <Link
                 to={`/profile/${restaurant_id}`}
-                className="inline-block mb-2 md:mb-0 mr-0 md:mr-2 px-4 py-2.5 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                className="inline-block mb-2 md:mb-0 mr-0 md:mr-2 px-4 py-2.5 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                 role="button">
                 PROFILE
               </Link>
@@ -187,7 +187,7 @@ const RestaurantHome = () => {
             <div className="relative z-10">
               <div className="absolute inset-x-0 top-1/2 -z-10 flex -translate-y-1/2 justify-center overflow-hidden [mask-image:radial-gradient(50%_45%_at_50%_55%,{#ea4d24},transparent)]">
                 <svg
-                  className="h-[60rem] w-[100rem] flex-none stroke-amber-600 opacity-20"
+                  className="h-[60rem] w-[100rem] flex-none stroke-amber-500 opacity-20"
                   aria-hidden="true">
                   <defs>
                     <pattern
@@ -218,7 +218,7 @@ const RestaurantHome = () => {
               <div className="mx-auto max-w-2xl text-center">
                 <h1 className="text-4xl font-bold tracking-tight text-black sm:text-6xl">
                   Increase Your Customers:
-                  <span className="text-amber-600"> Add Tables</span>
+                  <span className="text-amber-500"> Add Tables</span>
                 </h1>
                 <h2 className="mt-6 text-lg leading-8 text-black">
                   Add your services and make people come to you.
@@ -227,7 +227,7 @@ const RestaurantHome = () => {
                   <HashLink
                     smooth="true"
                     to="#service"
-                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                     Add table
                     <HiOutlineArrowNarrowDown className='h-5 w-5' />
                   </HashLink>
@@ -245,7 +245,7 @@ const RestaurantHome = () => {
           <span id="service"></span>
           <div className="min-h-screen bg-gray-950 py-6 flex flex-col justify-center sm:py-12 mt-20">
             <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-              <div className="absolute inset-0 bg-amber-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"></div>
+              <div className="absolute inset-0 bg-amber-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl"></div>
               <div className="text-white relative px-4 py-10 bg-amber-800 shadow-lg sm:rounded-3xl sm:p-20">
                 <div className="text-center pb-6">
                   <h1 className="text-3xl uppercase font-bold">Add teble!</h1>
@@ -259,7 +259,7 @@ const RestaurantHome = () => {
                     <span className='text-red-700 text-xl ml-2'>*</span>
                   </label>
                   <input
-                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-black focus:ring-0"
+                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-black focus:ring-0"
                     type="number"
                     placeholder="Table Number"
                     name="table_num"
@@ -276,7 +276,7 @@ const RestaurantHome = () => {
                     <span className='text-red-700 text-xl ml-2'>*</span>
                   </label>
                   <input
-                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-black focus:ring-0"
+                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-black focus:ring-0"
                     type="time"
                     name="time_start"
                     id="time_start"
@@ -291,7 +291,7 @@ const RestaurantHome = () => {
                     <span className='text-red-700 text-xl ml-2'>*</span>
                   </label>
                   <input
-                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-black focus:ring-0"
+                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-black focus:ring-0"
                     type="time"
                     name="time_end"
                     id="time_end"
@@ -306,7 +306,7 @@ const RestaurantHome = () => {
                     <span className='text-red-700 text-xl ml-2'>*</span>
                   </label>
                   <input
-                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-black focus:ring-0"
+                    className="block mt-2 mb-4 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-black focus:ring-0"
                     type="number"
                     placeholder="Guest Number"
                     name="guest_num"
@@ -335,7 +335,7 @@ const RestaurantHome = () => {
                   <p className='text-red-700 mb-2'>{error}</p>
                   <div className="flex justify-between">
                     <input
-                      className="bg-transparent px-4 py-2 text-white rounded-lg border border-white hover:bg-white hover:text-amber-600 transition transform hover:-translate-y-1 hover:shadow-xl"
+                      className="bg-transparent px-4 py-2 text-white rounded-lg border border-white hover:bg-white hover:text-amber-500 transition transform hover:-translate-y-1 hover:shadow-xl"
                       type="submit"
                       defaultValue="Send ➤" />
                     <input

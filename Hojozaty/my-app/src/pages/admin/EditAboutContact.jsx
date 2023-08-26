@@ -50,7 +50,7 @@ const EditAboutContact = () => {
     <>
       <section className="bg-white">
         <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-amber-600">
+          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center text-amber-500">
             Edit About us page
           </h2>
           <form onSubmit={hndelAboutUs} className="space-y-8">
@@ -63,7 +63,7 @@ const EditAboutContact = () => {
               <input
                 type="text"
                 id="subject"
-                className="block px-4 py-3 w-full mt-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                className="block px-4 py-3 w-full mt-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                 placeholder="Enter Here Title For About Us"
                 required
                 value={about_title}
@@ -79,7 +79,7 @@ const EditAboutContact = () => {
                 required
                 id="message"
                 rows={10}
-                className="block px-4 py-3 w-full mt-3 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                className="block px-4 py-3 w-full mt-3 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                 placeholder="enter here  About Us Description ......."
                 defaultValue={""}
                 value={about_us}
@@ -87,7 +87,7 @@ const EditAboutContact = () => {
             </div>
             <div className='flex justify-center'>
               <button type='submit'
-                className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                 Update
               </button>
             </div>

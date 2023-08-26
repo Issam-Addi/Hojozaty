@@ -196,7 +196,7 @@ const RestaurantProfile = () => {
           onClick={toggleSidebar}
           aria-expanded={sidebarOpen}
           type="button"
-          className="inline-flex items-center p-2 mt-2 ml-3 sm:hidden hover:text-amber-600 transition">
+          className="inline-flex items-center p-2 mt-2 ml-3 sm:hidden hover:text-amber-500 transition">
           <span className="sr-only">Open sidebar</span>
           <svg
             className="w-6 h-6"
@@ -214,12 +214,12 @@ const RestaurantProfile = () => {
         {restaurant !== null &&
           <aside className={`fixed top-[4.45rem] left-0 z-10 sm:w-64 w-52 h-screen bg-black px-3 py-4 overflow-y-auto ${sidebarOpen ? 'translate-x-0' : 'sm:translate-x-0 -translate-x-full'}`}>
             <ul className="space-y-2 font-medium">
-              <li className="flex-1 ml-3 whitespace-nowrap text-amber-600 font-bold uppercase">
+              <li className="flex-1 ml-3 whitespace-nowrap text-amber-500 font-bold uppercase">
                 {restaurant[0].restaurant_name}
               </li>
               <li
                 onClick={() => { setChoise("profile"); }}
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-500 cursor-pointer">
                 <svg
                   aria-hidden="true"
                   className="flex-shrink-0 w-6 h-6 text-white transition duration-75"
@@ -236,7 +236,7 @@ const RestaurantProfile = () => {
               </li>
               <li
                 onClick={() => { setChoise("reservation"); }}
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-500 cursor-pointer">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -250,13 +250,13 @@ const RestaurantProfile = () => {
               </li>
               <li
                 onClick={() => { setChoise("menu"); }}
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-500 cursor-pointer">
                 <MdMenuBook className="h-6 w-6" />
                 <span className="flex-1 ml-3 whitespace-nowrap">Menu</span>
               </li>
               <li
                 onClick={() => { setChoise("add_menu"); }}
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 cursor-pointer">
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-500 cursor-pointer">
                 <MdAssignmentAdd className="h-6 w-6" />
                 <span className="flex-1 ml-3 whitespace-nowrap">Add to menu</span>
               </li>
@@ -264,7 +264,7 @@ const RestaurantProfile = () => {
                 <HashLink
                   smooth="true"
                   to="/"
-                  className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600">
+                  className="flex items-center p-2 text-white rounded-lg hover:bg-amber-500">
                   <svg
                     aria-hidden="true"
                     className="flex-shrink-0 w-6 h-6 text-white transition duration-75 "
@@ -281,7 +281,7 @@ const RestaurantProfile = () => {
                 </HashLink>
               </li>
               <li
-                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-600 sm:hidden"
+                className="flex items-center p-2 text-white rounded-lg hover:bg-amber-500 sm:hidden"
                 onClick={toggleSidebar}>
                 <AiOutlineClose className="h-6 w-6" />
                 <span className="flex-1 ml-3 whitespace-nowrap">Close</span>
@@ -296,7 +296,7 @@ const RestaurantProfile = () => {
 
           {choise === "profile" && (
             <>
-              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
+              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-500 ">
                 RESTAURANT PROFILE
               </h1>
               {restaurant !== null &&
@@ -311,7 +311,7 @@ const RestaurantProfile = () => {
                     <h1 className="pb-4 uppercase text-5xl">{restaurant[0].restaurant_name}</h1>
                   </div>
                   <div className="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
-                    <div className="w-full lg:w-3/5 rounded-lg shadow-2xl bg-amber-600 mx-6 lg:mx-0">
+                    <div className="w-full lg:w-3/5 rounded-lg shadow-2xl bg-amber-500 mx-6 lg:mx-0">
                       <div className="p-4 md:p-12 text-center lg:text-left">
                         <div className="block lg:hidden rounded-full shadow-xl mx-auto -mt-16 h-48 w-48 bg-cover bg-center">
                           <img
@@ -385,7 +385,7 @@ const RestaurantProfile = () => {
                                 setbase64code(restaurant[0].img);
                                 setFoodImg(restaurant[0].food_image);
                               }}
-                              className="py-2 px-3 bg-white rounded-lg text-amber-600 border-2 border-white hover:bg-transparent hover:text-white hover:shadow-2xl transform hover:-translate-y-1 transition">
+                              className="py-2 px-3 bg-white rounded-lg text-amber-500 border-2 border-white hover:bg-transparent hover:text-white hover:shadow-2xl transform hover:-translate-y-1 transition">
                               Edit Profile
                             </button>
                           </HashLink>
@@ -403,7 +403,7 @@ const RestaurantProfile = () => {
                 (
                   <>
                     <h1
-                      class="text-2xl md:text-3xl pl-2 border-l-4 text-black border-amber-600"
+                      class="text-2xl md:text-3xl pl-2 border-l-4 text-black border-amber-500"
                       id="edit">
                       EDIT PROFILE
                     </h1>
@@ -412,7 +412,7 @@ const RestaurantProfile = () => {
                         className="max-w-2xl bg-white border border-black rounded-lg shadow-xl"
                         onSubmit={handleSubmit}>
                         <div className="flex flex-wrap border shadow rounded-lg p-3">
-                          <h2 className="text-xl pb-2 text-amber-600">
+                          <h2 className="text-xl pb-2 text-amber-500">
                             Restuarant Details
                           </h2>
                           <div className="flex flex-col gap-2 w-full">
@@ -425,7 +425,7 @@ const RestaurantProfile = () => {
                               <input
                                 required
                                 id="restaurantName"
-                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="text"
                                 value={restaurantName}
                                 onChange={(e) => setRestaurantName(e.target.value)} />
@@ -439,7 +439,7 @@ const RestaurantProfile = () => {
                               <input
                                 required
                                 id="password"
-                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="text"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} />
@@ -453,7 +453,7 @@ const RestaurantProfile = () => {
                               <input
                                 required
                                 id="address"
-                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="text"
                                 value={address}
                                 onChange={(e) => setAddress(e.target.value)} />
@@ -467,7 +467,7 @@ const RestaurantProfile = () => {
                               <input
                                 required
                                 id="contactNumber"
-                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="text"
                                 value={contact}
                                 onChange={(e) => setContact(e.target.value)} />
@@ -481,7 +481,7 @@ const RestaurantProfile = () => {
                               <select
                                 required
                                 id="foodType"
-                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 onChange={(e) => { setFoodType(e.target.value) }}>
                                 <option value="none">select</option>
                                 <option value="arabian">Arabian</option>
@@ -502,7 +502,7 @@ const RestaurantProfile = () => {
                                 id="decription"
                                 required
                                 rows={6}
-                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="text"
                                 value={des}
                                 onChange={(e) => setDes(e.target.value)} />
@@ -515,7 +515,7 @@ const RestaurantProfile = () => {
                               </label>
                               <input
                                 id="restaurantImageURL"
-                                className="w-full py-3 px-7 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-7 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="file"
                                 onChange={(e) => onChange(e)}
                                 accept="image/*" />
@@ -528,14 +528,14 @@ const RestaurantProfile = () => {
                               </label>
                               <input
                                 id="foodImageURL"
-                                className="w-full py-3 px-7 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                                className="w-full py-3 px-7 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                                 type="file"
                                 onChange={(e) => { onChange2(e) }}
                                 accept="image/*" />
                             </div>
                             <div className="flex justify-center">
                               <button
-                                className="bg-amber-500 border-amber-600 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl"
+                                className="bg-amber-500 border-amber-500 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl"
                                 type="submit">
                                 Save changes
                               </button>
@@ -562,7 +562,7 @@ const RestaurantProfile = () => {
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                       <svg
                         aria-hidden="true"
-                        className="w-5 h-5 text-amber-600"
+                        className="w-5 h-5 text-amber-500"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -578,29 +578,29 @@ const RestaurantProfile = () => {
                     <input
                       type="search"
                       id="default-search"
-                      className="block w-full p-4 pl-10 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="block w-full p-4 pl-10 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       placeholder="Search by Table Number"
                       value={search}
                       onChange={(e) => setSearch(e.target.value)} />
                   </div>
                 </div>
               </div>
-              <h1 class="text-2xl md:text-3xl pl-2 border-l-4 text-black mt-10 border-amber-600">
+              <h1 class="text-2xl md:text-3xl pl-2 border-l-4 text-black mt-10 border-amber-500">
                 RESRVATIONS
               </h1>
               <div className="flex flex-wrap items-start justify-start p-10 py-10">
                 <button
-                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                   onClick={() => { setStatus("pending"); }}>
                   Pending Orders
                 </button>
                 <button
-                  className="px-4 py-2.5 rounded-lg mx-4 hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                  className="px-4 py-2.5 rounded-lg mx-4 hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                   onClick={() => { setStatus("confirmed"); }}>
                   Confirmed Orders
                 </button>
                 <button
-                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                  className="px-4 py-2.5 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                   onClick={() => { setStatus("completed"); }}>
                   Completed Orders
                 </button>
@@ -610,9 +610,9 @@ const RestaurantProfile = () => {
                 <>
                   {status === "pending" &&
                     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
+                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-500">
                         Pending orders
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-500"></span>
                       </h1>
                       {restaurant_orders.length !== 0 &&
                         <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
@@ -627,10 +627,10 @@ const RestaurantProfile = () => {
                                     src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
                                     alt="image" />
                                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
-                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
+                                  <div className="absolute bottom-0 left-0 bg-amber-500 px-4 py-2 text-white text-sm font-bold">
                                     {order.status}
                                   </div>
-                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
+                                  <div className="absolute top-0 right-0 bg-amber-500 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
                                     <span>Order</span>
                                     {order.orders_id}
                                   </div>
@@ -702,7 +702,7 @@ const RestaurantProfile = () => {
                                       </p>
                                     </div>
                                     <button
-                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                                       onClick={() => {
                                         axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "confirmed", })
                                           .then(() => {
@@ -728,9 +728,9 @@ const RestaurantProfile = () => {
                 <>
                   {status === "confirmed" &&
                     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
+                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-500">
                         Confirmed Orders
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-500"></span>
                       </h1>
                       {restaurant_orders.length !== 0 &&
                         <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
@@ -745,10 +745,10 @@ const RestaurantProfile = () => {
                                     src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
                                     alt="image" />
                                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
-                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
+                                  <div className="absolute bottom-0 left-0 bg-amber-500 px-4 py-2 text-white text-sm font-bold">
                                     {order.status}
                                   </div>
-                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
+                                  <div className="absolute top-0 right-0 bg-amber-500 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
                                     <span>Order</span>
                                     {order.orders_id}
                                   </div>
@@ -820,7 +820,7 @@ const RestaurantProfile = () => {
                                       </p>
                                     </div>
                                     <button
-                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1"
+                                      className="px-4 py-2.5 mt-4 rounded-lg hover:shadow-xl border mb-10 border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1"
                                       onClick={() => {
                                         axios.put(`http://localhost:5000/orders/${order.orders_id}`, { status: "completed" })
                                           .then(() => {
@@ -846,9 +846,9 @@ const RestaurantProfile = () => {
                 <>
                   {status === "completed" &&
                     <div className="max-w-screen-xl mx-auto p-5 sm:p-10 md:p-16">
-                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-600">
+                      <h1 className="lg:text-4xl mb-2 pb-4 relative sm:text-xl text-amber-500">
                         Completed Orders
-                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
+                        <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-500"></span>
                       </h1>
                       {restaurant_orders.length !== 0 &&
                         <div className="grid lg:grid-cols-3 md:grid-cols-1 sm:grid-cols-1 gap-10">
@@ -863,10 +863,10 @@ const RestaurantProfile = () => {
                                     src="https://f.hubspotusercontent20.net/hubfs/3390327/WordPress-Table-Reservation-plugin-1000x562-1.jpg"
                                     alt="image" />
                                   <div className="hover:bg-transparent transition duration-300 absolute bottom-0 top-0 right-0 left-0 bg-black opacity-25"></div>
-                                  <div className="absolute bottom-0 left-0 bg-amber-600 px-4 py-2 text-white text-sm font-bold">
+                                  <div className="absolute bottom-0 left-0 bg-amber-500 px-4 py-2 text-white text-sm font-bold">
                                     {order.status}
                                   </div>
-                                  <div className="absolute top-0 right-0 bg-amber-600 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
+                                  <div className="absolute top-0 right-0 bg-amber-500 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3">
                                     <span>Order</span>
                                     {order.orders_id}
                                   </div>
@@ -952,13 +952,13 @@ const RestaurantProfile = () => {
 
           {choise === "menu" && (
             <>
-              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
+              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-500 ">
                 RESTAURANT MENU
               </h1>
               <div className="flex flex-wrap items-center gap-4 justify-center">
                 {menuItem?.map((item) => {
                   return (
-                    <div className="relative overflow-hidden bg-amber-600 rounded-lg w-60 h-96 shadow-lg">
+                    <div className="relative overflow-hidden bg-amber-500 rounded-lg w-60 h-96 shadow-lg">
                       <div className="pt-3 px-10 flex items-center justify-center">
                         <img
                           className="w-40 h-40 bg-white rounded-full"
@@ -968,7 +968,7 @@ const RestaurantProfile = () => {
                       <div className="text-white p-4">
                         <p className="text-black mb-4">Name: {item.item_name}</p>
                         <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
-                        <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-600 px-3 py-2">
+                        <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-500 px-3 py-2">
                           {item.item_price} $
                         </p>
                       </div>
@@ -981,7 +981,7 @@ const RestaurantProfile = () => {
 
           {choise === "add_menu" && (
             <>
-              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-600 ">
+              <h1 class="text-2xl md:text-3xl pl-2 my-10 border-l-4 text-black mt-10  font-sans font-bold border-amber-500 ">
                 Add item to menu
               </h1>
               <div className="flex justify-center mt-20 px-8">
@@ -989,7 +989,7 @@ const RestaurantProfile = () => {
                   onSubmit={handleSubmitItemMenu}
                   className="max-w-2xl bg-white border border-black rounded-lg shadow-xl">
                   <div className="flex flex-wrap border shadow rounded-lg p-3">
-                    <h2 className="text-xl pb-2 text-amber-600">
+                    <h2 className="text-xl pb-2 text-amber-500">
                       New item
                     </h2>
                     <div className="flex flex-col gap-2 w-full">
@@ -1002,7 +1002,7 @@ const RestaurantProfile = () => {
                         <input
                           required
                           id="Item_name"
-                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                           type="text"
                           onChange={(e) => setItemName(e.target.value)} />
                       </div>
@@ -1015,7 +1015,7 @@ const RestaurantProfile = () => {
                         <input
                           required
                           id="Item_price"
-                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                           type="number"
                           min={1}
                           onChange={(e) => setItemPrice(e.target.value)} />
@@ -1029,7 +1029,7 @@ const RestaurantProfile = () => {
                         <input
                           required
                           id="Item_description"
-                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          className="w-full py-3 px-3 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                           type="text"
                           onChange={(e) => setItemDescription(e.target.value)} />
                       </div>
@@ -1042,14 +1042,14 @@ const RestaurantProfile = () => {
                         <input
                           required
                           id="Item_image"
-                          className="w-full py-3 px-7 my-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                          className="w-full py-3 px-7 my-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                           type="file"
                           accept="image/*"
                           onChange={(e) => item_image(e)} />
                       </div>
                       <div className="flex justify-center">
                         <button
-                          className="bg-amber-500 border-amber-600 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl"
+                          className="bg-amber-500 border-amber-500 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl"
                           type="submit">
                           Save changes
                         </button>

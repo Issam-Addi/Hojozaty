@@ -4,7 +4,7 @@ import { UserContext } from "../../UserContext";
 import { Navbar, Collapse, Typography, Menu, MenuHandler, MenuList, MenuItem } from "@material-tailwind/react";
 import { LifebuoyIcon, PowerIcon, ChevronDownIcon, UserCircleIcon, CubeTransparentIcon, Bars3Icon, XMarkIcon, HomeIcon } from "@heroicons/react/24/outline";
 import { BiSolidUser } from "react-icons/bi";
-import logo from "../../images/logo.png";
+import logo from "../../images/hojozaty.png";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 
 function NavListMenuUser() {
@@ -80,7 +80,7 @@ function NavListMenuUser() {
       <div className=" max-w-screen-xl mx-auto lg:px-4">
         <div className="flex items-center justify-between text-white">
           <Link to="/">
-            <img src={logo} alt="logo" width={150} />
+            <img src={logo} alt="logo" width={70} />
           </Link>
           <div className="hidden lg:block">
             <ui className="lg:flex">

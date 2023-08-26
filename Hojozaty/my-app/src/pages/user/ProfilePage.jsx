@@ -53,7 +53,7 @@ const ProfilePage = () => {
         <>
             <div className="bg-white mt-16 max-w-screen-xl mx-auto pt-5 px-4">
 
-                <h1 className="text-4xl font-bold leading-tight mb-2 pb-4 relative">
+                <h1 className="md:text-4xl text-2xl font-bold leading-tight mb-2 pb-4 relative">
                     <span className="bg-clip-text text-transparent bg-amber-600 uppercase">My Profile</span>
                     <span className="absolute bottom-0 left-0 w-full h-1 bg-amber-600"></span>
                 </h1>
@@ -97,9 +97,8 @@ const ProfilePage = () => {
                     </div>
                 </div>
 
-
-                <h1 className="text-4xl font-bold text-gray-900 leading-tight mb-2 pb-4 relative">
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-amber-600 uppercase">Previous Reservations</span>
+                <h1 className="md:text-4xl text-2xl font-bold text-gray-900 leading-tight mb-2 pb-4 relative">
+                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-600 to-amber-600 uppercase">Previous reservations</span>
                     <span className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-amber-600 to-amber-600"></span>
                 </h1>
                 <div className="p-8 bg-gray-200 shadow my-4">

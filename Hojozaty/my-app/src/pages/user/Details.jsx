@@ -101,13 +101,13 @@ function Details1() {
             <nav className="text-white mb-8">
               <ol className="list-none p-0 inline-flex">
                 <li className="flex items-center">
-                  <Link to="/" className="text-amber-600 hover:text-white hover:underline transition">
+                  <Link to="/" className="text-amber-500 hover:text-white hover:underline transition">
                     Home
                   </Link>
                   <span className="mx-2"><AiOutlineRight /></span>
                 </li>
                 <li className="flex items-center">
-                  <Link to="/ServicePageAll" className="text-amber-600 hover:text-white hover:underline transition">
+                  <Link to="/ServicePageAll" className="text-amber-500 hover:text-white hover:underline transition">
                     All restaurants
                   </Link>
                   <span className="mx-2"><AiOutlineRight /></span>
@@ -142,7 +142,7 @@ function Details1() {
       <div className="flex flex-wrap items-center gap-4 justify-center">
         {menuItem?.map((item) => {
           return (
-            <div className="relative overflow-hidden bg-amber-600 rounded-lg w-60 h-96 shadow-lg">
+            <div className="relative overflow-hidden bg-amber-500 rounded-lg w-60 h-96 shadow-lg">
               <div className="pt-3 px-10 flex items-center justify-center">
                 <img
                   className="w-40 h-40 bg-white rounded-full"
@@ -152,7 +152,7 @@ function Details1() {
               <div className="text-white p-4">
                 <p className="text-black mb-4">Name: {item.item_name}</p>
                 <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
-                <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-600 px-3 py-2">
+                <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-500 px-3 py-2">
                   {item.item_price} $
                 </p>
               </div>
@@ -163,7 +163,7 @@ function Details1() {
       <div className="bg-gray-200 mt-5 shadow-lg pb-10">
         {restaurantTable?.length !== 0 ?
           <>
-            <h5 className="uppercase text-center text-4xl pt-10 mb-5 font-bold text-amber-600">
+            <h5 className="uppercase text-center text-4xl pt-10 mb-5 font-bold text-amber-500">
               Available TAbles
             </h5>
             <div className='flex flex-wrap gap-10 justify-center '>
@@ -212,7 +212,7 @@ function Details1() {
                             </span>
                           </p>
                         </div>
-                        <button className="px-4 py-2 mt-4 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                        <button className="px-4 py-2 mt-4 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                           <HashLink smooth={true} to="#book"
                             onClick={() => {
                               setTableNumber(info?.table_number);
@@ -238,7 +238,7 @@ function Details1() {
           <form onSubmit={handleSubmit} >
             <div className="w-full p-8 my-8 md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 mr-auto rounded-2xl shadow-2xl bg-white">
               <div className="flex">
-                <div className="text-3xl md:text-4xl lg:text-5xl text-amber-600">
+                <div className="text-3xl md:text-4xl lg:text-5xl text-amber-500">
                   Book A Table
                 </div>
               </div>
@@ -248,7 +248,7 @@ function Details1() {
                   <input
                     required
                     id='Name'
-                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     type="text"
                     placeholder="Your name"
                     onChange={(e) => { setName(e.target.value); }} />
@@ -258,7 +258,7 @@ function Details1() {
                   <input
                     required
                     id='Phone'
-                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     type="text"
                     placeholder="Your phone number"
                     onChange={(e) => { setPhone(e.target.value); }} />
@@ -268,7 +268,7 @@ function Details1() {
                   <input
                     required
                     id='email'
-                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     type="text"
                     placeholder="Your email"
                     value={email}
@@ -278,7 +278,7 @@ function Details1() {
                   <label htmlFor='Table_number'>Table number <span className='text-red-700 text-xl'>*</span></label>
                   <input
                     id='Table_number'
-                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     type="number"
                     placeholder="Table number"
                     value={tableNumber}
@@ -287,7 +287,7 @@ function Details1() {
                 <div>
                   <label htmlFor="time_start">Starting Booking <span className='text-red-700 text-xl'>*</span></label>
                   <input
-                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     type="time"
                     id="time_start"
                     onChange={(e) => { setStartingTime(e.target.value); }} />
@@ -295,7 +295,7 @@ function Details1() {
                 <div>
                   <label htmlFor="time_end">End Booking <span className='text-red-700 text-xl'>*</span></label>
                   <input
-                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     type="time"
                     id="time_end"
                     onChange={(e) => { setEndTime(e.target.value); }} />
@@ -303,7 +303,7 @@ function Details1() {
                 <div>
                   <label htmlFor='date'>Date <span className='text-red-700 text-xl'>*</span></label>
                   <input
-                    className="my-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                    className="my-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     id="date"
                     type="date"
                     placeholder="First Name*"
@@ -313,12 +313,12 @@ function Details1() {
               </div>
               {SignStatus == "signUp" ?
                 <Link to="/SignIn">
-                  <button type="submit" className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                  <button type="submit" className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                     Sign in to book!
                   </button>
                 </Link>
                 :
-                <button type="submit" className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                <button type="submit" className="mt-2 px-4 py-2 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                   Book Now
                 </button>
               }

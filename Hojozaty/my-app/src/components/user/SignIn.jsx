@@ -118,7 +118,7 @@ function SignIn() {
               <div class="w-full flex-1 mt-8">
                 <div class="flex flex-col items-center">
                   <button
-                    className="bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
+                    className="bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
                     onClick={() => login()}>
                     Sign in with Google
                     <svg
@@ -172,7 +172,7 @@ function SignIn() {
                         type="email"
                         id="email"
                         required
-                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => { setEmail(e.target.value); }} />
@@ -191,7 +191,7 @@ function SignIn() {
                         type="password"
                         id="password"
                         required
-                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                        className="block mt-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                         placeholder="Enter your password"
                         value={password}
                         onChange={(e) => { setPassword(e.target.value); }} />
@@ -201,7 +201,7 @@ function SignIn() {
                     </div>
                     <button
                       type="submit"
-                      className="mt-5 tracking-wide flex items-center justify-center w-full bg-transparent px-4 py-2 text-amber-600 rounded-lg border border-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
+                      className="mt-5 tracking-wide flex items-center justify-center w-full bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                       <svg
                         class="w-6 h-6 -ml-2"
                         fill="none"

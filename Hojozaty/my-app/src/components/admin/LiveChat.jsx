@@ -35,7 +35,7 @@ const LiveChat = () => {
         <div className="flex flex-row h-full w-full overflow-x-hidden">
           <div className="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
             <div className="flex flex-row items-center justify-center h-12 w-full">
-              <div className="flex items-center justify-center rounded-2xl text-amber-600 bg-amber-50 h-10 w-10">
+              <div className="flex items-center justify-center rounded-2xl text-amber-500 bg-amber-50 h-10 w-10">
                 <svg
                   className="w-6 h-6"
                   fill="none"
@@ -54,7 +54,7 @@ const LiveChat = () => {
             <div className="flex flex-col mt-8">
               <div className="flex flex-row items-center justify-between">
                 <span className="font-bold">Active Conversations</span>
-                <span className="flex items-center justify-center bg-amber-600 h-7 w-7 rounded-full">
+                <span className="flex items-center justify-center bg-amber-500 h-7 w-7 rounded-full">
                   {reporters.length}
                 </span>
               </div>
@@ -63,7 +63,7 @@ const LiveChat = () => {
                   return (
                     <button
                       onClick={() => HandleUser(reporter)}
-                      className="flex flex-row items-center hover:bg-amber-600 rounded-xl p-2">
+                      className="flex flex-row items-center hover:bg-amber-500 rounded-xl p-2">
                       <div className="bg-pink-600 w-10 h-10 flex items-center justify-center rounded-full">
                         {reporter.name.charAt(0)}
                       </div>
@@ -96,11 +96,11 @@ const LiveChat = () => {
                 <input
                   required
                   type="text"
-                  className="block mt-2 px-4 py-3 h-10 mb-2 w-full rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                  className="block mt-2 px-4 py-3 h-10 mb-2 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                   onChange={(e) => setMessage(e.target.value)} />
                 <button
                   type='submit'
-                  className="px-4 py-2 rounded-lg hover:shadow-xl border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white transition transform hover:-translate-y-1">
+                  className="px-4 py-2 rounded-lg hover:shadow-xl border border-amber-500 text-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1">
                   Send
                 </button>
               </form>
