@@ -63,15 +63,15 @@ function ContactUs() {
           </div>
         </div>
       </div>
+
       <section className="relative z-10 overflow-hidden bg-gray-200 shadow-lg mb-5 py-20 lg:py-[120px]">
-        <div className="container mx-auto">
-          <div className="mx-4 flex flex-wrap lg:justify-between">
-            <div className="w-full  lg:w-1/2 xl:w-6/12">
-              <div className="mb-12 max-w-[570px] lg:mb-0" style={{ marginRight: "60px", marginLeft: "65px" }}>
-                <h2 className="mb-6 text-[32px] font-bold uppercase text-amber-600 sm:text-[40px] lg:text-[36px] xl:text-[40px]">
+          <div className="flex flex-wrap lg:justify-between max-w-screen-xl mx-auto">
+            <div className="w-full lg:w-1/2 xl:w-6/12 px-4">
+              <div className="mb-12 lg:mb-0">
+                <h2 className="mb-6 uppercase text-amber-600 sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                   GET IN TOUCH WITH US
                 </h2>
-                <h4 className=" mb-9 text-base leading-relaxed">
+                <h4 className="mb-8 text-base leading-relaxed">
                   If you have any questions or feel confused about something,
                   do not hesitate and contact us now...we are here for you
                 </h4>
@@ -848,7 +848,6 @@ function ContactUs() {
               </div>
             </div>
           </div>
-        </div>
       </section>
     </>
   );

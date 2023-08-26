@@ -229,7 +229,8 @@ function Details1() {
             </div>
           </>
           :
-          <h1 className='bg-white uppercase  text-center text-5xl font-bold tracking-tight text-white mt-5 shadow pt-5' style={{ marginTop: "80px" }} >NO available tables</h1>}
+          <h1 className='bg-white uppercase text-center text-5xl font-bold tracking-tight text-white mt-5 shadow pt-5' >NO available tables</h1>
+        }
         <span id='book'></span>
       </div >
       <div className="py-10 bg-gray-200 my-5 shadow-lg">
