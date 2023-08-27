@@ -79,7 +79,7 @@ function PaymentPage() {
 
   const showSuccessAlert = () => {
     Swal.fire({
-      title: "Thank you for make a reservation through our website",
+      title: "Thank you for making a reservation through our website, we will contact you as soon as possible to inform you of the status of your reservation",
       icon: "success",
       confirmButtonText: "OK",
     }).then(() => {

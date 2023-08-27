@@ -958,21 +958,21 @@ const RestaurantProfile = () => {
               <div className="flex flex-wrap items-center gap-4 justify-center">
                 {menuItem?.map((item) => {
                   return (
-                    <div className="relative overflow-hidden bg-amber-500 rounded-lg w-60 h-96 shadow-lg">
-                      <div className="pt-3 px-10 flex items-center justify-center">
-                        <img
-                          className="w-40 h-40 bg-white rounded-full"
-                          src={item.item_image}
-                          alt={item.item_name} />
-                      </div>
-                      <div className="text-white p-4">
-                        <p className="text-black mb-4">Name: {item.item_name}</p>
-                        <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
-                        <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-500 px-3 py-2">
-                          {item.item_price} $
-                        </p>
-                      </div>
+                    <div className="relative overflow-hidden bg-white shadow-2xl border border-amber-500 rounded-lg w-60 h-96">
+                    <div className="pt-3 px-10 flex items-center justify-center">
+                      <img
+                        className="w-40 h-40 bg-white border border-amber-500 rounded-full"
+                        src={item.item_image}
+                        alt={item.item_name} />
                     </div>
+                    <div className="p-4">
+                      <p className="text-black mb-4">Name: {item.item_name}</p>
+                      <p className="h-20 mb-4 overflow-y-scroll">Description: {item.item_description}</p>
+                      <p className="border border-amber-500 rounded-full w-1/2 flex justify-center items-center text-amber-500 px-3 py-2">
+                        Price: {item.item_price} $
+                      </p>
+                    </div>
+                  </div>
                   );
                 })}
               </div>

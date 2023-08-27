@@ -139,27 +139,40 @@ function Details1() {
           </div>
         </div>
       </section>
-      <div className="flex flex-wrap items-center gap-4 justify-center">
-        {menuItem?.map((item) => {
-          return (
-            <div className="relative overflow-hidden bg-amber-500 rounded-lg w-60 h-96 shadow-lg">
-              <div className="pt-3 px-10 flex items-center justify-center">
-                <img
-                  className="w-40 h-40 bg-white rounded-full"
-                  src={item.item_image}
-                  alt={item.item_name} />
-              </div>
-              <div className="text-white p-4">
-                <p className="text-black mb-4">Name: {item.item_name}</p>
-                <p className="h-20 overflow-y-scroll mb-4">{item.item_description}</p>
-                <p className="bg-white rounded-full w-1/2 flex justify-center items-center text-amber-500 px-3 py-2">
-                  {item.item_price} $
-                </p>
-              </div>
+
+      <div className="bg-gray-200 mt-5 shadow-lg pb-10">
+        {restaurantTable?.length !== 0 ?
+          <>
+            <h5 className="uppercase text-center text-4xl pt-10 mb-5 font-bold text-amber-500">
+              Menu
+            </h5>
+            <div className="flex flex-wrap items-center gap-4 justify-center">
+              {menuItem?.map((item) => {
+                return (
+                  <div className="relative overflow-hidden bg-white rounded-lg w-60 h-96 shadow-lg">
+                    <div className="pt-3 px-10 flex items-center justify-center">
+                      <img
+                        className="w-40 h-40 bg-white border border-amber-500 rounded-full"
+                        src={item.item_image}
+                        alt={item.item_name} />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-black mb-4">Name: {item.item_name}</p>
+                      <p className="h-20 mb-4 overflow-y-scroll">Description: {item.item_description}</p>
+                      <p className="border border-amber-500 rounded-full w-1/2 flex justify-center items-center text-amber-500 px-3 py-2">
+                        Price: {item.item_price} $
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })}
+          </>
+          :
+          <h1 className='bg-white uppercase text-center text-5xl font-bold tracking-tight text-black mt-5 shadow pt-5' >There is no menu yet</h1>
+        }
       </div>
+
       <div className="bg-gray-200 mt-5 shadow-lg pb-10">
         {restaurantTable?.length !== 0 ?
           <>
@@ -169,7 +182,7 @@ function Details1() {
             <div className='flex flex-wrap gap-10 justify-center '>
               {restaurantTable?.map((info) => {
                 return (
-                  <div className="max-w-sm my-5 bg-white border border-black rounded-lg shadow">
+                  <div className="max-w-sm my-5 bg-white border border-amber-500 rounded-lg shadow">
                     <div className="rounded-lg overflow-hidden shadow-xl">
                       <div className="relative">
                         <img
@@ -229,7 +242,7 @@ function Details1() {
             </div>
           </>
           :
-          <h1 className='bg-white uppercase text-center text-5xl font-bold tracking-tight text-white mt-5 shadow pt-5' >NO available tables</h1>
+          <h1 className='bg-white uppercase text-center text-5xl font-bold tracking-tight text-black mt-5 shadow pt-5' >NO available tables</h1>
         }
         <span id='book'></span>
       </div >
@@ -306,7 +319,6 @@ function Details1() {
                     className="my-2 px-4 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                     id="date"
                     type="date"
-                    placeholder="First Name*"
                     value={date}
                     onChange={(e) => { setDate(e.target.value); }} />
                 </div>
@@ -324,7 +336,7 @@ function Details1() {
               }
             </div>
           </form>
-          <div className="w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-amber-700 rounded-2xl">
+          <div className="w-full lg:-mt-96 lg:w-2/6 px-8 py-12 ml-auto bg-amber-500 rounded-2xl">
             <div className="flex flex-col text-black">
               <h1 className="font-bold uppercase text-4xl my-4">
                 Booking Details

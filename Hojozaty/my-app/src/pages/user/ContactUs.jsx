@@ -60,7 +60,7 @@ function ContactUs() {
           <div className="flex flex-wrap lg:justify-between max-w-screen-xl mx-auto">
             <div className="w-full lg:w-1/2 xl:w-6/12 px-4">
               <div className="mb-12 lg:mb-0">
-                <h2 className="mb-6 uppercase text-amber-600 sm:text-[40px] lg:text-[36px] xl:text-[40px]">
+                <h2 className="mb-6 uppercase text-amber-500 sm:text-[40px] lg:text-[36px] xl:text-[40px]">
                   GET IN TOUCH WITH US
                 </h2>
                 <h4 className="mb-8 text-base leading-relaxed">
@@ -72,7 +72,7 @@ function ContactUs() {
                     <ImLocation className='w-7 h-7' />
                   </div>
                   <div className="w-full">
-                    <p className="pt-5 text-base hover:text-amber-600 transition cursor-default">
+                    <p className="pt-5 text-base hover:text-amber-500 transition cursor-default">
                       Jordan, Zarqa
                     </p>
                   </div>
@@ -83,7 +83,7 @@ function ContactUs() {
                       <BsFillTelephoneFill className='w-7 h-7' />
                     </div>
                     <div className="w-full">
-                      <p className="pt-5 text-base hover:text-amber-600 hover:underline transition">
+                      <p className="pt-5 text-base hover:text-amber-500 hover:underline transition">
                         +962 786 992 500
                       </p>
                     </div>
@@ -95,7 +95,7 @@ function ContactUs() {
                       <IoMdMail className='w-7 h-7' />
                     </div>
                     <div className="w-full">
-                      <p className="pt-5 text-base hover:text-amber-600 hover:underline transition">
+                      <p className="pt-5 text-base hover:text-amber-500 hover:underline transition">
                         Our email
                       </p>
                     </div>
@@ -113,7 +113,7 @@ function ContactUs() {
                       id="name"
                       type="text"
                       placeholder="Your Name"
-                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       onChange={(event) => setName(event.target.value)}
                       required />
                   </div>
@@ -123,7 +123,7 @@ function ContactUs() {
                       id="email"
                       type="email"
                       placeholder="Your Email"
-                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       onChange={(event) => setEmail(event.target.value)}
                       required />
                   </div>
@@ -133,7 +133,7 @@ function ContactUs() {
                       id="Phone"
                       type="text"
                       placeholder="Your Phone"
-                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       onChange={(event) => setPhone(event.target.value)}
                       required />
                   </div>
@@ -143,7 +143,7 @@ function ContactUs() {
                       id="message"
                       rows={6}
                       placeholder="Your Message"
-                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-600 bg-gray-200 border border-black focus:border-amber-600 focus:ring-0"
+                      className="w-full py-3 px-[14px] mt-2 rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
                       value={message}
                       onChange={(event) => setMessage(event.target.value)}
                       required />
@@ -151,7 +151,7 @@ function ContactUs() {
                   <div>
                     <button
                       type="submit"
-                      className="bg-amber-500 border-amber-600 w-1/2 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl">
+                      className="bg-amber-500 border-amber-500 w-1/2 rounded-lg hover:text-black border p-3 text-white transition hover:bg-transparent transform hover:-translate-y-1 hover:shadow-xl">
                       Send
                     </button>
                   </div>
