@@ -115,7 +115,7 @@ function NavListMenuUser() {
             {SignStatus == "signUp" ? (
               <Link to="/SignIn">
                 <button
-                  className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
+                  className="bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                   Sign In
                 </button>
               </Link>
@@ -166,7 +166,7 @@ function NavListMenuUser() {
             {SignStatus == "signUp" ? (
               <Link to="/SignIn">
                 <button
-                  className="bg-amber-600 border border-amber-600 hover:bg-transparent transition px-4 py-2 rounded-lg">
+                  className="bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
                   Sign In
                 </button>
               </Link>

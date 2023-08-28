@@ -1,86 +1,79 @@
 import React, { useState, useEffect } from "react";
+import { Link, useParams  } from "react-router-dom";
 import axios from "axios";
 import Pagination from "@mui/material/Pagination";
-import { Link, useParams, useNavigate } from "react-router-dom";
-import { FaUtensils, FaMapMarkerAlt, FaBook } from 'react-icons/fa'
+import { FaUtensils, FaMapMarkerAlt } from "react-icons/fa";
+import { AiOutlineRight } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 
-
-function ServicePage({ setCurrentTable }) {
+const ServicePageAll = () => {
 
   const { type_food } = useParams();
   const [restaurants, setRestaurants] = useState([]);
+  const [FilterDataUsers, setFilterDataUsers] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/restaurants/${type_food}`)
+    axios.get(`http://localhost:5000/typeOfFood/${type_food}`)
       .then((response) => {
         setRestaurants(response.data);
+        setFilterDataUsers(response.data);
       })
-      .catch((error) => console.log(error.message));
-  }, [type_food]);
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
+  const [yourSelectedStateValueType, setOptionType] = useState("");
   const [yourSelectedStateValueAddress, setOptionAddress] = useState("");
   const [currentPageUsers, setCurrentPageUsers] = useState(1);
 
-  useEffect(() => {
-    const totalItemsUsers = restaurants.length;
-    const totalPagesUsers = Math.ceil(totalItemsUsers / itemsPerPage);
+  const filterDataByNameUsers = (searchTermUsers) => {
+    const filteredDataUsers = restaurants?.filter((item) =>
+      item.restaurant_name.toLowerCase().includes(searchTermUsers.toLowerCase())
+    );
+    setFilterDataUsers(filteredDataUsers);
     setCurrentPageUsers(1);
-  }, [restaurants]);
+  };
 
+  function handleFind() {
+    const filteredDataUsers = restaurants?.filter((item) =>
+      item.type_food?.toLowerCase().includes(yourSelectedStateValueType.toLowerCase()) &&
+      item.address?.toLowerCase().includes(yourSelectedStateValueAddress.toLowerCase()));
+    setFilterDataUsers(filteredDataUsers);
+  }
+
+  let totalItemsUsers;
+  let totalPagesUsers;
+  let slicedArrayUsers;
   const itemsPerPage = 6;
+
+  totalItemsUsers = FilterDataUsers.length;
+  totalPagesUsers = Math.ceil(totalItemsUsers / itemsPerPage);
+
   const startIndexUsers = (currentPageUsers - 1) * itemsPerPage;
   const endIndexUsers = startIndexUsers + itemsPerPage;
 
-  const handlePageChangeUsers = (event, pageNumber) => {
+  slicedArrayUsers = FilterDataUsers.slice(startIndexUsers, endIndexUsers);
+
+  const handlePageChangeUsers = (pageNumber) => {
     setCurrentPageUsers(pageNumber);
   };
-
-  const [selectedResId, setSelectedResId] = useState("");
-  const navigate = useNavigate();
-
-
-  function handleRes(restaurant) {
-    let restaurant_id = restaurant.restaurant_id;
-    setSelectedResId(restaurant_id);
-    navigate(`/Details/${restaurant_id}`);
-  }
-
-  function handleTable(element) {
-    setCurrentTable(element)
-  }
 
   return (
     <>
       <div
         className="bg-cover bg-center h-screen mt-16"
-        style={{
-          backgroundImage:
-            'url("https://zipinventory.com/assets/images/collections/10-restaurant-service-models-1607720498-5934-800-e549f94cb.webp")',
-          height: "400px", marginBottom: "50px"
-        }}>
+        style={{ backgroundImage: 'url("https://zipinventory.com/assets/images/collections/10-restaurant-service-models-1607720498-5934-800-e549f94cb.webp")', height: "400px" }}>
         <div className="flex items-center justify-center h-full bg-black bg-opacity-50">
           <div className="text-center">
             <h1 className="text-4xl font-bold text-white mb-4">Restaurants</h1>
             <nav className="text-white mb-8">
               <ol className="list-none p-0 inline-flex">
                 <li className="flex items-center">
-                  <Link to="/" className="text-amber-500">
+                  <Link to="/" className="text-amber-500 hover:text-white hover:underline transition">
                     Home
                   </Link>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4 mx-2"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 5l7 7-7 7"
-                    />
-                  </svg>
+                  <span className="mx-2"><AiOutlineRight /></span>
                 </li>
                 <li>Restaurants</li>
               </ol>
@@ -89,81 +82,117 @@ function ServicePage({ setCurrentTable }) {
         </div>
       </div>
 
-      <div className="flex justify-center mt-5 mb-5">
-        <div className="w-full md:w-10/12 shadow shadow-black p-5 rounded-lg bg-white border-solid border-2  transform transition duration-300 ">
-          <div className="flex justify-between items-center">
-            <label className="text-lg font-medium mr-2">Find Restaurant by Address</label>
-            <select
-              className="px-4 py-3 w-48 md:w-60 rounded-md bg-gray-100 border-yellow-500 border-2 focus:border-yellow-600 focus:bg-white focus:ring-0 text-sm appearance-none"
-              value={yourSelectedStateValueAddress}
-              onChange={(e) => setOptionAddress(e.target.value)}>
-              <option value="">All Addresses</option>
-              <option value="Amman">Amman</option>
-              <option value="Zarqa">Zarqa</option>
-              <option value="Balqa">Balqa</option>
-              <option value="Madaba">Madaba</option>
-              <option value="Karak">Karak</option>
-              <option value="Tafilah">Tafilah</option>
-              <option value="Ma'an">Ma'an</option>
-              <option value="Aqaba">Aqaba</option>
-              <option value="Mafraq">Mafraq</option>
-              <option value="Jerash">Jerash</option>
-              <option value="Ajloun">Ajloun</option>
-              <option value="Irbid">Irbid</option>
-            </select>
+      <div className="flex justify-center mb-5 bg-gray-200 shadow-xl py-16">
+        <div className="w-full sm:w-11/12 md:w-5/6 lg:w-2/3 xl:w-1/2 mx-auto py-10 px-4 rounded-lg bg-white border border-black">
+          <div className="relative">
+            <div className="absolute flex items-center ml-2 h-full">
+              <BsSearch className=" text-amber-500" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search by name, location"
+              className="px-8 py-3 w-full rounded-lg text-amber-500 bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
+              onChange={(e) => { filterDataByNameUsers(e.target.value); }} />
+          </div>
+          <div className="flex flex-col md:flex-row md:items-center justify-between mt-6 md:mb-2">
+            <p className="font-medium">Filters</p>
+          </div>
+          <div className="flex flex-col md:flex-row md:justify-between">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-4 xl:grid-cols-2 mt-4 md:mt-0">
+              <select className=" text-amber-500 px-4 py-3 w-full md:w-60 rounded-lg bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
+                onChange={(e) => setOptionType(e.target.value)}>
+                <option value="">All Type</option>
+                <option value="arabian">arabian</option>
+                <option value="italian">italian</option>
+                <option value="asian">asian</option>
+                <option value="mexican">mexican</option>
+                <option value="indian">indian</option>
+                <option value="american">american</option>
+              </select>
+              <select className="text-amber-500 px-4 py-3 w-full md:w-60 rounded-lg bg-gray-200 border border-black focus:border-amber-500 focus:ring-0"
+                onChange={(e) => setOptionAddress(e.target.value)}>
+                <option value="">All Addresses</option>
+                <option value="amman">amman</option>
+                <option value="zarqa">zarqa</option>
+                <option value="balqa">balqa</option>
+                <option value="madaba">madaba</option>
+                <option value="karak">karak</option>
+                <option value="tafilah">tafilah</option>
+                <option value="ma'an">ma'an</option>
+                <option value="aqaba">aqaba</option>
+                <option value="mafraq">mafraq</option>
+                <option value="jerash">jerash</option>
+                <option value="ajloun">ajloun</option>
+                <option value="irbid">irbid</option>
+              </select>
+            </div>
+            <div className="mt-4 md:mt-0">
+              <button
+                className="w-20 h-10 bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl"
+                onClick={handleFind}>
+                Find
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-10 justify-center my-16">
-        {restaurants.filter((restaurant) =>
-          restaurant.address.toLocaleLowerCase() === yourSelectedStateValueAddress.toLocaleLowerCase() ||
-          yourSelectedStateValueAddress.toLocaleLowerCase() === "").slice(startIndexUsers, endIndexUsers).map((restaurant, index) => (
-            <div
-              key={index}
-              className="flex flex-col shadow-lg rounded-lg overflow-hidden h-[fit-content] w-[fit-content] bg-white p-4 transform transition duration-300 hover:scale-105"
-              style={{ boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)' }}>
-              <img
-                src={restaurant.img}
-                alt={restaurant.restaurant_name}
-                className="w-full h-56 object-cover" />
-              <div className="p-4">
-                <h2 className="text-lg font-large font-bold text-gray-800">
-                  {restaurant.restaurant_name}
-                </h2>
-                <p className="text-gray-500 mt-4 mb-3 flex items-center w-96">
-                  <FaBook className="mr-2" />
-                  {restaurant.des}
-                </p>
-                <p className="text-gray-500 mt-4 flex items-center">
-                  <FaMapMarkerAlt className="mr-2" />
-                  {restaurant.address}
-                </p>
-                <p className="text-gray-500 mt-2 flex items-center">
-                  <FaUtensils className="mr-2" />
-                  Food Type:<span className="capitalize"> {restaurant.type_food}</span>
-                </p>
-                <div className="mt-5">
-                  <button onClick={() => { handleRes(restaurant) }} className="btn buttonNav border-none bg-transparent px-8 py-3 text-black mr-4">
-                    View Details
-                  </button>
+      <div className="bg-gray-200 shadow-xl py-10 mb-5">
+        <div className="text-center mb-16">
+          <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-500">
+            Restaurants
+          </h3>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-5 max-w-screen-xl mx-auto px-6">
+          {slicedArrayUsers?.map((restaurant) => {
+            return (
+              <div key={restaurant.restaurant_id} className="bg-white shadow-xl rounded-lg p-6 space-y-4">
+                <img className="w-full h-48 rounded-lg" src={restaurant.img} alt={restaurant.restaurant_name} />
+                <div>
+                  <h2 className="text-black font-semibold text-xl">
+                    Name: {restaurant.restaurant_name}
+                  </h2>
+                  <p className="text-lg mt-4">
+                    Description:
+                  </p>
+                  <p className="text-sm h-20 overflow-y-scroll pr-3 mt-2">
+                    {restaurant.des}
+                  </p>
+                  <div className="flex items-center justify-between mt-4 font-semibold text-sm border-b border-black pb-3">
+                    <span className="flex justify-between items-center">
+                      <FaMapMarkerAlt className="mr-2" />
+                      {restaurant.address}
+                    </span>
+                    <span className="flex justify-between items-center select-none">
+                      <FaUtensils className="mx-2" />
+                      Food Type: {restaurant.type_food}
+                    </span>
+                  </div>
+                  <div className="flex justify-center mt-3 items-center">
+                    <Link to={`/Details/${restaurant.restaurant_id}`}>
+                    <button className="w-full bg-transparent px-4 py-2 text-amber-500 rounded-lg border border-amber-500 hover:bg-amber-500 hover:text-white transition transform hover:-translate-y-1 hover:shadow-xl">
+                      View Details
+                    </button>
+                        </Link>
+                  </div>
                 </div>
-                <div className="mt-2" />
               </div>
-            </div>
-          ))}
+            );
+          })}
+        </div>
       </div>
-
-      {restaurants.length >= 6 && <div className="flex justify-center mb-5 bg-[#f8f8f8]">
-        <Pagination
-          count={Math.ceil(restaurants.length / itemsPerPage)}
-          page={currentPageUsers}
-          onChange={handlePageChangeUsers}
-          color="primary"
-          size="large"/>
-      </div>}
+      {restaurants.length >= 6 &&
+        <div className="flex w-full justify-center mt-5 bg-[#f8f8f8] mb-5">
+          {
+            <Pagination
+              color="warning"
+              count={totalPagesUsers}
+              page={currentPageUsers}
+              onChange={handlePageChangeUsers} />
+          }
+        </div>}
     </>
   );
 };
 
-export default ServicePage;
+export default ServicePageAll;

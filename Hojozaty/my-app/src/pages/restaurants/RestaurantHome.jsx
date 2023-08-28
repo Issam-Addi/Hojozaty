@@ -9,6 +9,7 @@ const RestaurantHome = () => {
 
   const [restaurant, setRestaurant] = useState([]);
   const restaurant_id = restaurant[0]?.restaurant_id;
+  console.log(restaurant_id);
   let userData = JSON.parse(localStorage.curruntUser)
   const user_id = userData.userid;
 
@@ -162,7 +163,7 @@ const RestaurantHome = () => {
           </path>
         </g>
       </svg>
-      {(restaurant[0]?.restaurant_name !== "") &&
+      {(restaurant[0]?.restaurant_id !== "") &&
         <div className="container mx-auto px-6 md:px-12 xl:px-32">
           <div className="text-center text-gray-950">
             <div className="block rounded-lg shadow-lg px-6 py-12 md:py-16 md:px-12 mt-[4.5rem] bg-white backdrop-blur-2xl">
@@ -181,7 +182,7 @@ const RestaurantHome = () => {
         </div>
       }
 
-      {(restaurant[0]?.restaurant_name !== "") &&
+      {(restaurant[0]?.restaurant_id !== "") &&
         <>
           <section className="mt-20 relative overflow-hidden via-transparent to-transparent pb-12 pt-20 sm:pb-16 sm:pt-32 lg:pb-24 xl:pb-32 xl:pt-40">
             <div className="relative z-10">

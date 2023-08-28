@@ -79,6 +79,7 @@ const ServicePageAll = () => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-center mb-5 bg-gray-200 shadow-xl py-16">
         <div className="w-full sm:w-11/12 md:w-5/6 lg:w-2/3 xl:w-1/2 mx-auto py-10 px-4 rounded-lg bg-white border border-black">
           <div className="relative">
@@ -133,6 +134,7 @@ const ServicePageAll = () => {
           </div>
         </div>
       </div>
+
       <div className="bg-gray-200 shadow-xl py-10 mb-5">
         <div className="text-center mb-16">
           <h3 className="text-3xl sm:text-4xl uppercase leading-normal font-bold tracking-tight text-amber-500">

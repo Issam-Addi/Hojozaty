@@ -172,7 +172,7 @@ app.post("/restaurants", async function (req, res) {
 app.get("/restaurants/:id", async function (req, res) {
   try {
     const id = req.params.id;
-    const currentRecord = await pool.query("SELECT * FROM restaurant WHERE user_id = '" + id + "'");
+    const currentRecord = await pool.query("SELECT * FROM restaurant WHERE user_id = $1", [id]);
     let person = currentRecord.rows;
     res.json(person);
   } catch (err) { }
@@ -510,8 +510,7 @@ app.get("/restaurantsAll", (req, res) => {
   });
 });
 
-// شوف شو قصتها 
-app.get("/restaurants/:type_food", async function (req, res) {
+app.get("/typeOfFood/:type_food", async function (req, res) {
   try {
     const { type_food } = req.params;
     const restaurant = await pool.query("SELECT * FROM restaurant WHERE type_food = $1", [type_food]);
